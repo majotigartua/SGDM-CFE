@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SGDM-CFE.UI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SGDM-CFE.UI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
