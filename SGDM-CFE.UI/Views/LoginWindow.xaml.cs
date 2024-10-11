@@ -1,6 +1,6 @@
 using Microsoft.UI.Xaml;
 
-namespace SGDM_CFE.UI
+namespace SGDM_CFE.UI.Views
 {
     public sealed partial class LoginWindow : Window
     {

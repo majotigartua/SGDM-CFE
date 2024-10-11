@@ -1,9 +1,11 @@
 ﻿using Microsoft.UI.Xaml;
+using SGDM_CFE.UI.Views;
 
 namespace SGDM_CFE.UI
 {
     public partial class App : Application
     {
+        public Window LoginWindow { get; private set; }
         public App()
         {
             this.InitializeComponent();
@@ -11,8 +13,9 @@ namespace SGDM_CFE.UI
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            Window loginWindow = new LoginWindow();
-            loginWindow.Activate();
+            LoginWindow = new LoginWindow();
+            LoginWindow.Activate();
         }
     }
 }
+ 

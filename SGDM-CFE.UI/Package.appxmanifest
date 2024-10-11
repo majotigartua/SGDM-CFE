@@ -17,7 +17,7 @@
   <Properties>
     <DisplayName>SGDM-CFE.UI</DisplayName>
     <PublisherDisplayName>majot</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Resources\Assets\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -37,10 +37,10 @@
         DisplayName="SGDM-CFE.UI"
         Description="SGDM-CFE.UI"
         BackgroundColor="transparent"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        Square150x150Logo="ResourcesAssets\Square150x150Logo.png"
+        Square44x44Logo="Resources\Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Resources\Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Resources\Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
