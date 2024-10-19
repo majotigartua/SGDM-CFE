@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGDM-CFE.UI", "SGDM-CFE.UI\SGDM-CFE.UI.csproj", "{EE2EB454-5A3F-4300-9511-0DC85FEDA8C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGDM-CFE.Model", "SGDM-CFE.Model\SGDM-CFE.Model.csproj", "{A2BCD886-93E2-4C3B-8C7E-5A944552DDA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE2EB454-5A3F-4300-9511-0DC85FEDA8C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2EB454-5A3F-4300-9511-0DC85FEDA8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2EB454-5A3F-4300-9511-0DC85FEDA8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2EB454-5A3F-4300-9511-0DC85FEDA8C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BCD886-93E2-4C3B-8C7E-5A944552DDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BCD886-93E2-4C3B-8C7E-5A944552DDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BCD886-93E2-4C3B-8C7E-5A944552DDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BCD886-93E2-4C3B-8C7E-5A944552DDA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {529454F4-6CA6-4470-A26E-F8C2D37B69A9}
+	EndGlobalSection
+EndGlobal
