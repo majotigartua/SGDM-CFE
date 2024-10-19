@@ -12,13 +12,12 @@ namespace SGDM_CFE.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkCenter_CostCenter
+    public partial class sysdiagram
     {
-        public int IdWorkCenter_CostCenter { get; set; }
-        public int IdWorkCenter { get; set; }
-        public int IdCostCenter { get; set; }
-    
-        public virtual CostCenter CostCenter { get; set; }
-        public virtual WorkCenter WorkCenter { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

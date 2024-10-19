@@ -11,7 +11,6 @@ namespace SGDM_CFE.Model
 {
     using System;
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
     
     public partial class Entities : DbContext
     {
@@ -19,12 +18,7 @@ namespace SGDM_CFE.Model
             : base("name=Entities")
         {
         }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
+   
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<Assignment> Assignments { get; set; }
         public virtual DbSet<BusinessProcess> BusinessProcesses { get; set; }

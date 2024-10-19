@@ -2,24 +2,33 @@
 using SGDM_CFE.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SGDM_CFE.DataAccess.Repositories
 {
     public class AreaRepository : IAreaRepository
     {
+
+        public AreaRepository()
+        {
+        }
+
         public IEnumerable<Area> GetAll()
         {
-            throw new NotImplementedException();
+            using (Entities _context = new Entities())
+            {
+                return _context.Areas.ToList();
+            }
         }
 
         public Area GetById(int id)
         {
-            throw new NotImplementedException();
+            return new Area();
         }
 
         public Area GetByWorkCenter(WorkCenter workCenter)
         {
-            throw new NotImplementedException();
+            return new Area();
         }
     }
 }

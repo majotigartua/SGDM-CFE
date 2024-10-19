@@ -41,7 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IDeviceService.cs" />
+    <Compile Include="Interfaces\IEmployeeService.cs" />
+    <Compile Include="Interfaces\IWorkCenterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\WorkCenterService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SGDM-CFE.DataAccess\SGDM-CFE.DataAccess.csproj">
+      <Project>{4AF8793F-D174-45F1-BB4D-4019077F2BD0}</Project>
+      <Name>SGDM-CFE.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGDM-CFE.Model\SGDM-CFE.Model.csproj">
+      <Project>{A2BCD886-93E2-4C3B-8C7E-5A944552DDA2}</Project>
+      <Name>SGDM-CFE.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
