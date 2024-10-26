@@ -1,0 +1,45 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+# NuGet Packages
+*.nupkg
+**/packages/*
+!**/packages/build/ 
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+
+# Entity Framework
+*.edmx.diagram
+*.edmx
+*.tt
+*.ttinclude
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+Thumbs.db
+.DS_Store
+
+# Coverage Reports
+*.coverage
+*.coveragexml
+
+# Publish Output
+PublishProfiles/
