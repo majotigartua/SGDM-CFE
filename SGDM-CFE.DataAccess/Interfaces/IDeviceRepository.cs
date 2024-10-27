@@ -11,6 +11,7 @@ namespace SGDM_CFE.DataAccess.Interfaces
         Device? GetByMobileDevice(MobileDevice mobileDevice);
         Device? GetByOpticalReader(OpticalReader opticalReader);
         Device? GetByState(State state);
+        List<Device> GetByWorkCenter(WorkCenter workCenter);
         bool Update(Device device);
     }
 }

@@ -102,19 +102,20 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public MobileDevice? GetByType(Type type)
+        public List<MobileDevice> GetByType(Type type)
         {
             try
             {
                 int typeId = type.Id;
-                var mobileDevice = _context.MobileDevices
+                var mobileDevices = _context.MobileDevices
                     .Include(md => md.Type)
-                    .FirstOrDefault(md => md.Type.Id == typeId);
-                return mobileDevice;
+                    .Where(md => md.Type.Id == typeId)
+                    .ToList();
+                return mobileDevices;
             }
             catch (Exception)
             {
-                return null;
+                return [];
             }
         }
 

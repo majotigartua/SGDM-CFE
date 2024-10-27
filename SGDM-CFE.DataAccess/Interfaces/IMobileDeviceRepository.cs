@@ -11,7 +11,7 @@ namespace SGDM_CFE.DataAccess.Interfaces
         MobileDevice? GetByDevice(Device device);
         MobileDevice? GetById(int id);
         MobileDevice? GetBySIMCard(SIMCard simCard);
-        MobileDevice? GetByType(Type type);
+        List<MobileDevice> GetByType(Type type);
         bool Update(MobileDevice mobileDevice);
     }
 }

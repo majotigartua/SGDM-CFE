@@ -117,6 +117,22 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
+        public List<Device> GetByWorkCenter(WorkCenter workCenter)
+        {
+            try
+            {
+                int workCenterId = workCenter.Id;
+                var devices = _context.Devices
+                    .Where(d => d.WorkCenterId == workCenterId)
+                    .ToList();
+                return devices;
+            }
+            catch (Exception)
+            {
+                return [];
+            }
+        }
+
         public bool Update(Device device)
         {
             try
