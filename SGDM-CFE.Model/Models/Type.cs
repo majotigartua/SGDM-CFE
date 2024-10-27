@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<MobileDevice> MobileDevices { get; set; } = new List<MobileDevice>();
+        public virtual ICollection<MobileDevice> MobileDevices { get; set; } = [];
     }
 }

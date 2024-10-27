@@ -8,10 +8,10 @@
         public string? MaternalSurname { get; set; }
         public string? RPE { get; set; }
         public bool IsDeleted { get; set; }
-        public int? IdUser { get; set; }
+        public int? UserId { get; set; }
 
         public virtual User? User { get; set; }
 
-        public virtual ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
+        public virtual ICollection<Assignment> Assignments { get; set; } = [];
     }
 }

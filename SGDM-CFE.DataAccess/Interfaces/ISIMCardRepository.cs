@@ -7,8 +7,8 @@ namespace SGDM_CFE.DataAccess.Interfaces
         bool Add(SIMCard simCard);
         bool Delete(SIMCard simCard);
         List<SIMCard> GetAll();
-        SIMCard GetById(int id);
-        SIMCard GetByMobileDevice(MobileDevice mobileDevice);
+        SIMCard? GetById(int id);
+        SIMCard? GetByMobileDevice(MobileDevice mobileDevice);
         bool Update(SIMCard simCard);
     }
 }

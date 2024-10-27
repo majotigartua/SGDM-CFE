@@ -14,7 +14,7 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly StateRepository _stateRepository;
         private readonly TypeRepository _typeRepository;
 
-        public DeviceService(Entities context)
+        public DeviceService(Context context)
         {
             _assignmentRepository = new AssignmentRepository(context);
             _deviceRepository = new DeviceRepository(context);

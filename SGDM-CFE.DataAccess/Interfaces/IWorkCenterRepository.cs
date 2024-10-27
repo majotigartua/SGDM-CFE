@@ -10,7 +10,7 @@ namespace SGDM_CFE.DataAccess.Interfaces
         List<WorkCenter> GetByArea(Area area);
         List<WorkCenter> GetByBusinessProcess(BusinessProcess businessProcess);
         List<WorkCenter> GetByCostCenter(CostCenter costCenter);
-        WorkCenter GetById(int id);
+        WorkCenter? GetById(int id);
         bool Update(WorkCenter workCenter);
     }
 }

@@ -7,12 +7,12 @@
         public string? Name { get; set; }
         public bool IsDeleted { get; set; }
 
-        public int IdArea { get; set; }
+        public int AreaId { get; set; }
 
         public virtual Area Area { get; set; } = null!;
 
-        public virtual ICollection<Device> Devices { get; set; } = new List<Device>();
-        public virtual ICollection<WorkCenterBusinessProcess> WorkCenterBusinessProcesses { get; set; } = new List<WorkCenterBusinessProcess>();
-        public virtual ICollection<WorkCenterCostCenter> WorkCenterCostCenters { get; set; } = new List<WorkCenterCostCenter>();
+        public virtual ICollection<Device> Devices { get; set; } = [];
+        public virtual ICollection<WorkCenterBusinessProcess> WorkCenterBusinessProcesses { get; set; } = [];
+        public virtual ICollection<WorkCenterCostCenter> WorkCenterCostCenters { get; set; } = [];
     }
 }

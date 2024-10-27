@@ -8,12 +8,12 @@
         public bool IsCriticalMission { get; set; }
         public string? Notes { get; set; }
         public bool IsDeleted { get; set; }
-        public int IdWorkCenter { get; set; }
+        public int WorkCenterId { get; set; }
 
         public virtual WorkCenter WorkCenter { get; set; } = null!;
 
-        public virtual ICollection<MobileDevice> MobileDevices { get; set; } = new List<MobileDevice>();
-        public virtual ICollection<OpticalReader> OpticalReaders { get; set; } = new List<OpticalReader>();
-        public virtual ICollection<State> States { get; set; } = new List<State>();
+        public virtual ICollection<MobileDevice> MobileDevices { get; set; } = [];
+        public virtual ICollection<OpticalReader> OpticalReaders { get; set; } = [];
+        public virtual ICollection<State> States { get; set; } = [];
     }
 }

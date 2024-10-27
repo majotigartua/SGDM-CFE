@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public bool IsDeleted { get; set; }
-        public int IdDevice { get; set; }
+        public int DeviceId { get; set; }
 
         public virtual Device Device { get; set; } = null!;
     }

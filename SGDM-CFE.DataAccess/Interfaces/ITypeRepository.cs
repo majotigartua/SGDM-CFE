@@ -6,7 +6,7 @@ namespace SGDM_CFE.DataAccess.Interfaces
     public interface ITypeRepository
     {
         List<Type> GetAll();
-        Type GetById(int id);
-        Type GetByMobileDevice(MobileDevice mobileDevice);
+        Type? GetById(int id);
+        Type? GetByMobileDevice(MobileDevice mobileDevice);
     }
 }

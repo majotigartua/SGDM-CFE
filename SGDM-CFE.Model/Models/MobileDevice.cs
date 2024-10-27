@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
         public bool IsDeleted { get; set; }
-        public int IdType { get; set; }
-        public int IdDevice { get; set; }
-        public int? IdSIMCard { get; set; }
+        public int TypeId { get; set; }
+        public int DeviceId { get; set; }
+        public int? SIMCardId { get; set; }
 
         public virtual Device Device { get; set; } = null!;
         public virtual SIMCard? SIMCard { get; set; }

@@ -20,6 +20,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SGDM-CFE.BusinessLogic\SGDM-CFE.BusinessLogic.csproj" />
+    <ProjectReference Include="..\SGDM-CFE.DataAccess\SGDM-CFE.DataAccess.csproj" />
+    <ProjectReference Include="..\SGDM-CFE.Model\SGDM-CFE.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 </Project>

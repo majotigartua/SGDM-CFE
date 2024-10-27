@@ -7,8 +7,8 @@ namespace SGDM_CFE.DataAccess.Interfaces
         bool Add(Assignment assignment);    
         List<Assignment> GetAll();
         List<Assignment> GetByEmployee(Employee employee);
-        Assignment GetById(int id);
-        Assignment GetByState(State state);
+        Assignment? GetById(int id);
+        Assignment? GetByState(State state);
         bool Update(Assignment assignment);
     }
 }

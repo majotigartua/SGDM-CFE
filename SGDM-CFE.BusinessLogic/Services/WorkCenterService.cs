@@ -1,5 +1,4 @@
 ﻿using SGDM_CFE.BusinessLogic.Interfaces;
-using SGDM_CFE.DataAccess.Interfaces;
 using SGDM_CFE.DataAccess.Repositories;
 using SGDM_CFE.Model;
 
@@ -12,7 +11,7 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly CostCenterRepository _costCenterRepository;
         private readonly WorkCenterRepository _workCenterRepository;
 
-        public WorkCenterService(Entities context)
+        public WorkCenterService(Context context)
         {
             _areaRepository = new AreaRepository(context);
             _businessProcessRepository = new BusinessProcessRepository(context);

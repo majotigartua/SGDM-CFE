@@ -10,7 +10,7 @@ namespace SGDM_CFE.DataAccess.Interfaces
         List<State> GetByBusinessProcess(WorkCenterBusinessProcess workCenterBusinessProcess);
         List<State> GetByCostCenter(WorkCenterCostCenter workCenterCostCenter);
         List<State> GetByDevice(Device device);
-        State GetById(int id);
+        State? GetById(int id);
         bool Update(State state);
     }
 }

@@ -5,4 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SGDM-CFE.DataAccess\SGDM-CFE.DataAccess.csproj" />
+  </ItemGroup>
 </Project>

@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string? Name { get; set; }
 
-        public virtual ICollection<WorkCenterCostCenter> WorkCenterCostCenters { get; set; } = new List<WorkCenterCostCenter>();
+        public virtual ICollection<WorkCenterCostCenter> WorkCenterCostCenters { get; set; } = [];
     }
 }

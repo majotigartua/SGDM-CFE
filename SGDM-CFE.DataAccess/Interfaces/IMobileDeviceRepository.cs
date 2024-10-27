@@ -8,10 +8,10 @@ namespace SGDM_CFE.DataAccess.Interfaces
         bool Add(MobileDevice mobileDevice);
         bool Delete(MobileDevice mobileDevice);
         List<MobileDevice> GetAll();
-        MobileDevice GetByDevice(Device device);
-        MobileDevice GetById(int id);
-        MobileDevice GetBySIMCard(SIMCard simCard);
-        MobileDevice GetByType(Type type);
+        MobileDevice? GetByDevice(Device device);
+        MobileDevice? GetById(int id);
+        MobileDevice? GetBySIMCard(SIMCard simCard);
+        MobileDevice? GetByType(Type type);
         bool Update(MobileDevice mobileDevice);
     }
 }
