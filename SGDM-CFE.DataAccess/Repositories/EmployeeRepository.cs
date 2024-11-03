@@ -85,6 +85,19 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
+        public Employee? GetByRPE(string rpe)
+        {
+            try
+            {
+                var employee = _context.Employees.FirstOrDefault(e => e.RPE == rpe);
+                return employee;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public Employee? GetByUser(User user)
         {
             try

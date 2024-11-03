@@ -15,4 +15,24 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SGDM-CFE.BusinessLogic\SGDM-CFE.BusinessLogic.csproj" />
+    <ProjectReference Include="..\SGDM-CFE.Model\SGDM-CFE.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

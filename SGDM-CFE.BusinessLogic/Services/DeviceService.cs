@@ -4,25 +4,14 @@ using SGDM_CFE.Model;
 
 namespace SGDM_CFE.BusinessLogic.Services
 {
-    public class DeviceService : IDeviceService
+    public class DeviceService(Context context) : IDeviceService
     {
-        private readonly AssignmentRepository _assignmentRepository;
-        private readonly DeviceRepository _deviceRepository;
-        private readonly MobileDeviceRepository _mobileDeviceRepository;
-        private readonly OpticalReaderRepository _opticalReaderRepository;
-        private readonly SIMCardRepository _simCardRepository;
-        private readonly StateRepository _stateRepository;
-        private readonly TypeRepository _typeRepository;
-
-        public DeviceService(Context context)
-        {
-            _assignmentRepository = new AssignmentRepository(context);
-            _deviceRepository = new DeviceRepository(context);
-            _mobileDeviceRepository = new MobileDeviceRepository(context);
-            _opticalReaderRepository = new OpticalReaderRepository(context);
-            _simCardRepository = new SIMCardRepository(context);
-            _stateRepository = new StateRepository(context);
-            _typeRepository = new TypeRepository(context);
-        }
+        private readonly AssignmentRepository _assignmentRepository = new(context);
+        private readonly DeviceRepository _deviceRepository = new(context);
+        private readonly MobileDeviceRepository _mobileDeviceRepository = new(context);
+        private readonly OpticalReaderRepository _opticalReaderRepository = new(context);
+        private readonly SIMCardRepository _simCardRepository = new(context);
+        private readonly StateRepository _stateRepository = new(context);
+        private readonly TypeRepository _typeRepository = new(context);
     }
 }

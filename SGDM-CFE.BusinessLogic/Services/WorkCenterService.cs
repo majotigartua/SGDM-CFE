@@ -4,19 +4,11 @@ using SGDM_CFE.Model;
 
 namespace SGDM_CFE.BusinessLogic.Services
 {
-    public class WorkCenterService : IWorkCenterService
+    public class WorkCenterService(Context context) : IWorkCenterService
     {
-        private readonly AreaRepository _areaRepository;
-        private readonly BusinessProcessRepository _businessProcessRepository;
-        private readonly CostCenterRepository _costCenterRepository;
-        private readonly WorkCenterRepository _workCenterRepository;
-
-        public WorkCenterService(Context context)
-        {
-            _areaRepository = new AreaRepository(context);
-            _businessProcessRepository = new BusinessProcessRepository(context);
-            _costCenterRepository = new CostCenterRepository(context);
-            _workCenterRepository = new WorkCenterRepository(context);
-        }
+        private readonly AreaRepository _areaRepository = new(context);
+        private readonly BusinessProcessRepository _businessProcessRepository = new(context);
+        private readonly CostCenterRepository _costCenterRepository = new(context);
+        private readonly WorkCenterRepository _workCenterRepository = new(context);
     }
 }

@@ -9,6 +9,7 @@ namespace SGDM_CFE.DataAccess.Interfaces
         List<Employee> GetAll();
         Employee? GetByAssignment(Assignment assignment);
         Employee? GetById(int id);
+        Employee? GetByRPE(string rpe);
         Employee? GetByUser(User user);
         bool Update(Employee employee);
     }
