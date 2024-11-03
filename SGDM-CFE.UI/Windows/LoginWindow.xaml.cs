@@ -1,7 +1,7 @@
 ﻿using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.UI.Resources;
-using SGDM_CFE.UI.Views;
+using SGDM_CFE.UI.Windows;
 using System.Windows;
 using Strings = SGDM_CFE.UI.Resources.Strings;
 
@@ -35,7 +35,7 @@ namespace SGDM_CFE.UI
                     var employee = _employeeService.Login(rpe, password);
                     if (employee != null)
                     {
-                        var mainWindow = new MainWindow(_context);
+                        var mainWindow = new MainWindow(_context, employee);
                         mainWindow.Show();
                         Close();
                     }

@@ -1,18 +1,21 @@
 ﻿using SGDM_CFE.Model;
+using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Views;
 using System.Windows;
 using System.Windows.Controls;
-using static SGDM_CFE.UI.Resources.Utilities;
+using static SGDM_CFE.UI.Resources.Constants;
 
 namespace SGDM_CFE.UI.Windows
 {
     public partial class MainWindow : Window
     {
         private readonly Context _context;
+        private readonly Employee _employee;
 
-        public MainWindow(Context context)
+        public MainWindow(Context context, Employee employee)
         {
             _context = context;
+            _employee = employee;
             InitializeComponent();
             NavigateTo(ViewType.StartPanel);
         }

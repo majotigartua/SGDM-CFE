@@ -15,16 +15,5 @@ namespace SGDM_CFE.UI.Resources
             }
             return hashedPassword.ToString();
         }
-
-        public enum ViewType
-        {
-            StartPanel,
-            Employees,
-            WorkCenters,
-            Tablets,
-            PortableTerminals,
-            OpticalReaders,
-            SIMCards
-        }
     }
 }
