@@ -17,6 +17,8 @@ namespace SGDM_CFE.UI.Views
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
+            var editEmployeeWindow = new EmployeeWindow(_contextService, isEditWindow: true);
+            editEmployeeWindow.ShowDialog();
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
@@ -25,13 +27,8 @@ namespace SGDM_CFE.UI.Views
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
-            ShowEmployeeWindow();
-        }
-
-        private void ShowEmployeeWindow()
-        {
-            var employeeWindow = new EmployeeWindow(_contextService);
-            employeeWindow.ShowDialog();
+            var createEmployeeWindow = new EmployeeWindow(_contextService, isEditWindow: false);
+            createEmployeeWindow.ShowDialog();
         }
 
         private void CreateUserButtonClick(object sender, RoutedEventArgs e)
@@ -40,6 +37,11 @@ namespace SGDM_CFE.UI.Views
 
         private void ViewDetailsButtonClick(object sender, RoutedEventArgs e)
         {
+            var employeeView = new EmployeeView(_contextService);
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                mainWindow.MainContent.Content = employeeView;
+            }
         }
     }
 }

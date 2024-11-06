@@ -1,6 +1,7 @@
 ﻿using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
+using SGDM_CFE.UI.Resources;
 using SGDM_CFE.UI.Views;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,26 +20,28 @@ namespace SGDM_CFE.UI.Windows
 
             _employee = employee;
             InitializeComponent();
-            ConfigureMenuVisibility();
-            NavigateTo(ViewType.StartPanel);
+            ConfigureWindow();
         }
 
-        private void ConfigureMenuVisibility()
+        private void ConfigureWindow()
         {
             StartPanelButton.Visibility = Visibility.Visible;
             int roleId = GetRoleId();
-            if (roleId == Roles.Administrator)
+            switch (roleId)
             {
-                SetButtonVisibility(true);
+                case Roles.Administrator:
+                    SetButtonVisibility(showAll: true);
+                    break;
+
+                case Roles.Operator:
+                    SetButtonVisibility(showAll: false);
+                    break;
+
+                default:
+                    NavigateToLoginWindow();
+                    return;
             }
-            else if (roleId == Roles.Operator)
-            {
-                SetButtonVisibility(false);
-            }
-            else
-            {
-                NavigateToLoginWindow();
-            }
+            NavigateTo(ViewType.StartPanel);
         }
 
         private int GetRoleId()
@@ -78,11 +81,11 @@ namespace SGDM_CFE.UI.Windows
             return viewType switch
             {
                 ViewType.Employees => new EmployeesView(_contextService),
-                ViewType.OpticalReaders => new OpticalReadersView(_contextService),
-                ViewType.PortableTerminals => new PortableTerminalsView(_contextService),
+                ViewType.OpticalReaders => new DevicesView(_contextService, DeviceType.OpticalReader),
+                ViewType.PortableTerminals => new DevicesView(_contextService, DeviceType.PortableTerminal),
                 ViewType.SIMCards => new SIMCardsView(_contextService),
                 ViewType.StartPanel => new StartPanelView(_contextService),
-                ViewType.Tablets => new TabletsView(_contextService),
+                ViewType.Tablets => new DevicesView(_contextService, DeviceType.Tablet),
                 ViewType.WorkCenters => new WorkCentersView(_contextService),
                 _ => throw new Exception()
             };
@@ -113,6 +116,7 @@ namespace SGDM_CFE.UI.Windows
                 }
                 else
                 {
+                    ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
                 }
             }
         }

@@ -6,7 +6,7 @@
         xmlns:r="clr-namespace:SGDM_CFE.UI.Resources"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         Width="500" Height="600">
     <ScrollViewer>
@@ -32,43 +32,43 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="{x:Static r:Strings.InventoryNumberLabel}" VerticalAlignment="Center" Margin="5"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
             <Label Grid.Row="1" Grid.Column="0" Content="{x:Static r:Strings.SerialNumberLabel}" VerticalAlignment="Center" Margin="5"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
             <Label Grid.Row="2" Grid.Column="0" Content="{x:Static r:Strings.AreaLabel}" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding AreaOptions}" SelectedItem="{Binding SelectedArea}" Margin="5"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="5"/>
             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static r:Strings.WorkCenterLabel}" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding WorkCenterOptions}" SelectedItem="{Binding SelectedWorkCenter}" Margin="5"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" Margin="5"/>
             <Label Grid.Row="4" Grid.Column="0" Content="{x:Static r:Strings.CostCenterLabel}" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding CostCenterOptions}" SelectedItem="{Binding SelectedCostCenter}" Margin="5"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" Margin="5"/>
             <Label Grid.Row="5" Grid.Column="0" Content="{x:Static r:Strings.BusinessProcessLabel}" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding BusinessProcessOptions}" SelectedItem="{Binding SelectedBusinessProcess}" Margin="5"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" Margin="5"/>
             <Label Grid.Row="6" Grid.Column="0" Content="{x:Static r:Strings.HasFailuresLabel}" VerticalAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton Content="Yes" IsChecked="{Binding HasFailures, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=True}" Margin="5"/>
-                <RadioButton Content="No" IsChecked="{Binding HasFailures, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=False}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.YesLabel}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.NoLabel}" Margin="5"/>
             </StackPanel>
             <Label Grid.Row="7" Grid.Column="0" Content="{x:Static r:Strings.FailuresDescriptionLabel}" VerticalAlignment="Top" Margin="5"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding FailuresDescription}" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
             <Label Grid.Row="8" Grid.Column="0" Content="{x:Static r:Strings.RequiresMaintenanceLabel}" VerticalAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton Content="Yes" IsChecked="{Binding RequiresMaintenance, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=True}" Margin="5"/>
-                <RadioButton Content="No" IsChecked="{Binding RequiresMaintenance, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=False}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.YesLabel}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.NoLabel}" Margin="5"/>
             </StackPanel>
             <Label Grid.Row="9" Grid.Column="0" Content="{x:Static r:Strings.IsCriticalMissionLabel}" VerticalAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton Content="Yes" IsChecked="{Binding IsCriticalMission, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=True}" Margin="5"/>
-                <RadioButton Content="No" IsChecked="{Binding IsCriticalMission, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=False}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.YesLabel}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.NoLabel}" Margin="5"/>
             </StackPanel>
             <Label Grid.Row="10" Grid.Column="0" Content="{x:Static r:Strings.IsFunctionalLabel}" VerticalAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton Content="Yes" IsChecked="{Binding IsFunctional, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=True}" Margin="5"/>
-                <RadioButton Content="No" IsChecked="{Binding IsFunctional, Converter={StaticResource BooleanToRadioButtonConverter}, ConverterParameter=False}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.YesLabel}" Margin="5"/>
+                <RadioButton Content="{x:Static r:Strings.NoLabel}" Margin="5"/>
             </StackPanel>
             <Label Grid.Row="11" Grid.Column="0" Content="{x:Static r:Strings.ReviewNotesLabel}" VerticalAlignment="Top" Margin="5"/>
-            <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding ReviewNotes}" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
+            <TextBox Grid.Row="11" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
             <Label Grid.Row="12" Grid.Column="0" Content="{x:Static r:Strings.NotesLabel}" VerticalAlignment="Top" Margin="5"/>
-            <TextBox Grid.Row="12" Grid.Column="1" Text="{Binding Notes}" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
+            <TextBox Grid.Row="12" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
             <Grid Grid.Row="13" Grid.ColumnSpan="2" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

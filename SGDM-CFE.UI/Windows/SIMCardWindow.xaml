@@ -1,4 +1,4 @@
-﻿<Window x:Class="SGDM_CFE.UI.Windows.EmployeeWindow"
+﻿<Window x:Class="SGDM_CFE.UI.Windows.SIMCardWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,12 +8,9 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        Width="500" Height="250">
+        Width="500" Height="150">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -21,14 +18,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static r:Strings.RPELabel}" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="RPETextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static r:Strings.NameLabel}" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static r:Strings.PaternalSurnameLabel}" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="PaternalSurnameTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static r:Strings.MaternalSurnameLabel}" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="MaternalSurnameTextBox" Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static r:Strings.SerialNumberLabel}" VerticalAlignment="Center" Margin="5"/>
+        <TextBox x:Name="SerialNumberTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
         <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

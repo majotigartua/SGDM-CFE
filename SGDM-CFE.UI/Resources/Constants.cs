@@ -2,15 +2,23 @@
 {
     public class Constants
     {
+
+        public enum DeviceType
+        {
+            OpticalReader,
+            PortableTerminal,
+            Tablet
+        }
+
         public enum ViewType
         {
             StartPanel,
             Employees,
-            WorkCenters,
-            Tablets,
-            PortableTerminals,
             OpticalReaders,
-            SIMCards
+            PortableTerminals,
+            SIMCards,
+            Tablets,
+            WorkCenters
         }
 
         public static class Roles

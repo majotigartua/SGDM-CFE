@@ -4,12 +4,12 @@ using System.Windows;
 
 namespace SGDM_CFE.UI.Windows
 {
-    public partial class EmployeeWindow : Window
-    {
+    public partial class WorkCenterWindow : Window
+    { 
         private readonly ContextService _contextService;
         private readonly bool _isEditWindow;
 
-        public EmployeeWindow(ContextService contextService, bool isEditWindow)
+        public WorkCenterWindow(ContextService contextService, bool isEditWindow)
         {
             _contextService = contextService;
             _isEditWindow = isEditWindow;
@@ -19,7 +19,7 @@ namespace SGDM_CFE.UI.Windows
 
         private void ConfigureWindow()
         {
-            Title = _isEditWindow ? Strings.EditEmployeeWindowTitle : Strings.CreateEmployeeWindowTitle;
+            Title = _isEditWindow ? Strings.EditWorkCenterWindowTitle : Strings.CreateWorkCenterWindowTitle;
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)

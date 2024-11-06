@@ -136,10 +136,10 @@
     <value>Información incorrecta</value>
   </data>
   <data name="RPELabel" xml:space="preserve">
-    <value>Registro Personal del Empleado (RPE):</value>
+    <value>Registro Personal del Empleado (RPE):*</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Contraseña:</value>
+    <value>Contraseña:*</value>
   </data>
   <data name="ForgotPasswordLabel" xml:space="preserve">
     <value>¿Olvidaste tu contraseña?</value>
@@ -226,18 +226,180 @@
     <value>Código</value>
   </data>
   <data name="NameLabel" xml:space="preserve">
-    <value>Nombre:</value>
+    <value>Nombre:*</value>
   </data>
   <data name="PaternalSurnameLabel" xml:space="preserve">
-    <value>Apellido paterno:</value>
+    <value>Apellido paterno:*</value>
   </data>
   <data name="MaternalSurnameLabel" xml:space="preserve">
-    <value>Apellido materno:</value>
+    <value>Apellido materno:*</value>
   </data>
   <data name="AcceptButton" xml:space="preserve">
     <value>Aceptar</value>
   </data>
   <data name="CancelButton" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="InventoryNumberLabel" xml:space="preserve">
+    <value>Número de inventario:</value>
+  </data>
+  <data name="SerialNumberLabel" xml:space="preserve">
+    <value>Número de serie:*</value>
+  </data>
+  <data name="AreaLabel" xml:space="preserve">
+    <value>Zona:*</value>
+  </data>
+  <data name="WorkCenterLabel" xml:space="preserve">
+    <value>Centro de trabajo:*</value>
+  </data>
+  <data name="BusinessProcessLabel" xml:space="preserve">
+    <value>Proceso de negocio:</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="NoLabel" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="HasFailuresLabel" xml:space="preserve">
+    <value>¿Tiene fallas?:*</value>
+  </data>
+  <data name="FailuresDescriptionLabel" xml:space="preserve">
+    <value>Descripción de la falla:</value>
+  </data>
+  <data name="RequiresMaintenanceLabel" xml:space="preserve">
+    <value>¿Requiere mantenimiento?:*</value>
+  </data>
+  <data name="IsCriticalMissionLabel" xml:space="preserve">
+    <value>¿Es misión crítica?:*</value>
+  </data>
+  <data name="IsFunctionalLabel" xml:space="preserve">
+    <value>¿Es funcional?:*</value>
+  </data>
+  <data name="ReviewNotesLabel" xml:space="preserve">
+    <value>Notas de revisión:</value>
+  </data>
+  <data name="NotesLabel" xml:space="preserve">
+    <value>Notas:</value>
+  </data>
+  <data name="CostCenterLabel" xml:space="preserve">
+    <value>Centro de costos:*</value>
+  </data>
+  <data name="CreateWindowTitle" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="EditWindowTitle" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="OpticalReaderWindowTitle" xml:space="preserve">
+    <value>lector óptico</value>
+  </data>
+  <data name="PortableTerminalWindowTitle" xml:space="preserve">
+    <value>terminal portátil</value>
+  </data>
+  <data name="TabletWindowTitle" xml:space="preserve">
+    <value>tableta</value>
+  </data>
+  <data name="CodeLabel" xml:space="preserve">
+    <value>Código:*</value>
+  </data>
+  <data name="CreateEmployeeWindowTitle" xml:space="preserve">
+    <value>Crear empleado</value>
+  </data>
+  <data name="EditEmployeeWindowTitle" xml:space="preserve">
+    <value>Editar empleado</value>
+  </data>
+  <data name="CreateWorkCenterWindowTitle" xml:space="preserve">
+    <value>Crear centro de trabajo</value>
+  </data>
+  <data name="EditWorkCenterWindowTitle" xml:space="preserve">
+    <value>Editar centro de trabajo</value>
+  </data>
+  <data name="CreateSIMCardWindowTitle" xml:space="preserve">
+    <value>Crear tarjeta SIM</value>
+  </data>
+  <data name="EditSIMCardWindowTitle" xml:space="preserve">
+    <value>Editar tarjeta SIM</value>
+  </data>
+  <data name="CostCentersLabel" xml:space="preserve">
+    <value>Centros de costos:*</value>
+  </data>
+  <data name="BusinessProcessesLabel" xml:space="preserve">
+    <value>Procesos de negocio:*</value>
+  </data>
+  <data name="EmployeesLabel" xml:space="preserve">
+    <value>Empleados</value>
+  </data>
+  <data name="WorkCentersLabel" xml:space="preserve">
+    <value>Centros de trabajo</value>
+  </data>
+  <data name="OpticalReadersLabel" xml:space="preserve">
+    <value>Lectores ópticos</value>
+  </data>
+  <data name="PortableTerminalsLabel" xml:space="preserve">
+    <value>Terminales portátiles</value>
+  </data>
+  <data name="TabletsLabel" xml:space="preserve">
+    <value>Tabletas</value>
+  </data>
+  <data name="SIMCardsLabel" xml:space="preserve">
+    <value>Tarjetas SIM</value>
+  </data>
+  <data name="ViewEmployeeLabel" xml:space="preserve">
+    <value>Consultar empleado</value>
+  </data>
+  <data name="ViewWorkCenterLabel" xml:space="preserve">
+    <value>Consultar centro de trabajo</value>
+  </data>
+  <data name="ViewOpticalReaderLabel" xml:space="preserve">
+    <value>Consultar lector óptico</value>
+  </data>
+  <data name="ViewPortableTerminalLabel" xml:space="preserve">
+    <value>Consultar terminal portátil</value>
+  </data>
+  <data name="ViewTabletLabel" xml:space="preserve">
+    <value>Consultar tableta</value>
+  </data>
+  <data name="ViewSIMCardLabel" xml:space="preserve">
+    <value>Consultar tarjeta SIM</value>
+  </data>
+  <data name="EmployeeAssignedDevicesLabel" xml:space="preserve">
+    <value>Equipos asignados al empleado:</value>
+  </data>
+  <data name="GenerateReportButton" xml:space="preserve">
+    <value>Generar reporte</value>
+  </data>
+  <data name="FieldTextColumn" xml:space="preserve">
+    <value>Campo</value>
+  </data>
+  <data name="ValueTextColumn" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="TypeTextColumn" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="WorkCenterAssignedDevicesLabel" xml:space="preserve">
+    <value>Equipos asignados al centro de trabajo:</value>
+  </data>
+  <data name="SIMCardAssignedDeviceLabel" xml:space="preserve">
+    <value>Equipo asignado a la tarjeta SIM:</value>
+  </data>
+  <data name="DeviceAssignedEmployeeLabel" xml:space="preserve">
+    <value>Empleado asignado al equipo:</value>
+  </data>
+  <data name="AssignmentsLabel" xml:space="preserve">
+    <value>Asignaciones</value>
+  </data>
+  <data name="AssignmentDateTextColumn" xml:space="preserve">
+    <value>Fecha de asignación</value>
+  </data>
+  <data name="ReturnDateTextColumn" xml:space="preserve">
+    <value>Fecha de devolución</value>
+  </data>
+  <data name="ViewAssignmentLabel" xml:space="preserve">
+    <value>Consultar asignación</value>
+  </data>
+  <data name="DeviceStateLabel" xml:space="preserve">
+    <value>Estado del equipo:</value>
   </data>
 </root>
