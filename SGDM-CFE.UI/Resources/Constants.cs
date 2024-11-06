@@ -12,5 +12,11 @@
             OpticalReaders,
             SIMCards
         }
+
+        public static class Roles
+        {
+            public const int Administrator = 1;
+            public const int Operator = 2;
+        }
     }
 }

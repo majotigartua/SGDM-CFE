@@ -3,27 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:r="clr-namespace:SGDM_CFE.UI.Resources"
         mc:Ignorable="d"
-        Title="Sistema de Gestión de Dispositivos Móviles - CFE"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        WindowStyle="SingleBorderWindow">
+        WindowStyle="SingleBorderWindow"
+        Title="{x:Static r:Strings.GeneralWindowTitle}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="#333" Width="200" VerticalAlignment="Stretch">
-            <TextBlock Text="Menú" FontSize="18" Foreground="White" Margin="10" />
-            <Button Content="Panel de inicio" Tag="StartPanel" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Empleados" Tag="Employees" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Centros de trabajo" Tag="WorkCenters" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Tabletas" Tag="Tablets" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Terminales portátiles" Tag="PortableTerminals" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Lectores ópticos" Tag="OpticalReaders" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Tarjetas SIM" Tag="SIMCards" Click="NavigateButtonClick" Margin="10" />
-            <Button Content="Cerrar sesión" Click="LogoutButtonClick" Margin="10" Background="Red" Foreground="White"/>
+            <TextBlock Text="{x:Static r:Strings.MenuTextBlock}" FontSize="18" Foreground="White" Margin="10" />
+            <Button x:Name="StartPanelButton" Content="{x:Static r:Strings.StartPanelButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="EmployeesButton" Content="{x:Static r:Strings.EmployeesButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="WorkCentersButton" Content="{x:Static r:Strings.WorkCentersButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="TabletsButton" Content="{x:Static r:Strings.TabletsButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="PortableTerminalsButton" Content="{x:Static r:Strings.PortableTerminalsButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="OpticalReadersButton" Content="{x:Static r:Strings.OpticalReadersButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="SIMCardsButton" Content="{x:Static r:Strings.SIMCardsButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <Button x:Name="LogoutButton" Content="{x:Static r:Strings.LogoutButton}" Click="LogoutButtonClick" Margin="10" Background="Red" Foreground="White"/>
         </StackPanel>
         <ContentControl x:Name="MainContent" Grid.Column="1" />
     </Grid>

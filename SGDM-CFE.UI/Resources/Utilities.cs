@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Windows;
 
 namespace SGDM_CFE.UI.Resources
 {

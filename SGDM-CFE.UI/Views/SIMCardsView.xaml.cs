@@ -1,16 +1,33 @@
-﻿using SGDM_CFE.Model;
+﻿using SGDM_CFE.BusinessLogic.Services;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SGDM_CFE.UI.Views
 {
     public partial class SIMCardsView : UserControl
     {
-        private readonly Context _context;
+        private readonly ContextService _contextService;
 
-        public SIMCardsView(Context context)
+        public SIMCardsView(ContextService contextService)
         {
-            _context = context;
+            _contextService = contextService;
             InitializeComponent();
+        }
+
+        private void EditButtonClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void DeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void CreateNewButtonClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ViewDetailsButtonClick(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

@@ -135,4 +135,109 @@
   <data name="InvalidInformationWindowTitle" xml:space="preserve">
     <value>Información incorrecta</value>
   </data>
+  <data name="RPELabel" xml:space="preserve">
+    <value>Registro Personal del Empleado (RPE):</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="ForgotPasswordLabel" xml:space="preserve">
+    <value>¿Olvidaste tu contraseña?</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="StartPanelButton" xml:space="preserve">
+    <value>Panel de inicio</value>
+  </data>
+  <data name="EmployeesButton" xml:space="preserve">
+    <value>Empleados</value>
+  </data>
+  <data name="OpticalReadersButton" xml:space="preserve">
+    <value>Lectores ópticos</value>
+  </data>
+  <data name="PortableTerminalsButton" xml:space="preserve">
+    <value>Terminales portátiles</value>
+  </data>
+  <data name="SIMCardsButton" xml:space="preserve">
+    <value>Tarjetas SIM</value>
+  </data>
+  <data name="TabletsButton" xml:space="preserve">
+    <value>Tabletas</value>
+  </data>
+  <data name="WorkCentersButton" xml:space="preserve">
+    <value>Centros de trabajo</value>
+  </data>
+  <data name="CreateNewMaleButton" xml:space="preserve">
+    <value>Crear nuevo</value>
+  </data>
+  <data name="CreateNewFemaleButton" xml:space="preserve">
+    <value>Crear nueva</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="CreateUserButton" xml:space="preserve">
+    <value>Crear usuario</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="ViewDetailsButton" xml:space="preserve">
+    <value>Ver detalles</value>
+  </data>
+  <data name="RPETextColumn" xml:space="preserve">
+    <value>RPE</value>
+  </data>
+  <data name="NameTextColumn" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="PaternalSurnameTextColumn" xml:space="preserve">
+    <value>Apellido paterno</value>
+  </data>
+  <data name="MaternalSurnameTextColumn" xml:space="preserve">
+    <value>Apellido materno</value>
+  </data>
+  <data name="GeneralWindowTitle" xml:space="preserve">
+    <value>Sistema para la Gestión de Dispositivos Móviles (SGDM-CFE)</value>
+  </data>
+  <data name="MenuTextBlock" xml:space="preserve">
+    <value>Menú</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="SearchTextBlock" xml:space="preserve">
+    <value>Buscar...</value>
+  </data>
+  <data name="InventoryNumberTextColumn" xml:space="preserve">
+    <value>Número de inventario</value>
+  </data>
+  <data name="SerialNumberTextColumn" xml:space="preserve">
+    <value>Número de serie</value>
+  </data>
+  <data name="WorkCenterTextColumn" xml:space="preserve">
+    <value>Centro de trabajo</value>
+  </data>
+  <data name="AreaTextColumn" xml:space="preserve">
+    <value>Zona</value>
+  </data>
+  <data name="CodeTextColumn" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="PaternalSurnameLabel" xml:space="preserve">
+    <value>Apellido paterno:</value>
+  </data>
+  <data name="MaternalSurnameLabel" xml:space="preserve">
+    <value>Apellido materno:</value>
+  </data>
+  <data name="AcceptButton" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
 </root>

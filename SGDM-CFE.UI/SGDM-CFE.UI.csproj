@@ -8,6 +8,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Images\CFE.png" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
@@ -16,11 +19,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SGDM-CFE.BusinessLogic\SGDM-CFE.BusinessLogic.csproj" />
     <ProjectReference Include="..\SGDM-CFE.Model\SGDM-CFE.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CFE.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Strings.Designer.cs">
@@ -31,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

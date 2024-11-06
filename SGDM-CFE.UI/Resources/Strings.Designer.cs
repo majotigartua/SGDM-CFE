@@ -22,7 +22,7 @@ namespace SGDM_CFE.UI.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace SGDM_CFE.UI.Resources {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SGDM_CFE.UI.Resources.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace SGDM_CFE.UI.Resources {
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,45 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Aceptar.
+        /// </summary>
+        public static string AcceptButton {
+            get {
+                return ResourceManager.GetString("AcceptButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Zona.
+        /// </summary>
+        public static string AreaTextColumn {
+            get {
+                return ResourceManager.GetString("AreaTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cancelar.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código.
+        /// </summary>
+        public static string CodeTextColumn {
+            get {
+                return ResourceManager.GetString("CodeTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No se pudo establecer una conexión con el servidor. Por favor, intenta nuevamente más tarde..
         /// </summary>
-        internal static string ConnectionErrorMessage {
+        public static string ConnectionErrorMessage {
             get {
                 return ResourceManager.GetString("ConnectionErrorMessage", resourceCulture);
             }
@@ -72,16 +108,70 @@ namespace SGDM_CFE.UI.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a Error de conexión.
         /// </summary>
-        internal static string ConnectionErrorWindowTitle {
+        public static string ConnectionErrorWindowTitle {
             get {
                 return ResourceManager.GetString("ConnectionErrorWindowTitle", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Crear nueva.
+        /// </summary>
+        public static string CreateNewFemaleButton {
+            get {
+                return ResourceManager.GetString("CreateNewFemaleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Crear nuevo.
+        /// </summary>
+        public static string CreateNewMaleButton {
+            get {
+                return ResourceManager.GetString("CreateNewMaleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Crear usuario.
+        /// </summary>
+        public static string CreateUserButton {
+            get {
+                return ResourceManager.GetString("CreateUserButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Eliminar.
+        /// </summary>
+        public static string DeleteButton {
+            get {
+                return ResourceManager.GetString("DeleteButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Editar.
+        /// </summary>
+        public static string EditButton {
+            get {
+                return ResourceManager.GetString("EditButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Empleados.
+        /// </summary>
+        public static string EmployeesButton {
+            get {
+                return ResourceManager.GetString("EmployeesButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Por favor, completa todos los campos obligatorios..
         /// </summary>
-        internal static string EmptyFieldsMessage {
+        public static string EmptyFieldsMessage {
             get {
                 return ResourceManager.GetString("EmptyFieldsMessage", resourceCulture);
             }
@@ -90,16 +180,34 @@ namespace SGDM_CFE.UI.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a Campos vacíos.
         /// </summary>
-        internal static string EmptyFieldsWindowTitle {
+        public static string EmptyFieldsWindowTitle {
             get {
                 return ResourceManager.GetString("EmptyFieldsWindowTitle", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Olvidaste tu contraseña?.
+        /// </summary>
+        public static string ForgotPasswordLabel {
+            get {
+                return ResourceManager.GetString("ForgotPasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sistema para la Gestión de Dispositivos Móviles (SGDM-CFE).
+        /// </summary>
+        public static string GeneralWindowTitle {
+            get {
+                return ResourceManager.GetString("GeneralWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La información proporcionada es incorrecta. Por favor, verifica los datos e intenta nuevamente..
         /// </summary>
-        internal static string InvalidInformationMessage {
+        public static string InvalidInformationMessage {
             get {
                 return ResourceManager.GetString("InvalidInformationMessage", resourceCulture);
             }
@@ -108,9 +216,216 @@ namespace SGDM_CFE.UI.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a Información incorrecta.
         /// </summary>
-        internal static string InvalidInformationWindowTitle {
+        public static string InvalidInformationWindowTitle {
             get {
                 return ResourceManager.GetString("InvalidInformationWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número de inventario.
+        /// </summary>
+        public static string InventoryNumberTextColumn {
+            get {
+                return ResourceManager.GetString("InventoryNumberTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Iniciar sesión.
+        /// </summary>
+        public static string LoginButton {
+            get {
+                return ResourceManager.GetString("LoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cerrar sesión.
+        /// </summary>
+        public static string LogoutButton {
+            get {
+                return ResourceManager.GetString("LogoutButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Apellido materno:.
+        /// </summary>
+        public static string MaternalSurnameLabel {
+            get {
+                return ResourceManager.GetString("MaternalSurnameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Apellido materno.
+        /// </summary>
+        public static string MaternalSurnameTextColumn {
+            get {
+                return ResourceManager.GetString("MaternalSurnameTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Menú.
+        /// </summary>
+        public static string MenuTextBlock {
+            get {
+                return ResourceManager.GetString("MenuTextBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre:.
+        /// </summary>
+        public static string NameLabel {
+            get {
+                return ResourceManager.GetString("NameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre.
+        /// </summary>
+        public static string NameTextColumn {
+            get {
+                return ResourceManager.GetString("NameTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lectores ópticos.
+        /// </summary>
+        public static string OpticalReadersButton {
+            get {
+                return ResourceManager.GetString("OpticalReadersButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña:.
+        /// </summary>
+        public static string PasswordLabel {
+            get {
+                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Apellido paterno:.
+        /// </summary>
+        public static string PaternalSurnameLabel {
+            get {
+                return ResourceManager.GetString("PaternalSurnameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Apellido paterno.
+        /// </summary>
+        public static string PaternalSurnameTextColumn {
+            get {
+                return ResourceManager.GetString("PaternalSurnameTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Terminales portátiles.
+        /// </summary>
+        public static string PortableTerminalsButton {
+            get {
+                return ResourceManager.GetString("PortableTerminalsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registro Personal del Empleado (RPE):.
+        /// </summary>
+        public static string RPELabel {
+            get {
+                return ResourceManager.GetString("RPELabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a RPE.
+        /// </summary>
+        public static string RPETextColumn {
+            get {
+                return ResourceManager.GetString("RPETextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Buscar....
+        /// </summary>
+        public static string SearchTextBlock {
+            get {
+                return ResourceManager.GetString("SearchTextBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número de serie.
+        /// </summary>
+        public static string SerialNumberTextColumn {
+            get {
+                return ResourceManager.GetString("SerialNumberTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tarjetas SIM.
+        /// </summary>
+        public static string SIMCardsButton {
+            get {
+                return ResourceManager.GetString("SIMCardsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Panel de inicio.
+        /// </summary>
+        public static string StartPanelButton {
+            get {
+                return ResourceManager.GetString("StartPanelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tabletas.
+        /// </summary>
+        public static string TabletsButton {
+            get {
+                return ResourceManager.GetString("TabletsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ver detalles.
+        /// </summary>
+        public static string ViewDetailsButton {
+            get {
+                return ResourceManager.GetString("ViewDetailsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Centros de trabajo.
+        /// </summary>
+        public static string WorkCentersButton {
+            get {
+                return ResourceManager.GetString("WorkCentersButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Centro de trabajo.
+        /// </summary>
+        public static string WorkCenterTextColumn {
+            get {
+                return ResourceManager.GetString("WorkCenterTextColumn", resourceCulture);
             }
         }
     }
