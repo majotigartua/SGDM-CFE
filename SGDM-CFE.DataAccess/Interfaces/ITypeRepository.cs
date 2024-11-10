@@ -7,6 +7,6 @@ namespace SGDM_CFE.DataAccess.Interfaces
     {
         List<Type> GetAll();
         Type? GetById(int id);
-        Type? GetByMobileDevice(MobileDevice mobileDevice);
+        Type? GetByMobileDevice(int mobileDeviceId);
     }
 }

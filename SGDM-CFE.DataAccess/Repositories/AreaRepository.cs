@@ -36,11 +36,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Area? GetByWorkCenter(WorkCenter workCenter)
+        public Area? GetByWorkCenter(int workCenterId)
         {
             try
             {
-                int workCenterId = workCenter.Id;
                 var area = _context.Areas
                     .Include(a => a.WorkCenters)
                     .FirstOrDefault(a => a.WorkCenters.Any(wc => wc.Id == workCenterId));

@@ -1,4 +1,4 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using SGDM_CFE.Model;
 using SGDM_CFE.UI.Resources;
 using System.Windows;
 using static SGDM_CFE.UI.Resources.Constants;
@@ -7,13 +7,13 @@ namespace SGDM_CFE.UI.Windows
 {
     public partial class DeviceWindow : Window
     {
-        private readonly ContextService _contextService;
+        private readonly Context _context;
         private readonly DeviceType _deviceType;
         private readonly bool _isEditWindow;
 
-        public DeviceWindow(ContextService contextService, DeviceType deviceType, bool isEditWindow)
+        public DeviceWindow(Context context, DeviceType deviceType, bool isEditWindow)
         {
-            _contextService = contextService;
+            _context= context;
             _deviceType = deviceType;
             _isEditWindow = isEditWindow;
             InitializeComponent();

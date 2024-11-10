@@ -24,11 +24,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(MobileDevice mobileDevice)
+        public bool Delete(int mobileDeviceId)
         {
             try
             {
-                int mobileDeviceId = mobileDevice.Id;
                 var existingMobileDevice = _context.MobileDevices.Find(mobileDeviceId);
                 if (existingMobileDevice != null)
                 {
@@ -57,11 +56,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public MobileDevice? GetByDevice(Device device)
+        public MobileDevice? GetByDevice(int deviceId)
         {
             try
             {
-                int deviceId = device.Id;
                 var mobileDevice = _context.MobileDevices
                     .Include(md => md.Device)
                     .FirstOrDefault(md => md.Device.Id == deviceId);
@@ -86,11 +84,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public MobileDevice? GetBySIMCard(SIMCard simCard)
+        public MobileDevice? GetBySIMCard(int simCardId)
         {
             try
             {
-                int simCardId = simCard.Id;
                 var mobileDevice = _context.MobileDevices
                     .Include(md => md.SIMCard)
                     .FirstOrDefault(md => md.SIMCard != null && md.SIMCard.Id == simCardId);
@@ -102,12 +99,12 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<MobileDevice> GetByType(Type type)
+        public List<MobileDevice> GetByType(int typeId)
         {
             try
             {
-                int typeId = type.Id;
                 var mobileDevices = _context.MobileDevices
+                    .Include(md => md.Device)
                     .Include(md => md.Type)
                     .Where(md => md.Type.Id == typeId)
                     .ToList();

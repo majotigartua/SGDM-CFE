@@ -34,11 +34,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<BusinessProcess> GetByWorkCenter(WorkCenter workCenter)
+        public List<BusinessProcess> GetByWorkCenter(int workCenterId)
         {
             try
             {
-                int workCenterId = workCenter.Id;
                 var businessProcesses = _context.WorkCenterBusinessProcesses
                     .Where(wcbp => wcbp.WorkCenterId == workCenterId)
                     .Select(wcbp => wcbp.BusinessProcess)

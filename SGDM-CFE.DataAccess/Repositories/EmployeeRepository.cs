@@ -23,11 +23,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(Employee employee)
+        public bool Delete(int employeeId)
         {
             try
             {
-                int employeeId = employee.Id;
                 var existingEmployee = _context.Employees.Find(employeeId);
                 if (existingEmployee != null)
                 {
@@ -56,11 +55,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         } 
 
-        public Employee? GetByAssignment(Assignment assignment)
+        public Employee? GetByAssignment(int assignmentId)
         {
             try
             {
-                int assignmentId = assignment.Id;
                 var employee = _context.Employees
                     .Include(e => e.Assignments)
                     .FirstOrDefault(e => e.Assignments.Any(a => a.Id == assignmentId));
@@ -98,11 +96,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Employee? GetByUser(User user)
+        public Employee? GetByUser(int userId)
         {
             try
             {
-                int userId = user.Id;
                 var employee = _context.Employees
                     .Include(e => e.User)
                     .FirstOrDefault(e => e.User != null && e.User.Id == userId);

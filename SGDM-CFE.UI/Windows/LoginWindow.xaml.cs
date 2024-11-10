@@ -1,4 +1,5 @@
 ﻿using SGDM_CFE.BusinessLogic.Services;
+using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
 using SGDM_CFE.UI.Windows;
@@ -8,14 +9,13 @@ namespace SGDM_CFE.UI
 {
     public partial class LoginWindow : Window
     {
-        private readonly ContextService _contextService;
+        private readonly Context _context;
         private readonly EmployeeService _employeeService;
 
         public LoginWindow()
         {
-            _contextService = new ContextService();
-            var context = _contextService.Context;
-            _employeeService = new EmployeeService(context);
+            _context = new Context();
+            _employeeService = new EmployeeService(_context);
             InitializeComponent();
         }
 
@@ -60,6 +60,7 @@ namespace SGDM_CFE.UI
                 else
                 {
                     ShowWarning(Strings.InvalidInformationMessage, Strings.InvalidInformationWindowTitle);
+                    PasswordBox.Clear();
                 }
             }
             catch (Exception)
@@ -75,7 +76,7 @@ namespace SGDM_CFE.UI
 
         private void NavigateToMainWindow(Employee employee)
         {
-            var mainWindow = new MainWindow(_contextService, employee);
+            var mainWindow = new MainWindow(_context, employee);
             mainWindow.Show();
             Close();
         }

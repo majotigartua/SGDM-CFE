@@ -70,6 +70,24 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No tienes los permisos necesarios para acceder al sistema. Contacta al administrador si necesita asistencia..
+        /// </summary>
+        public static string AccessDeniedMessage {
+            get {
+                return ResourceManager.GetString("AccessDeniedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Acceso denegado.
+        /// </summary>
+        public static string AccessDeniedWindowTitle {
+            get {
+                return ResourceManager.GetString("AccessDeniedWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Zona:*.
         /// </summary>
         public static string AreaLabel {
@@ -232,6 +250,15 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Crear usuario.
+        /// </summary>
+        public static string CreateUserWindowTitle {
+            get {
+                return ResourceManager.GetString("CreateUserWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Crear.
         /// </summary>
         public static string CreateWindowTitle {
@@ -318,6 +345,15 @@ namespace SGDM_CFE.UI.Resources {
         public static string EditWorkCenterWindowTitle {
             get {
                 return ResourceManager.GetString("EditWorkCenterWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Correo electrónico:*.
+        /// </summary>
+        public static string EmailLabel {
+            get {
+                return ResourceManager.GetString("EmailLabel", resourceCulture);
             }
         }
         
@@ -547,6 +583,24 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Por favor, selecciona un registro antes de continuar..
+        /// </summary>
+        public static string NoSelectionMessage {
+            get {
+                return ResourceManager.GetString("NoSelectionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ningún registro seleccionado.
+        /// </summary>
+        public static string NoSelectionWindowTitle {
+            get {
+                return ResourceManager.GetString("NoSelectionWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Notas:.
         /// </summary>
         public static string NotesLabel {
@@ -579,6 +633,15 @@ namespace SGDM_CFE.UI.Resources {
         public static string OpticalReaderWindowTitle {
             get {
                 return ResourceManager.GetString("OpticalReaderWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación de contraseña:*.
+        /// </summary>
+        public static string PasswordConfirmationLabel {
+            get {
+                return ResourceManager.GetString("PasswordConfirmationLabel", resourceCulture);
             }
         }
         
@@ -660,6 +723,15 @@ namespace SGDM_CFE.UI.Resources {
         public static string ReviewNotesLabel {
             get {
                 return ResourceManager.GetString("ReviewNotesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Rol:*.
+        /// </summary>
+        public static string RoleLabel {
+            get {
+                return ResourceManager.GetString("RoleLabel", resourceCulture);
             }
         }
         

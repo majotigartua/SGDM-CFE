@@ -23,11 +23,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(WorkCenter workCenter)
+        public bool Delete(int workCenterId)
         {
             try
             {
-                int workCenterId = workCenter.Id;
                 var existingWorkCenter = _context.WorkCenters.Find(workCenterId);
                 if (existingWorkCenter != null)
                 {
@@ -56,11 +55,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<WorkCenter> GetByArea(Area area)
+        public List<WorkCenter> GetByArea(int areaId)
         {
             try
             {
-                int areaId = area.Id;
                 var workCenters = _context.WorkCenters
                     .Include(w => w.Area)
                     .Where(w => w.Area.Id == areaId)
@@ -73,11 +71,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<WorkCenter> GetByBusinessProcess(BusinessProcess businessProcess)
+        public List<WorkCenter> GetByBusinessProcess(int businessProcessId)
         {
             try
             {
-                int businessProcessId = businessProcess.Id;
                 var workCenters = _context.WorkCenterBusinessProcesses
                     .Where(wcbp => wcbp.BusinessProcessId == businessProcessId)
                     .Select(wcbp => wcbp.WorkCenter)
@@ -90,11 +87,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<WorkCenter> GetByCostCenter(CostCenter costCenter)
+        public List<WorkCenter> GetByCostCenter(int costCenterId)
         {
             try
             {
-                int costCenterId = costCenter.Id;
                 var workCenters = _context.WorkCenterCostCenters
                     .Where(wcbc => wcbc.CostCenterId == costCenterId)
                     .Select(wcbc => wcbc.WorkCenter)

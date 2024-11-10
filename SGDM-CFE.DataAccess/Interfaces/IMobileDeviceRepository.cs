@@ -1,17 +1,16 @@
 ﻿using SGDM_CFE.Model.Models;
-using Type = SGDM_CFE.Model.Models.Type;
 
 namespace SGDM_CFE.DataAccess.Interfaces
 {
     public interface IMobileDeviceRepository
     {
         bool Add(MobileDevice mobileDevice);
-        bool Delete(MobileDevice mobileDevice);
+        bool Delete(int mobileDeviceId);
         List<MobileDevice> GetAll();
-        MobileDevice? GetByDevice(Device device);
+        MobileDevice? GetByDevice(int deviceId);
         MobileDevice? GetById(int id);
-        MobileDevice? GetBySIMCard(SIMCard simCard);
-        List<MobileDevice> GetByType(Type type);
+        MobileDevice? GetBySIMCard(int simCardId);
+        List<MobileDevice> GetByType(int typeId);
         bool Update(MobileDevice mobileDevice);
     }
 }

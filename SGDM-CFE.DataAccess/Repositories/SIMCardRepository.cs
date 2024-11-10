@@ -23,11 +23,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(SIMCard simCard)
+        public bool Delete(int simCardId)
         {
             try
             {
-                int simCardId = simCard.Id;
                 var existingSIMCard = _context.SIMCards.Find(simCardId);
                 if (existingSIMCard != null)
                 {
@@ -69,11 +68,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public SIMCard? GetByMobileDevice(MobileDevice mobileDevice)
+        public SIMCard? GetByMobileDevice(int mobileDeviceId)
         {
             try
             {
-                int mobileDeviceId = mobileDevice.Id;
                 var simCard = _context.SIMCards
                     .Include(sc => sc.MobileDevices)
                     .FirstOrDefault(sc => sc.MobileDevices.Any(md => md.Id == mobileDeviceId));

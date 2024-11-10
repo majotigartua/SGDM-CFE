@@ -1,5 +1,4 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
-using SGDM_CFE.Model;
+﻿using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
 using SGDM_CFE.UI.Views;
@@ -11,13 +10,12 @@ namespace SGDM_CFE.UI.Windows
 {
     public partial class MainWindow : Window
     {
-        private readonly ContextService _contextService;
+        private readonly Context _context;
         private readonly Employee _employee;
 
-        public MainWindow(ContextService contextService, Employee employee)
+        public MainWindow(Context context, Employee employee)
         {
-            _contextService = contextService;
-
+            _context = context;
             _employee = employee;
             InitializeComponent();
             ConfigureWindow();
@@ -32,17 +30,16 @@ namespace SGDM_CFE.UI.Windows
                 case Roles.Administrator:
                     SetButtonVisibility(showAll: true);
                     break;
-
                 case Roles.Operator:
                     SetButtonVisibility(showAll: false);
                     break;
-
                 default:
-                    NavigateToLoginWindow();
+                    ShowWarning(Strings.AccessDeniedMessage, Strings.AccessDeniedWindowTitle);
                     return;
             }
             NavigateTo(ViewType.StartPanel);
         }
+
 
         private int GetRoleId()
         {
@@ -63,11 +60,9 @@ namespace SGDM_CFE.UI.Windows
             WorkCentersButton.Visibility = showAll ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void NavigateToLoginWindow()
+        private static void ShowWarning(string message, string title)
         {
-            var loginWindow = new LoginWindow();
-            loginWindow.Show();
-            Close();
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void NavigateTo(ViewType viewType)
@@ -80,13 +75,13 @@ namespace SGDM_CFE.UI.Windows
         {
             return viewType switch
             {
-                ViewType.Employees => new EmployeesView(_contextService),
-                ViewType.OpticalReaders => new DevicesView(_contextService, DeviceType.OpticalReader),
-                ViewType.PortableTerminals => new DevicesView(_contextService, DeviceType.PortableTerminal),
-                ViewType.SIMCards => new SIMCardsView(_contextService),
-                ViewType.StartPanel => new StartPanelView(_contextService),
-                ViewType.Tablets => new DevicesView(_contextService, DeviceType.Tablet),
-                ViewType.WorkCenters => new WorkCentersView(_contextService),
+                ViewType.Employees => new EmployeesView(_context),
+                ViewType.OpticalReaders => new DevicesView(_context, DeviceType.OpticalReader),
+                ViewType.PortableTerminals => new DevicesView(_context, DeviceType.PortableTerminal),
+                ViewType.SIMCards => new SIMCardsView(_context),
+                ViewType.StartPanel => new StartPanelView(_context),
+                ViewType.Tablets => new DevicesView(_context, DeviceType.Tablet),
+                ViewType.WorkCenters => new WorkCentersView(_context),
                 _ => throw new Exception()
             };
         }
@@ -94,6 +89,13 @@ namespace SGDM_CFE.UI.Windows
         private void LogoutButtonClick(object sender, RoutedEventArgs e)
         {
             NavigateToLoginWindow();
+        }
+
+        private void NavigateToLoginWindow()
+        {
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+            Close();
         }
 
         private void NavigateButtonClick(object sender, RoutedEventArgs e)

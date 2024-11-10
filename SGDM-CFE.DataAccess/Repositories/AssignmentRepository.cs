@@ -35,11 +35,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<Assignment> GetByEmployee(Employee employee)
+        public List<Assignment> GetByEmployee(int employeeId)
         {
             try
             {
-                int employeeId = employee.Id;
                 var assignments = _context.Assignments
                     .Where(a => a.EmployeeId == employeeId)
                     .ToList();
@@ -64,11 +63,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Assignment? GetByState(State state)
+        public Assignment? GetByState(int stateId)
         {
             try
             {
-                int stateId = state.Id;
                 var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId);
                 return assignment;
             }

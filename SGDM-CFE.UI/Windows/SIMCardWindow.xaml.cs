@@ -1,4 +1,4 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using SGDM_CFE.Model;
 using SGDM_CFE.UI.Resources;
 using System.Windows;
 
@@ -6,12 +6,12 @@ namespace SGDM_CFE.UI.Windows
 {
     public partial class SIMCardWindow : Window
     {
-        private readonly ContextService _contextService;
+        private readonly Context _context;
         private readonly bool _isEditWindow;
 
-        public SIMCardWindow(ContextService contextService, bool isEditWindow)
+        public SIMCardWindow(Context context, bool isEditWindow)
         {
-            _contextService = contextService;
+            _context = context;
             _isEditWindow = isEditWindow;
             InitializeComponent();
             ConfigureWindow();

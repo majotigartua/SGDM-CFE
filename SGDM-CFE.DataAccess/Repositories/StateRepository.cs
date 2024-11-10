@@ -36,11 +36,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<State> GetByAssignment(Assignment assignment)
+        public List<State> GetByAssignment(int assignmentId)
         {
             try
             {
-                int assignmentId = assignment.Id;
                 var states = _context.States
                     .Include(s => s.AssignmentStateAssignments)
                     .Include(s => s.ReturnStateAssignments)
@@ -54,11 +53,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<State> GetByBusinessProcess(WorkCenterBusinessProcess workCenterBusinessProcess)
+        public List<State> GetByBusinessProcess(int workCenterBusinessProcessId)
         {
             try
             {
-                int workCenterBusinessProcessId = workCenterBusinessProcess.Id;
                 var states = _context.States
                     .Where(s => s.WorkCenterBusinessProcessId == workCenterBusinessProcessId)
                     .ToList();
@@ -70,11 +68,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<State> GetByCostCenter(WorkCenterCostCenter workCenterCostCenter)
+        public List<State> GetByCostCenter(int workCenterCostCenterId)
         {
             try
             {
-                int workCenterCostCenterId = workCenterCostCenter.Id;
                 var states = _context.States
                     .Where(s => s.WorkCenterCostCenterId == workCenterCostCenterId)
                     .ToList();
@@ -86,11 +83,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<State> GetByDevice(Device device)
+        public List<State> GetByDevice(int deviceId)
         {
             try
             {
-                int deviceId = device.Id;
                 var states = _context.States
                     .Where(s => s.DeviceId == deviceId)
                     .ToList();

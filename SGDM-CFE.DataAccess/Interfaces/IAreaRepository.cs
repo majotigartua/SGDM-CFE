@@ -6,6 +6,6 @@ namespace SGDM_CFE.DataAccess.Interfaces
     {
         List<Area> GetAll();
         Area? GetById(int id);
-        Area? GetByWorkCenter(WorkCenter workCenter);
+        Area? GetByWorkCenter(int workCenterId);
     }
 }

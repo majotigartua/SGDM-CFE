@@ -5,11 +5,11 @@ namespace SGDM_CFE.DataAccess.Interfaces
     public interface IWorkCenterRepository
     {
         bool Add(WorkCenter workCenter);
-        bool Delete(WorkCenter workCenter);
+        bool Delete(int workCenterId);
         List<WorkCenter> GetAll();
-        List<WorkCenter> GetByArea(Area area);
-        List<WorkCenter> GetByBusinessProcess(BusinessProcess businessProcess);
-        List<WorkCenter> GetByCostCenter(CostCenter costCenter);
+        List<WorkCenter> GetByArea(int areaId);
+        List<WorkCenter> GetByBusinessProcess(int businessProcessId);
+        List<WorkCenter> GetByCostCenter(int costCenterId);
         WorkCenter? GetById(int id);
         bool Update(WorkCenter workCenter);
     }

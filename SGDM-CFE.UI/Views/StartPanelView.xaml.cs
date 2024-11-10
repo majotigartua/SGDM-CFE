@@ -1,15 +1,15 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using SGDM_CFE.Model;
 using System.Windows.Controls;
 
 namespace SGDM_CFE.UI.Views
 {
     public partial class StartPanelView : UserControl
     {
-        private readonly ContextService _contextService;
+        private readonly Context _context;
 
-        public StartPanelView(ContextService contextService)
+        public StartPanelView(Context context)
         {
-            _contextService = contextService;
+            _context = context;
             InitializeComponent();
         }
     }

@@ -6,10 +6,10 @@ namespace SGDM_CFE.DataAccess.Interfaces
     {
         bool Add(State state);
         List<State> GetAll();
-        List<State> GetByAssignment(Assignment assignment);
-        List<State> GetByBusinessProcess(WorkCenterBusinessProcess workCenterBusinessProcess);
-        List<State> GetByCostCenter(WorkCenterCostCenter workCenterCostCenter);
-        List<State> GetByDevice(Device device);
+        List<State> GetByAssignment(int assigmentId);
+        List<State> GetByBusinessProcess(int workCenterBusinessProcessId);
+        List<State> GetByCostCenter(int workCenterCostCenterId);
+        List<State> GetByDevice(int deviceId);
         State? GetById(int id);
         bool Update(State state);
     }

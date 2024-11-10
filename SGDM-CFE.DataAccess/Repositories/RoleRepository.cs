@@ -35,11 +35,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Role? GetByUser(User user)
+        public Role? GetByUser(int userId)
         {
             try
             {
-                int userId = user.Id;
                 var role = _context.Roles
                     .Include(r => r.Users)
                     .FirstOrDefault(r => r.Users.Any(u => u.Id == userId));

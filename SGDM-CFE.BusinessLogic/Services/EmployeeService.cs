@@ -11,15 +11,17 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly RoleRepository _roleRepository = new(context);
         private readonly UserRepository _userRepository = new(context);
 
+        public List<Employee> GetEmployees()
+        {
+            return _employeeRepository.GetAll();
+        }
+
         public Employee? Login(string rpe, string password)
         {
             var employee = _employeeRepository.GetByRPE(rpe);
             if (employee == null) return null;
-            var user = _userRepository.GetByEmployee(employee);
+            var user = _userRepository.GetByEmployee(employee.Id);
             if (user == null || user.Password != password) return null;
-            var role = _roleRepository.GetByUser(user);
-            if (role == null) return null;
-            user.Role = role;
             employee.User = user;
             return employee;
         }

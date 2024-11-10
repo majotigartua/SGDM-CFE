@@ -1,4 +1,6 @@
 ﻿using SGDM_CFE.BusinessLogic.Services;
+using SGDM_CFE.Model;
+using SGDM_CFE.UI.Resources;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -6,12 +8,32 @@ namespace SGDM_CFE.UI.Views
 {
     public partial class SIMCardsView : UserControl
     {
-        private readonly ContextService _contextService;
+        private readonly Context _context;
+        private readonly DeviceService _deviceService;
 
-        public SIMCardsView(ContextService contextService)
+        public SIMCardsView(Context context)
         {
-            _contextService = contextService;
+            _context = context;
+            _deviceService = new DeviceService(_context);
             InitializeComponent();
+            LoadSIMCards();
+        }
+
+        private void LoadSIMCards()
+        {
+            try
+            {
+                SIMCardsDataGrid.ItemsSource = _deviceService.GetSIMCards();
+            }
+            catch (Exception)
+            {
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+            }
+        }
+
+        private static void ShowError(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void EditButtonClick(object sender, RoutedEventArgs e)

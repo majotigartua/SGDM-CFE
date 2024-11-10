@@ -21,10 +21,10 @@
         </StackPanel>
         <DataGrid x:Name="EmployeesDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static r:Strings.RPETextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.NameTextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.PaternalSurnameTextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.MaternalSurnameTextColumn}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.RPETextColumn}" Binding="{Binding RPE}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.NameTextColumn}" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.PaternalSurnameTextColumn}" Binding="{Binding PaternalSurname}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.MaternalSurnameTextColumn}" Binding="{Binding MaternalSurname}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="2" Margin="10">

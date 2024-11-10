@@ -6,6 +6,6 @@ namespace SGDM_CFE.DataAccess.Interfaces
     {
         List<CostCenter> GetAll();
         CostCenter? GetById(int id);
-        List<CostCenter> GetByWorkCenter(WorkCenter workCenter);
+        List<CostCenter> GetByWorkCenter(int workCenterId);
     }
 }

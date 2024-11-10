@@ -23,11 +23,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(Device device)
+        public bool Delete(int deviceId)
         {
             try
             {
-                int deviceId = device.Id;
                 var existingDevice = _context.Devices.Find(deviceId);
                 if (existingDevice != null)
                 {
@@ -69,11 +68,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Device? GetByMobileDevice(MobileDevice mobileDevice)
+        public Device? GetByMobileDevice(int mobileDeviceId)
         {
             try
             {
-                int mobileDeviceId = mobileDevice.DeviceId;
                 var device = _context.Devices
                     .Include(d => d.MobileDevices)
                     .FirstOrDefault(d => d.MobileDevices.Any(md => md.DeviceId == mobileDeviceId));
@@ -85,11 +83,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Device? GetByOpticalReader(OpticalReader opticalReader)
+        public Device? GetByOpticalReader(int opticalReaderId)
         {
             try
             {
-                int opticalReaderId = opticalReader.DeviceId;
                 var device = _context.Devices
                     .Include(d => d.OpticalReaders)
                     .FirstOrDefault(d => d.OpticalReaders.Any(or => or.DeviceId == opticalReaderId));
@@ -101,11 +98,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Device? GetByState(State state)
+        public Device? GetByState(int stateId)
         {
             try
             {
-                int stateId = state.Id;
                 var device = _context.Devices
                     .Include(d => d.States)
                     .FirstOrDefault(d => d.States.Any(s => s.Id == stateId));
@@ -117,11 +113,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<Device> GetByWorkCenter(WorkCenter workCenter)
+        public List<Device> GetByWorkCenter(int workCenterId)
         {
             try
             {
-                int workCenterId = workCenter.Id;
                 var devices = _context.Devices
                     .Where(d => d.WorkCenterId == workCenterId)
                     .ToList();

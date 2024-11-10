@@ -402,4 +402,28 @@
   <data name="DeviceStateLabel" xml:space="preserve">
     <value>Estado del equipo:</value>
   </data>
+  <data name="NoSelectionWindowTitle" xml:space="preserve">
+    <value>Ningún registro seleccionado</value>
+  </data>
+  <data name="NoSelectionMessage" xml:space="preserve">
+    <value>Por favor, selecciona un registro antes de continuar.</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Correo electrónico:*</value>
+  </data>
+  <data name="PasswordConfirmationLabel" xml:space="preserve">
+    <value>Confirmación de contraseña:*</value>
+  </data>
+  <data name="RoleLabel" xml:space="preserve">
+    <value>Rol:*</value>
+  </data>
+  <data name="CreateUserWindowTitle" xml:space="preserve">
+    <value>Crear usuario</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>No tienes los permisos necesarios para acceder al sistema. Contacta al administrador si necesita asistencia.</value>
+  </data>
+  <data name="AccessDeniedWindowTitle" xml:space="preserve">
+    <value>Acceso denegado</value>
+  </data>
 </root>

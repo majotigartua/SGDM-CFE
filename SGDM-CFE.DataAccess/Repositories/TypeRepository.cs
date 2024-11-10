@@ -36,11 +36,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Type? GetByMobileDevice(MobileDevice mobileDevice)
+        public Type? GetByMobileDevice(int mobileDeviceId)
         {
             try
             {
-                int mobileDeviceId = mobileDevice.Id;
                 var type = _context.Types
                     .Include(t => t.MobileDevices)
                     .FirstOrDefault(t => t.MobileDevices.Any(md => md.Id == mobileDeviceId));

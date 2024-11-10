@@ -5,9 +5,9 @@
 
         public enum DeviceType
         {
-            OpticalReader,
-            PortableTerminal,
-            Tablet
+            OpticalReader = 0,
+            PortableTerminal = 1,
+            Tablet = 2
         }
 
         public enum ViewType

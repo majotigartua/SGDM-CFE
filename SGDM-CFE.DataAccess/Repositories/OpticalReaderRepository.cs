@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SGDM_CFE.DataAccess.Interfaces;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 
@@ -22,11 +23,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(OpticalReader opticalReader)
+        public bool Delete(int opticalReaderId)
         {
             try
             {
-                int opticalReaderId = opticalReader.Id;
                 var existingOpticalReader = _context.OpticalReaders.Find(opticalReaderId);
                 if (existingOpticalReader != null)
                 {
@@ -45,7 +45,10 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var opticalReaders = _context.OpticalReaders.ToList();
+                var opticalReaders = _context.OpticalReaders
+                    .Include(or => or.Device)
+                    .Where(or => !or.IsDeleted)
+                    .ToList();
                 return opticalReaders;
             }
             catch (Exception)
@@ -54,11 +57,10 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public OpticalReader? GetByDevice(Device device)
+        public OpticalReader? GetByDevice(int deviceId)
         {
             try
             {
-                int deviceId = device.Id;
                 var opticalReader = _context.OpticalReaders.FirstOrDefault(o => o.DeviceId == deviceId);
                 return opticalReader;
             }

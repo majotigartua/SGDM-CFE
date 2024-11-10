@@ -5,13 +5,13 @@ namespace SGDM_CFE.DataAccess.Interfaces
     public interface IDeviceRepository
     {
         bool Add(Device device);
-        bool Delete(Device device);
+        bool Delete(int deviceId);
         List<Device> GetAll();
         Device? GetById(int id);
-        Device? GetByMobileDevice(MobileDevice mobileDevice);
-        Device? GetByOpticalReader(OpticalReader opticalReader);
-        Device? GetByState(State state);
-        List<Device> GetByWorkCenter(WorkCenter workCenter);
+        Device? GetByMobileDevice(int mobileDeviceId);
+        Device? GetByOpticalReader(int opticalReaderId);
+        Device? GetByState(int stateId);
+        List<Device> GetByWorkCenter(int workCenterId);
         bool Update(Device device);
     }
 }

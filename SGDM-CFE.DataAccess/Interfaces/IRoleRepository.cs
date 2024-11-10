@@ -6,6 +6,6 @@ namespace SGDM_CFE.DataAccess.Interfaces
     {
         List<Role> GetAll();
         Role? GetById(int id);
-        Role? GetByUser(User user);
+        Role? GetByUser(int idUser);
     }
 }
