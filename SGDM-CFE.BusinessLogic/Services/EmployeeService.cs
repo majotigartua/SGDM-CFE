@@ -16,13 +16,17 @@ namespace SGDM_CFE.BusinessLogic.Services
             return _employeeRepository.GetAll();
         }
 
+        public List<Role> GetRoles()
+        {
+            return _roleRepository.GetAll();
+        }
+
         public Employee? Login(string rpe, string password)
         {
             var employee = _employeeRepository.GetByRPE(rpe);
             if (employee == null) return null;
-            var user = _userRepository.GetByEmployee(employee.Id);
+            var user = employee.User;
             if (user == null || user.Password != password) return null;
-            employee.User = user;
             return employee;
         }
     }

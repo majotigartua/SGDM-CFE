@@ -23,41 +23,36 @@ namespace SGDM_CFE.UI.Windows
 
         private void ConfigureWindow()
         {
-            StartPanelButton.Visibility = Visibility.Visible;
-            int roleId = GetRoleId();
-            switch (roleId)
+            try
             {
-                case Roles.Administrator:
-                    SetButtonVisibility(showAll: true);
-                    break;
-                case Roles.Operator:
-                    SetButtonVisibility(showAll: false);
-                    break;
-                default:
-                    ShowWarning(Strings.AccessDeniedMessage, Strings.AccessDeniedWindowTitle);
-                    return;
+                switch (_employee.User?.Role?.Id)
+                {
+                    case Roles.Administrator:
+                        SetButtonVisibility(isAdministrator: true);
+                        break;
+                    case Roles.Operator:
+                        SetButtonVisibility(isAdministrator: false);
+                        break;
+                    default:
+                        ShowWarning(Strings.AccessDeniedMessage, Strings.AccessDeniedWindowTitle);
+                        return;
+                }
+                NavigateTo(ViewType.StartPanel);
             }
-            NavigateTo(ViewType.StartPanel);
+            catch (Exception)
+            {
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+            }
         }
 
-
-        private int GetRoleId()
+        private void SetButtonVisibility(bool isAdministrator)
         {
-            if (_employee != null && _employee.User != null && _employee.User.Role != null)
-            {
-                return _employee.User.RoleId;
-            }
-            return 0;
-        }
-
-        private void SetButtonVisibility(bool showAll)
-        {
-            EmployeesButton.Visibility = showAll ? Visibility.Visible : Visibility.Collapsed;
+            EmployeesButton.Visibility = isAdministrator ? Visibility.Visible : Visibility.Collapsed;
             OpticalReadersButton.Visibility = Visibility.Visible;
             PortableTerminalsButton.Visibility = Visibility.Visible;
             SIMCardsButton.Visibility = Visibility.Visible;
             TabletsButton.Visibility = Visibility.Visible;
-            WorkCentersButton.Visibility = showAll ? Visibility.Visible : Visibility.Collapsed;
+            WorkCentersButton.Visibility = isAdministrator ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private static void ShowWarning(string message, string title)
@@ -79,11 +74,16 @@ namespace SGDM_CFE.UI.Windows
                 ViewType.OpticalReaders => new DevicesView(_context, DeviceType.OpticalReader),
                 ViewType.PortableTerminals => new DevicesView(_context, DeviceType.PortableTerminal),
                 ViewType.SIMCards => new SIMCardsView(_context),
-                ViewType.StartPanel => new StartPanelView(_context),
+                ViewType.StartPanel => new StartPanelView(_context, _employee),
                 ViewType.Tablets => new DevicesView(_context, DeviceType.Tablet),
                 ViewType.WorkCenters => new WorkCentersView(_context),
                 _ => throw new Exception()
             };
+        }
+
+        private static void ShowError(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void LogoutButtonClick(object sender, RoutedEventArgs e)
@@ -116,16 +116,7 @@ namespace SGDM_CFE.UI.Windows
                 {
                     NavigateTo(viewType);
                 }
-                else
-                {
-                    ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
-                }
             }
-        }
-
-        private static void ShowError(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

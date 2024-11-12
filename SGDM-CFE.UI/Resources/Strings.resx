@@ -426,4 +426,22 @@
   <data name="AccessDeniedWindowTitle" xml:space="preserve">
     <value>Acceso denegado</value>
   </data>
+  <data name="EditUserWindowTitle" xml:space="preserve">
+    <value>Editar usuario</value>
+  </data>
+  <data name="SIMCardLabel" xml:space="preserve">
+    <value>Tarjeta SIM:</value>
+  </data>
+  <data name="NoRecordsWindowTitle" xml:space="preserve">
+    <value>Registros no encontrados</value>
+  </data>
+  <data name="NoRecordsMessage" xml:space="preserve">
+    <value>No se encontraron registros en la base de datos. Verifique sus filtros o agregue nuevos registros.</value>
+  </data>
+  <data name="StartPanelLabel" xml:space="preserve">
+    <value>Panel de inicio</value>
+  </data>
+  <data name="EditUserButton" xml:space="preserve">
+    <value>Editar usuario</value>
+  </data>
 </root>

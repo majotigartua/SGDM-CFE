@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using Microsoft.IdentityModel.Tokens;
+using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
@@ -13,26 +14,37 @@ namespace SGDM_CFE.UI.Views
         private readonly Context _context;
         private readonly WorkCenterService _workCenterService;
 
-        private bool _isEditWindow;
-
         public WorkCentersView(Context context)
         {
             _context = context;
             _workCenterService = new WorkCenterService(_context);
             InitializeComponent();
-            LoadWorkCenters();
+            ConfigureView();
         }
 
-        private void LoadWorkCenters()
+        private void ConfigureView()
         {
             try
             {
-                WorkCentersDataGrid.ItemsSource = _workCenterService.GetWorkCenters();
+                var workCenters = _workCenterService.GetWorkCenters();
+                if (!workCenters.IsNullOrEmpty())
+                {
+                    WorkCentersDataGrid.ItemsSource = workCenters;
+                }
+                else
+                {
+                    ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                }
             }
             catch (Exception)
             {
                 ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
+        }
+
+        private static void ShowWarning(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private static void ShowError(string message, string title)
@@ -52,15 +64,9 @@ namespace SGDM_CFE.UI.Views
             }
         }
 
-        private static void ShowWarning(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
         private void ShowEditWorkCenterWindow(WorkCenter workCenter)
         {
-            _isEditWindow = true;
-            var editWorkCenterWindow = new WorkCenterWindow(_context, _isEditWindow, workCenter);
+            var editWorkCenterWindow = new WorkCenterWindow(_context, workCenter, isEditWindow: true);
             editWorkCenterWindow.ShowDialog();
         }
 
@@ -83,9 +89,7 @@ namespace SGDM_CFE.UI.Views
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
-            _isEditWindow = false;
-            var workCenter = new WorkCenter();
-            var createWorkCenterWindow = new WorkCenterWindow(_context, _isEditWindow, workCenter);
+            var createWorkCenterWindow = new WorkCenterWindow(_context, new WorkCenter(), isEditWindow : true);
             createWorkCenterWindow.ShowDialog();
         }
 
@@ -103,9 +107,9 @@ namespace SGDM_CFE.UI.Views
 
         private void ShowWorkCenterView(WorkCenter workCenter)
         {
-            var workCenterView = new WorkCenterView(_context, workCenter);
             if (Window.GetWindow(this) is MainWindow mainWindow)
             {
+                var workCenterView = new WorkCenterView(_context, workCenter);
                 mainWindow.MainContent.Content = workCenterView;
             }
         }

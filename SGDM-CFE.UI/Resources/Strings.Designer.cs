@@ -331,6 +331,24 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Editar usuario.
+        /// </summary>
+        public static string EditUserButton {
+            get {
+                return ResourceManager.GetString("EditUserButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Editar usuario.
+        /// </summary>
+        public static string EditUserWindowTitle {
+            get {
+                return ResourceManager.GetString("EditUserWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Editar.
         /// </summary>
         public static string EditWindowTitle {
@@ -583,6 +601,24 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se encontraron registros en la base de datos. Verifique sus filtros o agregue nuevos registros..
+        /// </summary>
+        public static string NoRecordsMessage {
+            get {
+                return ResourceManager.GetString("NoRecordsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registros no encontrados.
+        /// </summary>
+        public static string NoRecordsWindowTitle {
+            get {
+                return ResourceManager.GetString("NoRecordsWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Por favor, selecciona un registro antes de continuar..
         /// </summary>
         public static string NoSelectionMessage {
@@ -790,6 +826,15 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tarjeta SIM:.
+        /// </summary>
+        public static string SIMCardLabel {
+            get {
+                return ResourceManager.GetString("SIMCardLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tarjetas SIM.
         /// </summary>
         public static string SIMCardsButton {
@@ -813,6 +858,15 @@ namespace SGDM_CFE.UI.Resources {
         public static string StartPanelButton {
             get {
                 return ResourceManager.GetString("StartPanelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Panel de inicio.
+        /// </summary>
+        public static string StartPanelLabel {
+            get {
+                return ResourceManager.GetString("StartPanelLabel", resourceCulture);
             }
         }
         

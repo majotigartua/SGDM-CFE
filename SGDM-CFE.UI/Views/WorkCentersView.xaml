@@ -21,9 +21,9 @@
         </StackPanel>
         <DataGrid x:Name="WorkCentersDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static r:Strings.CodeTextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.NameTextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.AreaTextColumn}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.CodeTextColumn}" Binding="{Binding Code}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.NameTextColumn}" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.AreaTextColumn}" Binding="{Binding Area.Name}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="2" Margin="10">

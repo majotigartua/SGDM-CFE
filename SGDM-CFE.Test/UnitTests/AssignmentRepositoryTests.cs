@@ -40,7 +40,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var employee = _context.Employees.First();
             int employeeId = employee.Id;
-            var assignments = _assignmentRepository.GetByEmployee(employee);
+            var assignments = _assignmentRepository.GetByEmployee(employeeId);
             Assert.NotEmpty(assignments);
             Assert.All(assignments, a => Assert.Equal(a.EmployeeId, employeeId));
         }
@@ -59,7 +59,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var state = _context.States.First();
             int stateId = state.Id;
-            var assignment = _assignmentRepository.GetByState(state);
+            var assignment = _assignmentRepository.GetByState(stateId);
             Assert.NotNull(assignment);
             Assert.True(assignment.AssignmentStateId == stateId || assignment.ReturnStateId == stateId);
         }

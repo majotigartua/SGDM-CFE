@@ -31,7 +31,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var simCard = _context.SIMCards.First();
-            var result = _simCardRepository.Delete(simCard);
+            int simCardId = simCard.Id;
+            var result = _simCardRepository.Delete(simCardId);
             Assert.True(result);
         }
 
@@ -55,10 +56,10 @@ namespace SGDM_CFE.Test.UnitTests
         public void GetByMobileDevice()
         {
             var mobileDevice = _context.MobileDevices.First();
-            int movileDeviceId = mobileDevice.Id;
-            var simCard = _simCardRepository.GetByMobileDevice(mobileDevice);
+            int mobileDeviceId = mobileDevice.Id;
+            var simCard = _simCardRepository.GetByMobileDevice(mobileDeviceId);
             Assert.NotNull(simCard);
-            Assert.Contains(simCard.MobileDevices, md => md.Id == movileDeviceId);
+            Assert.Contains(simCard.MobileDevices, md => md.Id == mobileDeviceId);
         }
 
         [Fact]

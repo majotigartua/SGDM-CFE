@@ -34,7 +34,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var device = _context.Devices.First();
-            var result = _deviceRepository.Delete(device);
+            int deviceId = device.Id;
+            var result = _deviceRepository.Delete(deviceId);
             Assert.True(result);
         }
 
@@ -58,10 +59,10 @@ namespace SGDM_CFE.Test.UnitTests
         public void GetByMobileDevice()
         {
             var mobileDevice = _context.MobileDevices.First();
-            int mobileDeivceId = mobileDevice.Id;
-            var device = _deviceRepository.GetByMobileDevice(mobileDevice);
+            int mobileDeviceId = mobileDevice.Id;
+            var device = _deviceRepository.GetByMobileDevice(mobileDeviceId);
             Assert.NotNull(device);
-            Assert.Contains(device.MobileDevices, md => md.Id == mobileDeivceId);
+            Assert.Contains(device.MobileDevices, md => md.Id == mobileDeviceId);
         }
 
         [Fact]
@@ -69,7 +70,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var opticalReader = _context.OpticalReaders.First();
             int opticalReaderId = opticalReader.Id;
-            var device = _deviceRepository.GetByOpticalReader(opticalReader);
+            var device = _deviceRepository.GetByOpticalReader(opticalReaderId);
             Assert.NotNull(device);
             Assert.Contains(device.OpticalReaders, or => or.Id == opticalReaderId);
         }
@@ -79,7 +80,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var state = _context.States.First();
             int stateId = state.Id;
-            var device = _deviceRepository.GetByState(state);
+            var device = _deviceRepository.GetByState(stateId);
             Assert.NotNull(device);
             Assert.Contains(device.States, s => s.Id == stateId);
         }
@@ -89,7 +90,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var workCenter = _context.WorkCenters.First();
             int workCenterId = workCenter.Id;
-            var device = _deviceRepository.GetByWorkCenter(workCenter);
+            var device = _deviceRepository.GetByWorkCenter(workCenterId);
             Assert.NotEmpty(device);
             Assert.All(device, d => Assert.Equal(d.WorkCenterId, workCenterId));
         }

@@ -10,15 +10,15 @@ namespace SGDM_CFE.UI.Windows
     {
         private readonly Context _context;
         private readonly EmployeeService _employeeService;
+        private readonly Employee _employee;
         private readonly bool _isEditWindow;
-        private readonly Employee? _employee;
 
-        public EmployeeWindow(Context context, bool isEditWindow, Employee employee)
+        public EmployeeWindow(Context context, Employee employee, bool isEditWindow)
         {
             _context = context;
             _employeeService = new EmployeeService(context);
-            _isEditWindow = isEditWindow;
             _employee = employee;
+            _isEditWindow = isEditWindow;
             InitializeComponent();
             ConfigureWindow();
         }
@@ -26,10 +26,15 @@ namespace SGDM_CFE.UI.Windows
         private void ConfigureWindow()
         {
             Title = _isEditWindow ? Strings.EditEmployeeWindowTitle : Strings.CreateEmployeeWindowTitle;
-            NameTextBox.Text = _employee?.Name;
-            PaternalSurnameTextBox.Text = _employee?.PaternalSurname;
-            MaternalSurnameTextBox.Text = _employee?.MaternalSurname;
-            RPETextBox.Text = _employee?.RPE;
+            if (_isEditWindow) PopulateFields();
+        }
+
+        private void PopulateFields()
+        {
+            RPETextBox.Text = _employee.RPE;
+            NameTextBox.Text = _employee.Name;
+            PaternalSurnameTextBox.Text = _employee.PaternalSurname;
+            MaternalSurnameTextBox.Text = _employee.MaternalSurname;
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)

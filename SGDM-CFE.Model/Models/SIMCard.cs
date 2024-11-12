@@ -7,5 +7,10 @@
         public bool IsDeleted { get; set; }
 
         public virtual ICollection<MobileDevice> MobileDevices { get; set; } = [];
+
+        public override string? ToString()
+        {
+            return SerialNumber;
+        }
     }
 }

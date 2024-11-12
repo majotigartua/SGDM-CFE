@@ -12,6 +12,11 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly CostCenterRepository _costCenterRepository = new(context);
         private readonly WorkCenterRepository _workCenterRepository = new(context);
 
+        public List<Area> GetAreas()
+        {
+            return _areaRepository.GetAll();
+        }
+
         public List<WorkCenter> GetWorkCenters()
         {
             return _workCenterRepository.GetAll();

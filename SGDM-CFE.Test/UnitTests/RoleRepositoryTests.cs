@@ -35,7 +35,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var user = _context.Users.First();
             int userId = user.Id;
-            var role = _roleRepository.GetByUser(user);
+            var role = _roleRepository.GetByUser(userId);
             Assert.NotNull(role);
             Assert.Contains(role.Users, u => u.Id == userId);
         }

@@ -174,8 +174,8 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.Id).HasColumnName("IdState");
                 entity.Property(e => e.FailuresDescription).HasMaxLength(255);
                 entity.Property(e => e.DeviceId).HasColumnName("IdDevice");
-                entity.Property(e => e.WorkCenterBusinessProcessId).HasColumnName("IdWorkCenterBusinessProcess");
-                entity.Property(e => e.WorkCenterCostCenterId).HasColumnName("IdWorkCenterCostCenter");
+                entity.Property(e => e.WorkCenterBusinessProcessId).HasColumnName("IdWorkCenter_BusinessProcess");
+                entity.Property(e => e.WorkCenterCostCenterId).HasColumnName("IdWorkCenter_CostCenter");
                 entity.Property(e => e.ReviewNotes).HasColumnType("text");
                 entity.HasOne(d => d.Device).WithMany(p => p.States)
                     .HasForeignKey(d => d.DeviceId)
@@ -231,7 +231,7 @@ namespace SGDM_CFE.Model
             {
                 entity.HasKey(e => e.Id);
                 entity.ToTable("WorkCenter_BusinessProcess");
-                entity.Property(e => e.Id).HasColumnName("IdWorkCenterBusinessProcess");
+                entity.Property(e => e.Id).HasColumnName("IdWorkCenter_BusinessProcess");
                 entity.Property(e => e.BusinessProcessId).HasColumnName("IdBusinessProcess");
                 entity.Property(e => e.WorkCenterId).HasColumnName("IdWorkCenter");
                 entity.HasOne(d => d.BusinessProcess).WithMany(p => p.WorkCenterBusinessProcesses)
@@ -248,7 +248,7 @@ namespace SGDM_CFE.Model
             {
                 entity.HasKey(e => e.Id);
                 entity.ToTable("WorkCenter_CostCenter");
-                entity.Property(e => e.Id).HasColumnName("IdWorkCenterCostCenter");
+                entity.Property(e => e.Id).HasColumnName("IdWorkCenter_CostCenter");
                 entity.Property(e => e.CostCenterId).HasColumnName("IdCostCenter");
                 entity.Property(e => e.WorkCenterId).HasColumnName("IdWorkCenter");
                 entity.HasOne(d => d.CostCenter).WithMany(p => p.WorkCenterCostCenters)

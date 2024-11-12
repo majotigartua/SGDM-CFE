@@ -46,7 +46,9 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var workCenters = _context.WorkCenters.ToList();
+                var workCenters = _context.WorkCenters
+                    .Include(w => w.Area)
+                    .ToList();
                 return workCenters;
             }
             catch (Exception)

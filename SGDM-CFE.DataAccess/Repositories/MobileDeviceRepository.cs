@@ -105,6 +105,8 @@ namespace SGDM_CFE.DataAccess.Repositories
             {
                 var mobileDevices = _context.MobileDevices
                     .Include(md => md.Device)
+                    .ThenInclude(d => d.WorkCenter)
+                    .ThenInclude(wc => wc.Area)
                     .Include(md => md.Type)
                     .Where(md => md.Type.Id == typeId)
                     .ToList();

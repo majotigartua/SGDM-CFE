@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using Microsoft.IdentityModel.Tokens;
+using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
@@ -15,28 +16,37 @@ namespace SGDM_CFE.UI.Views
         private readonly EmployeeService _employeeService;
         private readonly Employee? _employee;
 
-        private bool _isEditWindow;
-
         public EmployeesView(Context context)
         {
-            _context= context;
+            _context = context;
             _employeeService = new EmployeeService(_context);
             InitializeComponent();
-            LoadEmployees();
+            ConfigureView();
         }
 
-        private void LoadEmployees()
+        private void ConfigureView()
         {
             try
             {
                 var employees = _employeeService.GetEmployees();
-                EmployeesDataGrid.ItemsSource = new ObservableCollection<Employee>(employees);
+                if (!employees.IsNullOrEmpty())
+                {
+                    EmployeesDataGrid.ItemsSource = employees;
+                }
+                else
+                {
+                    ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                }
             }
             catch (Exception)
             {
                 ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
+        }
 
+        private static void ShowWarning(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private static void ShowError(string message, string title)
@@ -58,14 +68,8 @@ namespace SGDM_CFE.UI.Views
 
         private void ShowEditEmployeWindow(Employee employee)
         {
-            _isEditWindow = true;
-            var editEmployeeWindow = new EmployeeWindow(_context, _isEditWindow, employee);
+            var editEmployeeWindow = new EmployeeWindow(_context, employee, isEditWindow: true);
             editEmployeeWindow.ShowDialog();
-        }
-
-        private static void ShowWarning(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
@@ -77,7 +81,7 @@ namespace SGDM_CFE.UI.Views
             else
             {
                 ShowWarning(Strings.NoSelectionMessage, Strings.NoSelectionWindowTitle);
-            }   
+            }
         }
 
         private void DeleteEmployee(Employee employee)
@@ -87,9 +91,7 @@ namespace SGDM_CFE.UI.Views
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
-            _isEditWindow = false;
-            var employee = new Employee();
-            var createEmployeeWindow = new EmployeeWindow(_context, _isEditWindow, employee);
+            var createEmployeeWindow = new EmployeeWindow(_context, employee: new Employee(), isEditWindow: false);
             createEmployeeWindow.ShowDialog();
         }
 
@@ -107,8 +109,7 @@ namespace SGDM_CFE.UI.Views
 
         private void ShowCreateUserWindow(Employee employee)
         {
-            _isEditWindow = false;
-            var userWindow = new UserWindow(_context, _isEditWindow, employee);
+            var userWindow = new UserWindow(_context, employee, isEditWindow: false);
             userWindow.ShowDialog();
         }
 
@@ -126,9 +127,9 @@ namespace SGDM_CFE.UI.Views
 
         private void ShowEmployeeView(Employee employee)
         {
-            var employeeView = new EmployeeView(_context, employee);
             if (Window.GetWindow(this) is MainWindow mainWindow)
             {
+                var employeeView = new EmployeeView(_context, employee);
                 mainWindow.MainContent.Content = employeeView;
             }
         }

@@ -16,10 +16,10 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="#333" Width="200" VerticalAlignment="Stretch">
-            <TextBlock Text="{x:Static r:Strings.MenuTextBlock}" FontSize="18" Foreground="White" Margin="10" />
-            <Button x:Name="StartPanelButton" Content="{x:Static r:Strings.StartPanelButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
-            <Button x:Name="EmployeesButton" Content="{x:Static r:Strings.EmployeesButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
-            <Button x:Name="WorkCentersButton" Content="{x:Static r:Strings.WorkCentersButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
+            <TextBlock Text="{x:Static r:Strings.MenuTextBlock}" FontSize="18" Foreground="White" Margin="10"/>
+            <Button x:Name="StartPanelButton" Content="{x:Static r:Strings.StartPanelButton}" Click="NavigateButtonClick" Margin="10"/>
+            <Button x:Name="EmployeesButton" Content="{x:Static r:Strings.EmployeesButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed"/>
+            <Button x:Name="WorkCentersButton" Content="{x:Static r:Strings.WorkCentersButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed"/>
             <Button x:Name="TabletsButton" Content="{x:Static r:Strings.TabletsButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
             <Button x:Name="PortableTerminalsButton" Content="{x:Static r:Strings.PortableTerminalsButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />
             <Button x:Name="OpticalReadersButton" Content="{x:Static r:Strings.OpticalReadersButton}" Click="NavigateButtonClick" Margin="10" Visibility="Collapsed" />

@@ -15,19 +15,34 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly StateRepository _stateRepository = new(context);
         private readonly TypeRepository _typeRepository = new(context);
 
+        public Assignment? GetAssignmentByState(int stateId)
+        {
+            var assignment = _assignmentRepository.GetByState(stateId);
+            return assignment;
+        }
+
         public List<MobileDevice> GetMobileDevicesByType(int typeId)
         {
-            return _mobileDeviceRepository.GetByType(typeId);
+            var mobileDevices = _mobileDeviceRepository.GetByType(typeId);
+            return mobileDevices;
         }
 
         public List<OpticalReader> GetOpticalReaders()
         {
-            return _opticalReaderRepository.GetAll();
+            var opticalReaders = _opticalReaderRepository.GetAll();
+            return opticalReaders;
         }
 
         public List<SIMCard> GetSIMCards()
         {
-            return _simCardRepository.GetAll();
+            var simCards = _simCardRepository.GetAll();
+            return simCards;
+        }
+
+        public List<State> GetStatesByDevice(int deviceId)
+        {
+            var states = _stateRepository.GetByDevice(deviceId);
+            return states;
         }
     }
 }

@@ -32,7 +32,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var workCenter = _context.WorkCenters.First();
-            var result = _workCenterRepository.Delete(workCenter);
+            int workCenterId = workCenter.Id;
+            var result = _workCenterRepository.Delete(workCenterId);
             Assert.True(result);
         }
 
@@ -47,7 +48,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void GetByArea()
         {
             var area = _context.Areas.First();
-            var workCenters = _workCenterRepository.GetByArea(area);
+            int areaId = area.Id;
+            var workCenters = _workCenterRepository.GetByArea(areaId);
             Assert.NotNull(workCenters);
             Assert.Contains(workCenters, wc => wc.AreaId == area.Id);
         }
@@ -57,7 +59,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var businessProcess = _context.BusinessProcesses.First();
             int businessProcessId = businessProcess.Id;
-            var workCenters = _workCenterRepository.GetByBusinessProcess(businessProcess);
+            var workCenters = _workCenterRepository.GetByBusinessProcess(businessProcessId);
             Assert.NotEmpty(workCenters);
             Assert.All(workCenters, wc => Assert.Contains(wc.WorkCenterBusinessProcesses, wcbp => wcbp.BusinessProcessId == businessProcessId));
         }
@@ -67,7 +69,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var costCenter = _context.CostCenters.First();
             int costCenterId = costCenter.Id;
-            var workCenters = _workCenterRepository.GetByCostCenter(costCenter);
+            var workCenters = _workCenterRepository.GetByCostCenter(costCenterId);
             Assert.NotEmpty(workCenters);
             Assert.All(workCenters, wc => Assert.Contains(wc.WorkCenterCostCenters, wccc => wccc.CostCenterId == costCenterId));
         }

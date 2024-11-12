@@ -33,7 +33,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var mobileDevice = _context.MobileDevices.First();
             int mobileDeviceId = mobileDevice.Id;
-            var type = _typeRepository.GetByMobileDevice(mobileDevice);
+            var type = _typeRepository.GetByMobileDevice(mobileDeviceId);
             Assert.NotNull(type);
             Assert.Contains(type.MobileDevices, md => md.Id == mobileDeviceId);
         }

@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using Microsoft.IdentityModel.Tokens;
+using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
@@ -14,11 +15,9 @@ namespace SGDM_CFE.UI.Views
         private readonly Context _context;
         private readonly DeviceService _deviceService;
         private readonly DeviceType _deviceType;
-        
+
         private List<OpticalReader>? _opticalReaders;
         private List<MobileDevice>? _mobileDevices;
-
-        private bool _isEditWindow;
 
         public DevicesView(Context context, DeviceType deviceType)
         {
@@ -31,11 +30,26 @@ namespace SGDM_CFE.UI.Views
 
         private void ConfigureView()
         {
-            TitleLabel.Content = GetViewTitle();
-            LoadDevices();
+            try
+            {
+                TitleLabel.Content = GetTitleLabel();
+                var devices = LoadDevices();
+                if (!devices.IsNullOrEmpty())
+                {
+                    DevicesDataGrid.ItemsSource = devices;
+                }
+                else
+                {
+                    ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                }
+            }
+            catch (Exception)
+            {
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+            }
         }
 
-        private string GetViewTitle()
+        private string GetTitleLabel()
         {
             return _deviceType switch
             {
@@ -46,32 +60,27 @@ namespace SGDM_CFE.UI.Views
             };
         }
 
-        private void LoadDevices()
+        private List<object>? LoadDevices()
         {
-            try
+            List<object>? devices = [];
+            switch (_deviceType)
             {
-                switch (_deviceType)
-                {
-                    case DeviceType.OpticalReader:
-                        _opticalReaders = _deviceService.GetOpticalReaders();
-                        DevicesDataGrid.ItemsSource = _opticalReaders;
-                        break;
-                    case DeviceType.PortableTerminal:
-                        _mobileDevices = _deviceService.GetMobileDevicesByType((int)DeviceType.PortableTerminal);
-                        DevicesDataGrid.ItemsSource = _mobileDevices;
-                        break;
-                    case DeviceType.Tablet:
-                        _mobileDevices = _deviceService.GetMobileDevicesByType((int)DeviceType.Tablet);
-                        DevicesDataGrid.ItemsSource = _mobileDevices;
-                        break;
-                    default:
-                        throw new Exception();
-                }
+                case DeviceType.OpticalReader:
+                    _opticalReaders = _deviceService.GetOpticalReaders();
+                    devices.AddRange(_opticalReaders);
+                    break;
+                case DeviceType.PortableTerminal:
+                    _mobileDevices = _deviceService.GetMobileDevicesByType((int)DeviceType.PortableTerminal);
+                    devices.AddRange(_mobileDevices);
+                    break;
+                case DeviceType.Tablet:
+                    _mobileDevices = _deviceService.GetMobileDevicesByType((int)DeviceType.Tablet);
+                    devices.AddRange(_mobileDevices);
+                    break;
+                default:
+                    throw new Exception();
             }
-            catch (Exception)
-            {
-                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
-            }
+            return devices;
         }
 
         private static void ShowError(string message, string title)
@@ -79,28 +88,16 @@ namespace SGDM_CFE.UI.Views
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void EditButtonClick(object sender, RoutedEventArgs e)
+        private static void ShowWarning(string noSelectionMessage, string noSelectionWindowTitle)
         {
-            _isEditWindow = true;
-            DeviceWindow? editWindow = _deviceType switch
-            {
-                DeviceType.OpticalReader => new DeviceWindow(_context, DeviceType.OpticalReader, _isEditWindow),
-                DeviceType.PortableTerminal => new DeviceWindow(_context, DeviceType.PortableTerminal, _isEditWindow),
-                DeviceType.Tablet => new DeviceWindow(_context, DeviceType.Tablet, _isEditWindow),
-                _ => throw new Exception(),
-            };
-            editWindow?.ShowDialog();
+            MessageBox.Show(noSelectionMessage, noSelectionWindowTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void DeleteButtonClick(object sender, RoutedEventArgs e)
+        private void EditButtonClick(object sender, RoutedEventArgs e)
         {
-            if (DevicesDataGrid.SelectedItem is OpticalReader opticalReader)
+            if (DevicesDataGrid.SelectedItem is object device)
             {
-                DeleteOpticalReader(opticalReader);
-            }
-            else if (DevicesDataGrid.SelectedItem is MobileDevice mobileDevice)
-            {
-                DeleteMobileDevice(mobileDevice);
+                ShowEditDeviceWindow(device);
             }
             else
             {
@@ -108,38 +105,38 @@ namespace SGDM_CFE.UI.Views
             }
         }
 
-        private void DeleteOpticalReader(OpticalReader opticalReader)
+        private void ShowEditDeviceWindow(object device)
         {
-            throw new NotImplementedException();
+            var editDeviceWindow = new DeviceWindow(_context, _deviceType, device, isEditWindow: true);
+            editDeviceWindow.ShowDialog();
         }
 
-        private void DeleteMobileDevice(MobileDevice mobileDevice)
+        private void DeleteButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (DevicesDataGrid.SelectedItem is object device)
+            {
+                DeleteDevice(device);
+            }
+            else
+            {
+                ShowWarning(Strings.NoSelectionMessage, Strings.NoSelectionWindowTitle);
+            }
         }
 
-        private static void ShowWarning(string noSelectionMessage, string noSelectionWindowTitle)
+        private void DeleteDevice(object device)
         {
-            MessageBox.Show(noSelectionMessage, noSelectionWindowTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+            throw new NotImplementedException();
         }
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
-            _isEditWindow = false;
-            DeviceWindow? createWindow = _deviceType switch
-            {
-                DeviceType.OpticalReader => new DeviceWindow(_context, DeviceType.OpticalReader, _isEditWindow),
-                DeviceType.PortableTerminal => new DeviceWindow(_context, DeviceType.PortableTerminal, _isEditWindow),
-                DeviceType.Tablet => new DeviceWindow(_context, DeviceType.Tablet, _isEditWindow),
-                _ => throw new Exception(),
-            };
-            createWindow?.ShowDialog();
+            var createDeviceWindow = new DeviceWindow(_context, _deviceType, device: new object(), isEditWindow: false);
+            createDeviceWindow?.ShowDialog();
         }
 
         private void ViewDetailsButtonClick(object sender, RoutedEventArgs e)
         {
-            var device = DevicesDataGrid.SelectedItem;
-            if (device != null)
+            if (DevicesDataGrid.SelectedItem is object device)
             {
                 ShowDeviceView(device);
             }
@@ -151,7 +148,11 @@ namespace SGDM_CFE.UI.Views
 
         private void ShowDeviceView(object device)
         {
-            throw new NotImplementedException();
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                var deviceView = new DeviceView(_context, _deviceType, device);
+                mainWindow.MainContent.Content = deviceView;
+            }
         }
     }
 }

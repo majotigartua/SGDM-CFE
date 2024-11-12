@@ -47,6 +47,8 @@ namespace SGDM_CFE.DataAccess.Repositories
             {
                 var opticalReaders = _context.OpticalReaders
                     .Include(or => or.Device)
+                    .ThenInclude(d => d.WorkCenter)
+                    .ThenInclude(wc => wc.Area)
                     .Where(or => !or.IsDeleted)
                     .ToList();
                 return opticalReaders;

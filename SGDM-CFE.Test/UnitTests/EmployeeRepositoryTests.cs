@@ -35,7 +35,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var employee = _context.Employees.First();
-            var result = _employeeRepository.Delete(employee);
+            int employeeId = employee.Id;
+            var result = _employeeRepository.Delete(employeeId);
             Assert.True(result);
         }
 
@@ -51,7 +52,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var assignment = _context.Assignments.First();
             int assignmentId = assignment.Id;
-            var employee = _employeeRepository.GetByAssignment(assignment);
+            var employee = _employeeRepository.GetByAssignment(assignmentId);
             Assert.NotNull(employee);
             Assert.Contains(employee.Assignments, a => a.Id == assignmentId);
         }
@@ -70,7 +71,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var user = _context.Users.First();
             int userId = user.Id;
-            var employee = _employeeRepository.GetByUser(user);
+            var employee = _employeeRepository.GetByUser(userId);
             Assert.NotNull(employee);
             Assert.Equal(employee.UserId, userId);
         }

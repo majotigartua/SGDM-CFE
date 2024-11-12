@@ -87,7 +87,10 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var employee = _context.Employees.FirstOrDefault(e => e.RPE == rpe);
+                var employee = _context.Employees
+                    .Include(e => e.User)
+                    .ThenInclude(u => u.Role)
+                    .FirstOrDefault(e => e.RPE == rpe);
                 return employee;
             }
             catch (Exception)

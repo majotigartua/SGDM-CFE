@@ -35,7 +35,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var workCenter = _context.WorkCenters.First();
             int workCenterId = workCenter.Id;
-            var costCenters = costCenterRepository.GetByWorkCenter(workCenter);
+            var costCenters = costCenterRepository.GetByWorkCenter(workCenterId);
             Assert.NotEmpty(costCenters);
             Assert.All(costCenters, cc => Assert.Contains(cc.WorkCenterCostCenters, wccc => wccc.WorkCenterId == workCenterId));
         }

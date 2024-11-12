@@ -45,7 +45,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var assignment = _context.Assignments.First();
             int assignmentId = assignment.Id;
-            var states = _stateRepository.GetByAssignment(assignment);
+            var states = _stateRepository.GetByAssignment(assignmentId);
             Assert.NotEmpty(states);
             Assert.All(states, s => Assert.True(s.AssignmentStateAssignments.Any(a => a.Id == assignmentId) || s.ReturnStateAssignments.Any(a => a.Id == assignmentId)));
         }
@@ -55,7 +55,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var workCenterBusinessProcess = _context.WorkCenterBusinessProcesses.First();
             int workCenterBusinessProcessId = workCenterBusinessProcess.Id;
-            var states = _stateRepository.GetByBusinessProcess(workCenterBusinessProcess);
+            var states = _stateRepository.GetByBusinessProcess(workCenterBusinessProcessId);
             Assert.NotEmpty(states);
             Assert.All(states, s => Assert.Equal(s.WorkCenterBusinessProcessId, workCenterBusinessProcessId));
         }
@@ -65,7 +65,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var workCenterCostCenter = _context.WorkCenterCostCenters.First();
             int workCenterCostCenterId = workCenterCostCenter.Id;
-            var states = _stateRepository.GetByCostCenter(workCenterCostCenter);
+            var states = _stateRepository.GetByCostCenter(workCenterCostCenterId);
             Assert.NotEmpty(states);
             Assert.All(states, s => Assert.Equal(s.WorkCenterCostCenterId, workCenterCostCenterId));
         }
@@ -75,7 +75,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var device = _context.Devices.First();
             int deviceId = device.Id;
-            var states = _stateRepository.GetByDevice(device);
+            var states = _stateRepository.GetByDevice(deviceId);
             Assert.NotEmpty(states);
             Assert.All(states, s => Assert.Equal(s.DeviceId, deviceId));
         }

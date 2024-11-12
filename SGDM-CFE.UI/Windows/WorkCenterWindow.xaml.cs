@@ -8,14 +8,14 @@ namespace SGDM_CFE.UI.Windows
     public partial class WorkCenterWindow : Window
     { 
         private readonly Context _context;
-        private readonly bool _isEditWindow;
         private readonly WorkCenter _workCenter;
+        private readonly bool _isEditWindow;
 
-        public WorkCenterWindow(Context context, bool isEditWindow, WorkCenter workCenter)
+        public WorkCenterWindow(Context context, WorkCenter workCenter, bool isEditWindow)
         {
             _context = context;
-            _isEditWindow = isEditWindow;
             _workCenter = workCenter;
+            _isEditWindow = isEditWindow;
             InitializeComponent();
             ConfigureWindow();
         }

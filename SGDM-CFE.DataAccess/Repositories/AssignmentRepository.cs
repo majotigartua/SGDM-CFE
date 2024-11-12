@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SGDM_CFE.DataAccess.Interfaces;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 
@@ -67,7 +68,9 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId);
+                var assignment = _context.Assignments
+                    .Include(a => a.Employee)
+                    .FirstOrDefault(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId);
                 return assignment;
             }
             catch (Exception)

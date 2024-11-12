@@ -32,7 +32,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var mobileDevice = _context.MobileDevices.First();
-            var result = _mobileDeviceRepository.Delete(mobileDevice);
+            int mobileDeviceId = mobileDevice.Id;
+            var result = _mobileDeviceRepository.Delete(mobileDeviceId);
             Assert.True(result);
         }
 
@@ -48,7 +49,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var device = _context.Devices.First();
             int deviceId = device.Id;
-            var mobileDevice = _mobileDeviceRepository.GetByDevice(device);
+            var mobileDevice = _mobileDeviceRepository.GetByDevice(deviceId);
             Assert.NotNull(mobileDevice);
             Assert.Equal(mobileDevice.DeviceId, deviceId);
         }
@@ -67,7 +68,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var simCard = _context.SIMCards.First();
             int simCardId = simCard.Id;
-            var mobileDevice = _mobileDeviceRepository.GetBySIMCard(simCard);
+            var mobileDevice = _mobileDeviceRepository.GetBySIMCard(simCardId);
             Assert.NotNull(mobileDevice);
             Assert.Equal(mobileDevice.SIMCardId, simCardId);
         }
@@ -77,7 +78,7 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var type = _context.Types.First();
             int typeId = type.Id;
-            var mobileDevices = _mobileDeviceRepository.GetByType(type);
+            var mobileDevices = _mobileDeviceRepository.GetByType(typeId);
             Assert.NotEmpty(mobileDevices);
             Assert.All(mobileDevices, md => Assert.Equal(md.TypeId, typeId));
         }
