@@ -12,28 +12,28 @@
         Title="{x:Static r:Strings.GeneralWindowTitle}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="/Resources/Images/CFE.png" Width="250" Height="250" />
+            <Image Source="/Resources/Images/CFE.png" Width="250" Height="250"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,0,0">
-            <Label Content="{x:Static r:Strings.RPELabel}" Width="300" Height="30" />
-            <TextBox x:Name="RPETextBox" Width="300" Height="30" />
+            <Label Content="{x:Static r:Strings.RPELabel}" Width="300" Height="30"/>
+            <TextBox x:Name="RPETextBox" Width="300" Height="30"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
             <Label Content="{x:Static r:Strings.PasswordLabel}" Width="300" Height="30" />
-            <PasswordBox Name="PasswordBox" Width="300" Height="30" />
+            <PasswordBox Name="PasswordBox" Width="300" Height="30"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,0">
-            <Button Content="{x:Static r:Strings.LoginButton}" Width="300" Height="30" Click="LoginButtonClick" />
+            <Button Content="{x:Static r:Strings.LoginButton}" Width="300" Height="30" Click="LoginButtonClick"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
             <Label Content="{x:Static r:Strings.ForgotPasswordLabel}" Foreground="Blue" Cursor="Hand" HorizontalAlignment="Center" MouseLeftButtonUp="ForgotPasswordButtonClick"/>

@@ -1,6 +1,5 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using System.Linq;
 
 namespace SGDM_CFE.UI.Resources
 {
@@ -16,22 +15,11 @@ namespace SGDM_CFE.UI.Resources
             }
             return hashedPassword.ToString();
         }
+    }
 
-        public static List<Entity> GetFields<T>(T entity)
-        {
-            if (entity == null) return [];
-            return (from property in entity.GetType().GetProperties()
-                    select new Entity
-                    {
-                        Field = property.Name,
-                        Value = property.GetValue(entity)?.ToString()
-                    }).ToList();
-        }
-
-        public class Entity
-        {
-            public string? Field { get; set; }
-            public string? Value { get; set; }
-        }
+    public class Row(string field, object? value)
+    {
+        public string? Field { get; } = field;
+        public object? Value { get; } = value;
     }
 }

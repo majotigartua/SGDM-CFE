@@ -8,19 +8,19 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="{x:Static r:Strings.StartPanelLabel}" FontWeight="Bold" Margin="10" Grid.Row="0" />
+        <Label Content="{x:Static r:Strings.StartPanelLabel}" FontWeight="Bold" Margin="10" Grid.Row="0"/>
         <Grid Grid.Row="1" Margin="10">
         </Grid>
         <Grid Grid.Row="2" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.EditUserButton}" Width="100" HorizontalAlignment="Right" Grid.Column="1" Click="EditUserButtonClick" />
+            <Button Content="{x:Static r:Strings.EditUserButton}" Width="100" HorizontalAlignment="Right" Grid.Column="1" Click="EditUserButtonClick"/>
         </Grid>
     </Grid>
 </UserControl>

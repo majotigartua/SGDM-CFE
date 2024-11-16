@@ -25,16 +25,22 @@ namespace SGDM_CFE.UI
 
         private void LoginButtonClick(object sender, RoutedEventArgs e)
         {
-            if (AreFieldsFilled())
+            try
             {
-                var rpe = RPETextBox.Text;
-                var password = PasswordBox.Password;
-                password = Utilities.ComputeSHA256Hash(password);
-                Login(rpe, password);
+                if (AreFieldsFilled())
+                {
+                    var rpe = RPETextBox.Text;
+                    var password = PasswordBox.Password;
+                    Login(rpe, password);
+                }
+                else
+                {
+                    ShowWarning(Strings.EmptyFieldsMessage, Strings.EmptyFieldsWindowTitle);
+                }
             }
-            else
+            catch (Exception)
             {
-                ShowWarning(Strings.EmptyFieldsMessage, Strings.EmptyFieldsWindowTitle);
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
         }
 
@@ -50,22 +56,16 @@ namespace SGDM_CFE.UI
 
         private void Login(string rpe, string password)
         {
-            try
+            password = Utilities.ComputeSHA256Hash(password);
+            var employee = _employeeService.Login(rpe, password);
+            if (employee != null)
             {
-                var employee = _employeeService.Login(rpe, password);
-                if (employee != null)
-                {
-                    NavigateToMainWindow(employee);
-                }
-                else
-                {
-                    ShowWarning(Strings.InvalidInformationMessage, Strings.InvalidInformationWindowTitle);
-                    PasswordBox.Clear();
-                }
+                NavigateToMainWindow(employee);
             }
-            catch (Exception)
+            else
             {
-                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+                ShowWarning(Strings.InvalidInformationMessage, Strings.InvalidInformationWindowTitle);
+                PasswordBox.Clear();
             }
         }
 

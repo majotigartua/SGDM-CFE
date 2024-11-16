@@ -11,6 +11,26 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly RoleRepository _roleRepository = new(context);
         private readonly UserRepository _userRepository = new(context);
 
+        public bool CreateEmployee(Employee employee)
+        {
+            return _employeeRepository.Add(employee);
+        }
+
+        public bool CreateUser(User user)
+        {
+            return _userRepository.Add(user);
+        }
+
+        public bool EditEmployee(Employee employee)
+        {
+            return _employeeRepository.Update(employee);
+        }
+
+        public bool EditUser(User user)
+        {
+            return _userRepository.Update(user);
+        }
+
         public List<Employee> GetEmployees()
         {
             return _employeeRepository.GetAll();

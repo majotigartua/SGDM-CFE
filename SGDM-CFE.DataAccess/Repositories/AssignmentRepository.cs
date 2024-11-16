@@ -36,12 +36,35 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
+        public List<Assignment> GetByDevice(int deviceId)
+        {
+            try
+            {
+                var assignments = _context.Assignments
+                    .Include(a => a.Employee)
+                    .Include(a => a.AssignmentState)
+                    .Include(a => a.ReturnState)
+                    .Where(a => (a.AssignmentState.DeviceId == deviceId) || (a.ReturnState != null && a.ReturnState.DeviceId == deviceId))
+                    .ToList();
+                return assignments;
+            }
+            catch (Exception)
+            {
+                return [];
+            }
+        }
+
         public List<Assignment> GetByEmployee(int employeeId)
         {
             try
             {
                 var assignments = _context.Assignments
-                    .Where(a => a.EmployeeId == employeeId)
+                    .Include(a => a.Employee)
+                    .Include(a => a.AssignmentState)
+                    .ThenInclude(a => a.Device)
+                    .ThenInclude(a => a.WorkCenter)
+                    .ThenInclude(a => a.Area)
+                    .Where(a => a.EmployeeId == employeeId && a.ReturnState == null)
                     .ToList();
                 return assignments;
             }

@@ -265,7 +265,7 @@
     <value>¿Tiene fallas?:*</value>
   </data>
   <data name="FailuresDescriptionLabel" xml:space="preserve">
-    <value>Descripción de la falla:</value>
+    <value>Descripción de las fallas:</value>
   </data>
   <data name="RequiresMaintenanceLabel" xml:space="preserve">
     <value>¿Requiere mantenimiento?:*</value>
@@ -399,9 +399,6 @@
   <data name="ViewAssignmentLabel" xml:space="preserve">
     <value>Consultar asignación</value>
   </data>
-  <data name="DeviceStateLabel" xml:space="preserve">
-    <value>Estado del equipo:</value>
-  </data>
   <data name="NoSelectionWindowTitle" xml:space="preserve">
     <value>Ningún registro seleccionado</value>
   </data>
@@ -443,5 +440,98 @@
   </data>
   <data name="EditUserButton" xml:space="preserve">
     <value>Editar usuario</value>
+  </data>
+  <data name="HasFailuresRow" xml:space="preserve">
+    <value>¿Tiene fallas?</value>
+  </data>
+  <data name="FailuresDescriptionRow" xml:space="preserve">
+    <value>Descripción de las fallas</value>
+  </data>
+  <data name="RequiresMaintenanceRow" xml:space="preserve">
+    <value>¿Requiere mantenimiento?</value>
+  </data>
+  <data name="IsFunctionalRow" xml:space="preserve">
+    <value>¿Es funcional?</value>
+  </data>
+  <data name="ReviewNotesRow" xml:space="preserve">
+    <value>Notas de revisión</value>
+  </data>
+  <data name="AreaRow" xml:space="preserve">
+    <value>Zona</value>
+  </data>
+  <data name="BusinessProcessRow" xml:space="preserve">
+    <value>Proceso de negocio</value>
+  </data>
+  <data name="CostCenterRow" xml:space="preserve">
+    <value>Centro de costos</value>
+  </data>
+  <data name="InventoryNumberRow" xml:space="preserve">
+    <value>Número de inventario</value>
+  </data>
+  <data name="SerialNumberRow" xml:space="preserve">
+    <value>Número de serie</value>
+  </data>
+  <data name="IsCriticalMissionRow" xml:space="preserve">
+    <value>¿Es misión crítica?</value>
+  </data>
+  <data name="NotesRow" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="WorkCenterRow" xml:space="preserve">
+    <value>Centro de trabajo</value>
+  </data>
+  <data name="SIMCardRow" xml:space="preserve">
+    <value>Tarjeta SIM</value>
+  </data>
+  <data name="NameRow" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="PaternalSurnameRow" xml:space="preserve">
+    <value>Apellido paterno</value>
+  </data>
+  <data name="MaternalSurnameRow" xml:space="preserve">
+    <value>Apellido materno</value>
+  </data>
+  <data name="RPERow" xml:space="preserve">
+    <value>RPE</value>
+  </data>
+  <data name="NotApplicableLabel" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="ViewAssignmentHistoryButton" xml:space="preserve">
+    <value>Consultar historial de asignaciones</value>
+  </data>
+  <data name="NotesTextColumn" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="DeviceAssignmentStateLabel" xml:space="preserve">
+    <value>Estado de asignación del equipo:</value>
+  </data>
+  <data name="DeviceReturnStateLabel" xml:space="preserve">
+    <value>Estado de devolución del equipo:</value>
+  </data>
+  <data name="DeviceAssignedSIMCardLabel" xml:space="preserve">
+    <value>Tarjeta SIM asignada al equipo:</value>
+  </data>
+  <data name="CodeRow" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="InformationCreatedWindowTitle" xml:space="preserve">
+    <value>Información creada</value>
+  </data>
+  <data name="InformationCreatedMessage" xml:space="preserve">
+    <value>La información se ha creado correctamente.</value>
+  </data>
+  <data name="InformationEditedWindowTitle" xml:space="preserve">
+    <value>Información editada</value>
+  </data>
+  <data name="InformationEditedMessage" xml:space="preserve">
+    <value>La información se ha editado correctamente.</value>
+  </data>
+  <data name="IncorrectInformationWindowTitle" xml:space="preserve">
+    <value>Información incorrecta</value>
+  </data>
+  <data name="IncorrectInformationMessage" xml:space="preserve">
+    <value>La información ingresada es incorrecta o incompleta. Por favor, verifica los datos e inténtalo nuevamente.</value>
   </data>
 </root>

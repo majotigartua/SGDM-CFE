@@ -63,6 +63,7 @@ namespace SGDM_CFE.UI.Views
         {
             var editSIMCardWindow = new SIMCardWindow(_context, simCard, isEditWindow: true);
             editSIMCardWindow.ShowDialog();
+            ConfigureView();
         }
 
         private static void ShowWarning(string message, string title)
@@ -84,13 +85,14 @@ namespace SGDM_CFE.UI.Views
 
         private void DeleteSIMCard(SIMCard simCard)
         {
-            throw new NotImplementedException();
+            ConfigureView();
         }
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
             var createSIMCardWindow = new SIMCardWindow(_context, simCard: new SIMCard(), isEditWindow: false);
             createSIMCardWindow?.ShowDialog();
+            ConfigureView();
         }
 
         private void ViewDetailsButtonClick(object sender, RoutedEventArgs e)

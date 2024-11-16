@@ -48,10 +48,6 @@ namespace SGDM_CFE.UI.Windows
         private void SetButtonVisibility(bool isAdministrator)
         {
             EmployeesButton.Visibility = isAdministrator ? Visibility.Visible : Visibility.Collapsed;
-            OpticalReadersButton.Visibility = Visibility.Visible;
-            PortableTerminalsButton.Visibility = Visibility.Visible;
-            SIMCardsButton.Visibility = Visibility.Visible;
-            TabletsButton.Visibility = Visibility.Visible;
             WorkCentersButton.Visibility = isAdministrator ? Visibility.Visible : Visibility.Collapsed;
         }
 

@@ -46,7 +46,9 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var employees = _context.Employees.ToList();
+                var employees = _context.Employees
+                    .Include(e => e.User)
+                    .ToList();
                 return employees;
             }
             catch (Exception)

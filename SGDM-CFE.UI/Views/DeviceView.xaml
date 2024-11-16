@@ -12,28 +12,39 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label x:Name="TitleLabel" FontWeight="Bold" Margin="0,10,0,10" Grid.Row="0"/>
-        <DataGrid x:Name="DeviceDataGrid" Grid.Row="1" AutoGenerateColumns="False"  Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column">
+        <DataGrid x:Name="StateDataGrid" Grid.Row="1" AutoGenerateColumns="False"  Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static r:Strings.FieldTextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.ValueTextColumn}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.FieldTextColumn}" Binding="{Binding Field}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.ValueTextColumn}" Binding="{Binding Value}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="{x:Static r:Strings.DeviceAssignedEmployeeLabel}" FontWeight="Bold" Margin="0,10,0,10"  Grid.Row="2"/>
-        <DataGrid x:Name="EmployeeDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column">
+        <Label Content="{x:Static r:Strings.DeviceAssignedEmployeeLabel}" FontWeight="Bold" Margin="0,10,0,10" Grid.Row="2"/>
+        <DataGrid x:Name="EmployeeDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static r:Strings.FieldTextColumn}" Width="*"/>
-                <DataGridTextColumn Header="{x:Static r:Strings.ValueTextColumn}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.FieldTextColumn}" Binding="{Binding Field}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.ValueTextColumn}" Binding="{Binding Value}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="4" Margin="0,10,0,0">
+        <Label x:Name="DeviceAssignedSIMCardLabel" Content="{x:Static r:Strings.DeviceAssignedSIMCardLabel}" FontWeight="Bold" Margin="0,10,0,10" Grid.Row="4" Visibility="Collapsed"/>
+        <DataGrid x:Name="SIMCardDataGrid" Grid.Row="5" AutoGenerateColumns="False" Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" Visibility="Collapsed">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static r:Strings.FieldTextColumn}" Binding="{Binding Field}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static r:Strings.ValueTextColumn}" Binding="{Binding Value}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="6" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.GenerateReportButton}" Width="150" HorizontalAlignment="Left" Click="GenerateReportButtonClick" Grid.Column="0" Margin="5"/>
+            <Button Content="{x:Static r:Strings.ViewAssignmentHistoryButton}" Width="250" HorizontalAlignment="Left" Click="ViewAssignmentHistoryButtonClick" Grid.Column="0" Margin="5"/>
+            <Button Content="{x:Static r:Strings.GenerateReportButton}" Width="150" HorizontalAlignment="Left" Click="GenerateReportButtonClick" Grid.Column="1" Margin="5"/>
             <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" HorizontalAlignment="Right" Grid.Column="2" Margin="5" Click="AcceptButtonClick"/>
         </Grid>
     </Grid>

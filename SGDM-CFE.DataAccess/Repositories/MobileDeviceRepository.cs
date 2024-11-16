@@ -89,6 +89,7 @@ namespace SGDM_CFE.DataAccess.Repositories
             try
             {
                 var mobileDevice = _context.MobileDevices
+                    .Include(md => md.Device)
                     .Include(md => md.SIMCard)
                     .FirstOrDefault(md => md.SIMCard != null && md.SIMCard.Id == simCardId);
                 return mobileDevice;
@@ -107,6 +108,7 @@ namespace SGDM_CFE.DataAccess.Repositories
                     .Include(md => md.Device)
                     .ThenInclude(d => d.WorkCenter)
                     .ThenInclude(wc => wc.Area)
+                    .Include(md => md.SIMCard)
                     .Include(md => md.Type)
                     .Where(md => md.Type.Id == typeId)
                     .ToList();

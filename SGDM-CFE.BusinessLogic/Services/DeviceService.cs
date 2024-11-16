@@ -13,36 +13,60 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly OpticalReaderRepository _opticalReaderRepository = new(context);
         private readonly SIMCardRepository _simCardRepository = new(context);
         private readonly StateRepository _stateRepository = new(context);
-        private readonly TypeRepository _typeRepository = new(context);
+
+        public bool CreateSIMCard(SIMCard simCard)
+        {
+            return _simCardRepository.Add(simCard);
+        }
+
+        public bool EditSIMCard(SIMCard simCard)
+        {
+            return _simCardRepository.Update(simCard);
+        }
 
         public Assignment? GetAssignmentByState(int stateId)
         {
-            var assignment = _assignmentRepository.GetByState(stateId);
-            return assignment;
+            return _assignmentRepository.GetByState(stateId);
+        }
+
+        public List<Assignment> GetAssignmentsByDevice(int deviceId)
+        {
+            return _assignmentRepository.GetByDevice(deviceId);
+        }
+
+        public List<Assignment> GetAssignmentsByEmployee(int employeeId)
+        {
+            return _assignmentRepository.GetByEmployee(employeeId);
+        }
+
+        public List<Device> GetDevicesByWorkCenter(int workCenterId)
+        {
+            return _deviceRepository.GetByWorkCenter(workCenterId);
+        }
+
+        public MobileDevice? GetMobileDeviceBySIMCard(int simCardId)
+        {
+            return _mobileDeviceRepository.GetBySIMCard(simCardId);
         }
 
         public List<MobileDevice> GetMobileDevicesByType(int typeId)
         {
-            var mobileDevices = _mobileDeviceRepository.GetByType(typeId);
-            return mobileDevices;
+            return _mobileDeviceRepository.GetByType(typeId);
         }
 
         public List<OpticalReader> GetOpticalReaders()
         {
-            var opticalReaders = _opticalReaderRepository.GetAll();
-            return opticalReaders;
+            return _opticalReaderRepository.GetAll();
         }
 
         public List<SIMCard> GetSIMCards()
         {
-            var simCards = _simCardRepository.GetAll();
-            return simCards;
+            return _simCardRepository.GetAll();
         }
 
-        public List<State> GetStatesByDevice(int deviceId)
+        public State? GetStateByDevice(int deviceId)
         {
-            var states = _stateRepository.GetByDevice(deviceId);
-            return states;
+            return _stateRepository.GetByDevice(deviceId);
         }
     }
 }

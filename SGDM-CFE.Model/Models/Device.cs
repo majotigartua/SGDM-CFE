@@ -2,7 +2,7 @@
 {
     public partial class Device
     {
-        public int Id{ get; set; }
+        public int Id { get; set; }
         public string? InventoryNumber { get; set; }
         public string? SerialNumber { get; set; }
         public bool IsCriticalMission { get; set; }

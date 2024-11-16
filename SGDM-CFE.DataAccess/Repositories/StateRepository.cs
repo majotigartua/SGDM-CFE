@@ -83,18 +83,24 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<State> GetByDevice(int deviceId)
+        public State? GetByDevice(int deviceId)
         {
             try
             {
-                var states = _context.States
+                var state = _context.States
+                    .Include(s => s.Device)
+                    .Include(s => s.WorkCenterBusinessProcess)
+                    .ThenInclude(wcbp => wcbp.BusinessProcess)
+                    .Include(s => s.WorkCenterCostCenter)
+                    .ThenInclude(wccb => wccb.CostCenter)
                     .Where(s => s.DeviceId == deviceId)
-                    .ToList();
-                return states;
+                    .ToList()
+                    .LastOrDefault();
+                return state;
             }
             catch (Exception)
             {
-                return [];
+                return null;
             }
         }
 

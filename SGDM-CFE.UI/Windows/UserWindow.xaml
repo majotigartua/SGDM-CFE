@@ -29,15 +29,15 @@
         <Label Grid.Row="2" Grid.Column="0" Content="{x:Static r:Strings.PasswordConfirmationLabel}" VerticalAlignment="Center" Margin="5"/>
         <PasswordBox x:Name="PasswordConfirmationBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
         <Label Grid.Row="3" Grid.Column="0" Content="{x:Static r:Strings.RoleLabel}" VerticalAlignment="Center" Margin="5"/>
-        <ComboBox x:Name="RoleComboBox" Grid.Row="3" Grid.Column="1" Margin="5" SelectedIndex="0" />
+        <ComboBox x:Name="RoleComboBox" Grid.Row="3" Grid.Column="1" Margin="5" SelectedIndex="0"/>
         <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.CancelButton}" Width="100" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
-            <Button Content="{x:Static r:Strings.AcceptButton}" Width="100" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
+            <Button Content="{x:Static r:Strings.CancelButton}" Width="150" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
+            <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </Window>

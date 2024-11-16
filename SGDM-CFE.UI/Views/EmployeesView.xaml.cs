@@ -4,7 +4,6 @@ using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
 using SGDM_CFE.UI.Windows;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +13,6 @@ namespace SGDM_CFE.UI.Views
     {
         private readonly Context _context;
         private readonly EmployeeService _employeeService;
-        private readonly Employee? _employee;
 
         public EmployeesView(Context context)
         {
@@ -70,6 +68,7 @@ namespace SGDM_CFE.UI.Views
         {
             var editEmployeeWindow = new EmployeeWindow(_context, employee, isEditWindow: true);
             editEmployeeWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
@@ -86,13 +85,22 @@ namespace SGDM_CFE.UI.Views
 
         private void DeleteEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            ConfigureView();
+        }
+
+        private void EmployeesDataGridSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (EmployeesDataGrid.SelectedItem is Employee employee)
+            {
+                CreateUserButton.IsEnabled = employee.User == null;
+            }
         }
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
             var createEmployeeWindow = new EmployeeWindow(_context, employee: new Employee(), isEditWindow: false);
             createEmployeeWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void CreateUserButtonClick(object sender, RoutedEventArgs e)
