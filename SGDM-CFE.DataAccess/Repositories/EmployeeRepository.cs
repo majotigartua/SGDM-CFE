@@ -23,18 +23,15 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(int employeeId)
+        public bool Delete(Employee employee)
         {
             try
             {
-                var existingEmployee = _context.Employees.Find(employeeId);
-                if (existingEmployee != null)
-                {
-                    existingEmployee.IsDeleted = true;
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
+                _context.Attach(employee);
+                employee.IsDeleted = true;
+                _context.Entry(employee).Property(e => e.IsDeleted).IsModified = true;
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {
@@ -46,42 +43,11 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var employees = _context.Employees
-                    .Include(e => e.User)
-                    .ToList();
-                return employees;
+                return [.. _context.Employees.Include(e => e.User).Where(e => !e.IsDeleted)];
             }
             catch (Exception)
             {
                 return [];
-            }
-        } 
-
-        public Employee? GetByAssignment(int assignmentId)
-        {
-            try
-            {
-                var employee = _context.Employees
-                    .Include(e => e.Assignments)
-                    .FirstOrDefault(e => e.Assignments.Any(a => a.Id == assignmentId));
-                return employee;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public Employee? GetById(int id)
-        {
-            try
-            {
-                var employee = _context.Employees.Find(id);
-                return employee;
-            }
-            catch (Exception)
-            {
-                return null;
             }
         }
 
@@ -89,26 +55,7 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var employee = _context.Employees
-                    .Include(e => e.User)
-                    .ThenInclude(u => u.Role)
-                    .FirstOrDefault(e => e.RPE == rpe);
-                return employee;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public Employee? GetByUser(int userId)
-        {
-            try
-            {
-                var employee = _context.Employees
-                    .Include(e => e.User)
-                    .FirstOrDefault(e => e.User != null && e.User.Id == userId);
-                return employee;
+                return _context.Employees.Include(e => e.User).ThenInclude(u => u!.Role).FirstOrDefault(e => !e.IsDeleted && e.RPE == rpe);
             }
             catch (Exception)
             {
@@ -120,20 +67,9 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                int employeeId = employee.Id;
-                var existingEmployee = _context.Employees.Find(employeeId);
-                if (existingEmployee != null)
-                {
-                    existingEmployee.Name = employee.Name;
-                    existingEmployee.PaternalSurname = employee.PaternalSurname;
-                    existingEmployee.MaternalSurname = employee.MaternalSurname;
-                    existingEmployee.RPE = employee.RPE;
-                    existingEmployee.UserId = employee.UserId;
-                    _context.SaveChanges();
-                    return true;
-
-                }
-                return false;
+                _context.Employees.Update(employee);
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {

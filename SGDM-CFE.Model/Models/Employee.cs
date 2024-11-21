@@ -13,5 +13,10 @@
         public virtual User? User { get; set; }
 
         public virtual ICollection<Assignment> Assignments { get; set; } = [];
+
+        public override string ToString()
+        {
+            return $"{Name} {PaternalSurname} {MaternalSurname}";
+        }
     }
 }

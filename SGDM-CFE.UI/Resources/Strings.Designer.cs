@@ -115,6 +115,24 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Asignar equipo.
+        /// </summary>
+        public static string AssignDeviceWindowTitle {
+            get {
+                return ResourceManager.GetString("AssignDeviceWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha de asignación:*.
+        /// </summary>
+        public static string AssignmentDateLabel {
+            get {
+                return ResourceManager.GetString("AssignmentDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fecha de asignación.
         /// </summary>
         public static string AssignmentDateTextColumn {
@@ -129,6 +147,15 @@ namespace SGDM_CFE.UI.Resources {
         public static string AssignmentsLabel {
             get {
                 return ResourceManager.GetString("AssignmentsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Asignar/Devolver equipo.
+        /// </summary>
+        public static string AssignReturnDeviceButton {
+            get {
+                return ResourceManager.GetString("AssignReturnDeviceButton", resourceCulture);
             }
         }
         
@@ -322,6 +349,24 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro de que desea eliminar este elemento? Esta acción no se puede deshacer..
+        /// </summary>
+        public static string DeleteConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeleteConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación de eliminación.
+        /// </summary>
+        public static string DeleteConfirmationWindowTitle {
+            get {
+                return ResourceManager.GetString("DeleteConfirmationWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Empleado asignado al equipo:.
         /// </summary>
         public static string DeviceAssignedEmployeeLabel {
@@ -435,6 +480,15 @@ namespace SGDM_CFE.UI.Resources {
         public static string EmployeeAssignedDevicesLabel {
             get {
                 return ResourceManager.GetString("EmployeeAssignedDevicesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Empleado:*.
+        /// </summary>
+        public static string EmployeeLabel {
+            get {
+                return ResourceManager.GetString("EmployeeLabel", resourceCulture);
             }
         }
         
@@ -579,6 +633,24 @@ namespace SGDM_CFE.UI.Resources {
         public static string InformationCreatedWindowTitle {
             get {
                 return ResourceManager.GetString("InformationCreatedWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La información se ha eliminado correctamente..
+        /// </summary>
+        public static string InformationDeletedMessage {
+            get {
+                return ResourceManager.GetString("InformationDeletedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Información eliminada.
+        /// </summary>
+        public static string InformationDeletedWindowTitle {
+            get {
+                return ResourceManager.GetString("InformationDeletedWindowTitle", resourceCulture);
             }
         }
         
@@ -961,11 +1033,29 @@ namespace SGDM_CFE.UI.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha de devolución:*.
+        /// </summary>
+        public static string ReturnDateLabel {
+            get {
+                return ResourceManager.GetString("ReturnDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fecha de devolución.
         /// </summary>
         public static string ReturnDateTextColumn {
             get {
                 return ResourceManager.GetString("ReturnDateTextColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Devolver equipo.
+        /// </summary>
+        public static string ReturnDeviceWindowTitle {
+            get {
+                return ResourceManager.GetString("ReturnDeviceWindowTitle", resourceCulture);
             }
         }
         
@@ -1245,6 +1335,24 @@ namespace SGDM_CFE.UI.Resources {
         public static string ViewWorkCenterLabel {
             get {
                 return ResourceManager.GetString("ViewWorkCenterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¡Bienvenido/a, {0}!.
+        /// </summary>
+        public static string WelcomeMessage {
+            get {
+                return ResourceManager.GetString("WelcomeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Bienvenido/a.
+        /// </summary>
+        public static string WelcomeWindowTitle {
+            get {
+                return ResourceManager.GetString("WelcomeWindowTitle", resourceCulture);
             }
         }
         

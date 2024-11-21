@@ -56,17 +56,9 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.EmployeeId).HasColumnName("IdEmployee");
                 entity.Property(e => e.AssignmentStateId).HasColumnName("IdAssignmentState");
                 entity.Property(e => e.ReturnStateId).HasColumnName("IdReturnState");   
-                entity.HasOne(d => d.AssignmentState).WithMany(p => p.AssignmentStateAssignments)
-                    .HasForeignKey(d => d.AssignmentStateId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Assignment_AssignmentState");
-                entity.HasOne(d => d.Employee).WithMany(p => p.Assignments)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Assignment_Employee");
-                entity.HasOne(d => d.ReturnState).WithMany(p => p.ReturnStateAssignments)
-                    .HasForeignKey(d => d.ReturnStateId)
-                    .HasConstraintName("FK_Assignment_ReturnState");
+                entity.HasOne(d => d.AssignmentState).WithMany(p => p.AssignmentStateAssignments).HasForeignKey(d => d.AssignmentStateId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Assignment_AssignmentState");
+                entity.HasOne(d => d.Employee).WithMany(p => p.Assignments).HasForeignKey(d => d.EmployeeId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Assignment_Employee");
+                entity.HasOne(d => d.ReturnState).WithMany(p => p.ReturnStateAssignments).HasForeignKey(d => d.ReturnStateId).HasConstraintName("FK_Assignment_ReturnState");
             });
 
             modelBuilder.Entity<BusinessProcess>(entity =>
@@ -94,10 +86,7 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.Notes).HasColumnType("text");
                 entity.Property(e => e.SerialNumber).HasMaxLength(100);
                 entity.Property(e => e.WorkCenterId).HasColumnName("IdWorkCenter");
-                entity.HasOne(d => d.WorkCenter).WithMany(p => p.Devices)
-                    .HasForeignKey(d => d.WorkCenterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Device_WorkCenter");
+                entity.HasOne(d => d.WorkCenter).WithMany(p => p.Devices).HasForeignKey(d => d.WorkCenterId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Device_WorkCenter");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -108,12 +97,10 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.MaternalSurname).HasMaxLength(100);
                 entity.Property(e => e.Name).HasMaxLength(100);
                 entity.Property(e => e.PaternalSurname).HasMaxLength(100);
-                entity.Property(e => e.RPE)
-                    .HasMaxLength(50);
+                entity.Property(e => e.RPE).HasMaxLength(50);
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
                 entity.Property(e => e.UserId).HasColumnName("IdUser");
-                entity.HasOne(d => d.User).WithMany(p => p.Employees)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_Employee_User");
+                entity.HasOne(d => d.User).WithMany(p => p.Employees).HasForeignKey(d => d.UserId).HasConstraintName("FK_Employee_User");
             });
 
             modelBuilder.Entity<MobileDevice>(entity =>
@@ -121,20 +108,13 @@ namespace SGDM_CFE.Model
                 entity.HasKey(e => e.Id);
                 entity.ToTable("MobileDevice");
                 entity.Property(e => e.Id).HasColumnName("IdMobileDevice");
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
                 entity.Property(e => e.DeviceId).HasColumnName("IdDevice");
                 entity.Property(e => e.SIMCardId).HasColumnName("IdSIMCard");
                 entity.Property(e => e.TypeId).HasColumnName("IdType");
-                entity.HasOne(d => d.Device).WithMany(p => p.MobileDevices)
-                    .HasForeignKey(d => d.DeviceId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MobileDevice_Device");
-                entity.HasOne(d => d.SIMCard).WithMany(p => p.MobileDevices)
-                    .HasForeignKey(d => d.SIMCardId)
-                    .HasConstraintName("FK_MobileDevice_SIMCard");
-                entity.HasOne(d => d.Type).WithMany(p => p.MobileDevices)
-                    .HasForeignKey(d => d.TypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MobileDevice_Type");
+                entity.HasOne(d => d.Device).WithMany(p => p.MobileDevices).HasForeignKey(d => d.DeviceId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_MobileDevice_Device");
+                entity.HasOne(d => d.SIMCard).WithMany(p => p.MobileDevices).HasForeignKey(d => d.SIMCardId).HasConstraintName("FK_MobileDevice_SIMCard");
+                entity.HasOne(d => d.Type).WithMany(p => p.MobileDevices).HasForeignKey(d => d.TypeId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_MobileDevice_Type");
             });
 
             modelBuilder.Entity<OpticalReader>(entity =>
@@ -142,11 +122,9 @@ namespace SGDM_CFE.Model
                 entity.HasKey(e => e.Id);
                 entity.ToTable("OpticalReader");
                 entity.Property(e => e.Id).HasColumnName("IdOpticalReader");
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
                 entity.Property(e => e.DeviceId).HasColumnName("IdDevice");
-                entity.HasOne(d => d.Device).WithMany(p => p.OpticalReaders)
-                    .HasForeignKey(d => d.DeviceId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OpticalReader_Device");
+                entity.HasOne(d => d.Device).WithMany(p => p.OpticalReaders).HasForeignKey(d => d.DeviceId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_OpticalReader_Device");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -154,9 +132,7 @@ namespace SGDM_CFE.Model
                 entity.HasKey(e => e.Id);
                 entity.ToTable("Role");
                 entity.Property(e => e.Id).HasColumnName("IdRole");
-                entity.Property(e => e.Name)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Name).HasMaxLength(50).IsUnicode(false);
             });
 
             modelBuilder.Entity<SIMCard>(entity =>
@@ -165,6 +141,7 @@ namespace SGDM_CFE.Model
                 entity.ToTable("SIMCard");
                 entity.Property(e => e.Id).HasColumnName("IdSIMCard");
                 entity.Property(e => e.SerialNumber).HasMaxLength(100);
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
             });
 
             modelBuilder.Entity<State>(entity =>
@@ -177,18 +154,9 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.WorkCenterBusinessProcessId).HasColumnName("IdWorkCenter_BusinessProcess");
                 entity.Property(e => e.WorkCenterCostCenterId).HasColumnName("IdWorkCenter_CostCenter");
                 entity.Property(e => e.ReviewNotes).HasColumnType("text");
-                entity.HasOne(d => d.Device).WithMany(p => p.States)
-                    .HasForeignKey(d => d.DeviceId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_State_Device");
-                entity.HasOne(d => d.WorkCenterBusinessProcess).WithMany(p => p.States)
-                    .HasForeignKey(d => d.WorkCenterBusinessProcessId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_State_WorkCenter_BusinessProcess");
-                entity.HasOne(d => d.WorkCenterCostCenter).WithMany(p => p.States)
-                    .HasForeignKey(d => d.WorkCenterCostCenterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_State_WorkCenter_CostCenter");
+                entity.HasOne(d => d.Device).WithMany(p => p.States).HasForeignKey(d => d.DeviceId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_State_Device");
+                entity.HasOne(d => d.WorkCenterBusinessProcess).WithMany(p => p.States).HasForeignKey(d => d.WorkCenterBusinessProcessId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_State_WorkCenter_BusinessProcess");
+                entity.HasOne(d => d.WorkCenterCostCenter).WithMany(p => p.States).HasForeignKey(d => d.WorkCenterCostCenterId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_State_WorkCenter_CostCenter");
             });
 
             modelBuilder.Entity<Type>(entity =>
@@ -207,10 +175,7 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.Email).HasMaxLength(100);
                 entity.Property(e => e.Password).HasMaxLength(255);
                 entity.Property(e => e.RoleId).HasColumnName("IdRole");
-                entity.HasOne(d => d.Role).WithMany(p => p.Users)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_User_Role");
+                entity.HasOne(d => d.Role).WithMany(p => p.Users).HasForeignKey(d => d.RoleId) .OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_User_Role");
             });
 
             modelBuilder.Entity<WorkCenter>(entity =>
@@ -220,11 +185,9 @@ namespace SGDM_CFE.Model
                 entity.Property(e => e.Id).HasColumnName("IdWorkCenter");
                 entity.Property(e => e.Code).HasMaxLength(50);
                 entity.Property(e => e.Name).HasMaxLength(100);
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
                 entity.Property(e => e.AreaId).HasColumnName("IdArea");
-                entity.HasOne(d => d.Area).WithMany(p => p.WorkCenters)
-                    .HasForeignKey(d => d.AreaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkCenter_Area");
+                entity.HasOne(d => d.Area).WithMany(p => p.WorkCenters).HasForeignKey(d => d.AreaId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_WorkCenter_Area");
             });
 
             modelBuilder.Entity<WorkCenterBusinessProcess>(entity =>
@@ -232,16 +195,11 @@ namespace SGDM_CFE.Model
                 entity.HasKey(e => e.Id);
                 entity.ToTable("WorkCenter_BusinessProcess");
                 entity.Property(e => e.Id).HasColumnName("IdWorkCenter_BusinessProcess");
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
                 entity.Property(e => e.BusinessProcessId).HasColumnName("IdBusinessProcess");
                 entity.Property(e => e.WorkCenterId).HasColumnName("IdWorkCenter");
-                entity.HasOne(d => d.BusinessProcess).WithMany(p => p.WorkCenterBusinessProcesses)
-                    .HasForeignKey(d => d.BusinessProcessId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkCenter_BusinessProcess_BusinessProcess");
-                entity.HasOne(d => d.WorkCenter).WithMany(p => p.WorkCenterBusinessProcesses)
-                    .HasForeignKey(d => d.WorkCenterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkCenter_BusinessProcess_WorkCenter");
+                entity.HasOne(d => d.BusinessProcess).WithMany(p => p.WorkCenterBusinessProcesses).HasForeignKey(d => d.BusinessProcessId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_WorkCenter_BusinessProcess_BusinessProcess");
+                entity.HasOne(d => d.WorkCenter).WithMany(p => p.WorkCenterBusinessProcesses).HasForeignKey(d => d.WorkCenterId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_WorkCenter_BusinessProcess_WorkCenter");
             });
 
             modelBuilder.Entity<WorkCenterCostCenter>(entity =>
@@ -249,16 +207,11 @@ namespace SGDM_CFE.Model
                 entity.HasKey(e => e.Id);
                 entity.ToTable("WorkCenter_CostCenter");
                 entity.Property(e => e.Id).HasColumnName("IdWorkCenter_CostCenter");
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
                 entity.Property(e => e.CostCenterId).HasColumnName("IdCostCenter");
                 entity.Property(e => e.WorkCenterId).HasColumnName("IdWorkCenter");
-                entity.HasOne(d => d.CostCenter).WithMany(p => p.WorkCenterCostCenters)
-                    .HasForeignKey(d => d.CostCenterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkCenter_CostCenter_CostCenter");
-                entity.HasOne(d => d.WorkCenter).WithMany(p => p.WorkCenterCostCenters)
-                    .HasForeignKey(d => d.WorkCenterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkCenter_CostCenter_WorkCenter");
+                entity.HasOne(d => d.CostCenter).WithMany(p => p.WorkCenterCostCenters).HasForeignKey(d => d.CostCenterId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_WorkCenter_CostCenter_CostCenter");
+                entity.HasOne(d => d.WorkCenter).WithMany(p => p.WorkCenterCostCenters).HasForeignKey(d => d.WorkCenterId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_WorkCenter_CostCenter_WorkCenter");
             });
             OnModelCreatingPartial(modelBuilder);
         }

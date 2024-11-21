@@ -19,7 +19,7 @@ namespace SGDM_CFE.UI.Resources
 
     public class Row(string field, object? value)
     {
-        public string? Field { get; } = field;
-        public object? Value { get; } = value;
+        public string? Field = field;
+        public object? Value = value;
     }
 }

@@ -23,30 +23,11 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public List<Assignment> GetAll()
-        {
-            try
-            {
-                var assignments = _context.Assignments.ToList();
-                return assignments;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
         public List<Assignment> GetByDevice(int deviceId)
         {
             try
             {
-                var assignments = _context.Assignments
-                    .Include(a => a.Employee)
-                    .Include(a => a.AssignmentState)
-                    .Include(a => a.ReturnState)
-                    .Where(a => (a.AssignmentState.DeviceId == deviceId) || (a.ReturnState != null && a.ReturnState.DeviceId == deviceId))
-                    .ToList();
-                return assignments;
+                return [.. _context.Assignments.Include(a => a.AssignmentState).ThenInclude(s => s.Device).Include(a => a.ReturnState).Where(a => a.AssignmentState.Device.Id == deviceId)];
             }
             catch (Exception)
             {
@@ -58,15 +39,7 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var assignments = _context.Assignments
-                    .Include(a => a.Employee)
-                    .Include(a => a.AssignmentState)
-                    .ThenInclude(a => a.Device)
-                    .ThenInclude(a => a.WorkCenter)
-                    .ThenInclude(a => a.Area)
-                    .Where(a => a.EmployeeId == employeeId && a.ReturnState == null)
-                    .ToList();
-                return assignments;
+                return [.. _context.Assignments.Include(a => a.Employee).Include(a => a.AssignmentState).ThenInclude(a => a.Device).ThenInclude(a => a.WorkCenter).ThenInclude(a => a.Area).Where(a => a.EmployeeId == employeeId && a.ReturnState == null)];
             }
             catch (Exception)
             {
@@ -74,27 +47,11 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public Assignment? GetById(int id)
-        {
-            try
-            {
-                var assignment = _context.Assignments.Find(id);
-                return assignment;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
         public Assignment? GetByState(int stateId)
         {
             try
             {
-                var assignment = _context.Assignments
-                    .Include(a => a.Employee)
-                    .FirstOrDefault(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId);
-                return assignment;
+                return _context.Assignments.Include(a => a.AssignmentState).Include(a => a.Employee).Include(a => a.ReturnState).Where(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId).ToList().LastOrDefault();
             }
             catch (Exception)
             {
@@ -106,17 +63,9 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                int assignmentId = assignment.Id;
-                var existingAssignment = _context.Assignments.Find(assignmentId);
-                if (existingAssignment != null)
-                {
-                    existingAssignment.ReturnDate = assignment.ReturnDate;
-                    existingAssignment.ReturnStateId = assignment.ReturnStateId;
-                    _context.Update(assignment);
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
+                _context.Assignments.Update(assignment);
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {

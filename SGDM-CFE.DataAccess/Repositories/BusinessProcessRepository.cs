@@ -12,37 +12,7 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var businessProcesses = _context.BusinessProcesses.ToList();
-                return businessProcesses;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public BusinessProcess? GetById(int id)
-        {
-            try
-            {
-                var businessProcess = _context.BusinessProcesses.Find(id);
-                return businessProcess;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public List<BusinessProcess> GetByWorkCenter(int workCenterId)
-        {
-            try
-            {
-                var businessProcesses = _context.WorkCenterBusinessProcesses
-                    .Where(wcbp => wcbp.WorkCenterId == workCenterId)
-                    .Select(wcbp => wcbp.BusinessProcess)
-                    .ToList();
-                return businessProcesses;
+                return [.. _context.BusinessProcesses];
             }
             catch (Exception)
             {

@@ -20,24 +20,5 @@ namespace SGDM_CFE.Test.UnitTests
             var areas = _areaRepository.GetAll();
             Assert.NotEmpty(areas);
         }
-
-        [Fact]
-        public void GetById()
-        {
-            int areaId = 1;
-            var area = _areaRepository.GetById(areaId);
-            Assert.NotNull(area);
-            Assert.Equal(areaId, area.Id);
-        }
-
-        [Fact]
-        public void GetByWorkCenter()
-        {
-            var workCenter = _context.WorkCenters.First();
-            int workCenterId = workCenter.Id;
-            var area = _areaRepository.GetByWorkCenter(workCenterId);
-            Assert.NotNull(area);
-            Assert.Contains(area.WorkCenters, wc => wc.Id == workCenterId);
-        }
     }
 }

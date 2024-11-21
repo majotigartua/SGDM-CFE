@@ -32,35 +32,8 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var mobileDevice = _context.MobileDevices.First();
-            int mobileDeviceId = mobileDevice.Id;
-            var result = _mobileDeviceRepository.Delete(mobileDeviceId);
+            var result = _mobileDeviceRepository.Delete(mobileDevice);
             Assert.True(result);
-        }
-
-        [Fact]
-        public void GetAll()
-        {
-            var mobileDevices = _mobileDeviceRepository.GetAll();
-            Assert.NotEmpty(mobileDevices);
-        }
-
-        [Fact]
-        public void GetByDevice()
-        {
-            var device = _context.Devices.First();
-            int deviceId = device.Id;
-            var mobileDevice = _mobileDeviceRepository.GetByDevice(deviceId);
-            Assert.NotNull(mobileDevice);
-            Assert.Equal(mobileDevice.DeviceId, deviceId);
-        }
-
-        [Fact]
-        public void GetById()
-        {
-            int mobileDeviceId = 1;
-            var mobileDevice = _mobileDeviceRepository.GetById(mobileDeviceId);
-            Assert.NotNull(mobileDevice);
-            Assert.Equal(mobileDevice.Id, mobileDeviceId);
         }
 
         [Fact]

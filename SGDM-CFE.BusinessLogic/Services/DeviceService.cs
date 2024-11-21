@@ -14,9 +14,54 @@ namespace SGDM_CFE.BusinessLogic.Services
         private readonly SIMCardRepository _simCardRepository = new(context);
         private readonly StateRepository _stateRepository = new(context);
 
+        public bool CreateAssignment(Assignment assignment)
+        {
+            return _assignmentRepository.Add(assignment);
+        }
+
+        public bool CreateMobileDevice(MobileDevice mobileDevice)
+        {
+            return _mobileDeviceRepository.Add(mobileDevice);
+        }
+
+        public bool CreateOpticalReader(OpticalReader opticalReader)
+        {
+            return _opticalReaderRepository.Add(opticalReader);
+        }
+
         public bool CreateSIMCard(SIMCard simCard)
         {
             return _simCardRepository.Add(simCard);
+        }
+
+        public bool DeleteMobileDevice(MobileDevice mobileDevice)
+        {
+            return _mobileDeviceRepository.Delete(mobileDevice);
+        }
+
+        public bool DeleteOpticalReader(OpticalReader opticalReader)
+        {
+            return _opticalReaderRepository.Delete(opticalReader);
+        }
+
+        public bool DeleteSIMCard(SIMCard simCard)
+        {
+            return _simCardRepository.Delete(simCard);
+        }
+
+        public bool EditAssignment(Assignment assignment)
+        {
+            return _assignmentRepository.Update(assignment);
+        }
+
+        public bool EditMobileDevice(MobileDevice mobileDevice)
+        {
+            return _mobileDeviceRepository.Update(mobileDevice);
+        }
+
+        public bool EditOpticalReader(OpticalReader opticalReader)
+        {
+            return _opticalReaderRepository.Update(opticalReader);
         }
 
         public bool EditSIMCard(SIMCard simCard)

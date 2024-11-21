@@ -9,137 +9,15 @@ namespace SGDM_CFE.DataAccess.Repositories
     {
         private readonly Context _context = context;
 
-        public bool Add(State state)
-        {
-            try
-            {
-                _context.States.Add(state);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        public List<State> GetAll()
-        {
-            try
-            {
-                var states = _context.States.ToList();
-                return states;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public List<State> GetByAssignment(int assignmentId)
-        {
-            try
-            {
-                var states = _context.States
-                    .Include(s => s.AssignmentStateAssignments)
-                    .Include(s => s.ReturnStateAssignments)
-                    .Where(s => s.AssignmentStateAssignments.Any(a => a.Id == assignmentId) || s.ReturnStateAssignments.Any(a => a.Id == assignmentId))
-                    .ToList();
-                return states;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public List<State> GetByBusinessProcess(int workCenterBusinessProcessId)
-        {
-            try
-            {
-                var states = _context.States
-                    .Where(s => s.WorkCenterBusinessProcessId == workCenterBusinessProcessId)
-                    .ToList();
-                return states;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public List<State> GetByCostCenter(int workCenterCostCenterId)
-        {
-            try
-            {
-                var states = _context.States
-                    .Where(s => s.WorkCenterCostCenterId == workCenterCostCenterId)
-                    .ToList();
-                return states;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
         public State? GetByDevice(int deviceId)
         {
             try
             {
-                var state = _context.States
-                    .Include(s => s.Device)
-                    .Include(s => s.WorkCenterBusinessProcess)
-                    .ThenInclude(wcbp => wcbp.BusinessProcess)
-                    .Include(s => s.WorkCenterCostCenter)
-                    .ThenInclude(wccb => wccb.CostCenter)
-                    .Where(s => s.DeviceId == deviceId)
-                    .ToList()
-                    .LastOrDefault();
-                return state;
+                return _context.States.Include(s => s.Device).ThenInclude(d => d.WorkCenter).ThenInclude(wc => wc.Area).Include(s => s.Device).ThenInclude(d => d.MobileDevices).ThenInclude(md => md.SIMCard).Include(s => s.WorkCenterBusinessProcess).ThenInclude(wcbp => wcbp.BusinessProcess).Include(s => s.WorkCenterCostCenter).ThenInclude(wccb => wccb.CostCenter).Where(s => s.DeviceId == deviceId).ToList().LastOrDefault();
             }
             catch (Exception)
             {
                 return null;
-            }
-        }
-
-        public State? GetById(int id)
-        {
-            try
-            {
-                var state = _context.States.Find(id);
-                return state;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public bool Update(State state)
-        {
-            try
-            {
-                int stateId = state.Id;
-                var existingState = _context.States.Find(stateId);
-                if (existingState != null)
-                {
-                    existingState.HasFailures = state.HasFailures;
-                    existingState.FailuresDescription = state.FailuresDescription;
-                    existingState.RequiresMaintenance = state.RequiresMaintenance;
-                    existingState.IsFunctional = state.IsFunctional;
-                    existingState.ReviewNotes = state.ReviewNotes;
-                    existingState.WorkCenterBusinessProcessId = state.WorkCenterBusinessProcessId;
-                    existingState.WorkCenterCostCenterId = state.WorkCenterCostCenterId;
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
     }

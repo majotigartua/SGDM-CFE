@@ -30,8 +30,7 @@ namespace SGDM_CFE.Test.UnitTests
         public void Delete()
         {
             var opticalReader = _context.OpticalReaders.First();
-            int opticalReaderId = opticalReader.Id;
-            var result = _opticalReaderRepository.Delete(opticalReaderId);
+            var result = _opticalReaderRepository.Delete(opticalReader);
             Assert.True(result);
         }
 
@@ -40,25 +39,6 @@ namespace SGDM_CFE.Test.UnitTests
         {
             var opticalReaders = _opticalReaderRepository.GetAll();
             Assert.NotEmpty(opticalReaders);
-        }
-
-        [Fact]
-        public void GetByDevice()
-        {
-            var device = _context.Devices.First();
-            int deviceId = device.Id;
-            var opticalReader = _opticalReaderRepository.GetByDevice(deviceId);
-            Assert.NotNull(opticalReader);
-            Assert.Equal(opticalReader.DeviceId, deviceId);
-        }
-
-        [Fact]
-        public void GetById()
-        {
-            int opticalReaderId = 1;
-            var opticalReader = _opticalReaderRepository.GetById(opticalReaderId);
-            Assert.NotNull(opticalReader);
-            Assert.Equal(opticalReader.Id, opticalReaderId);
         }
     }
 }

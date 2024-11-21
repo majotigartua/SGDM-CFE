@@ -14,10 +14,10 @@
         <Label x:Name="TitleLabel" FontWeight="Bold" Margin="10" Grid.Row="0"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Grid>
-                <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0"/>
+                <TextBox x:Name="SearchTextBox" Width="300" Margin="0,0,10,0"/>
                 <TextBlock x:Name="SearchTextBlock" Text="{x:Static r:Strings.SearchTextBlock}" Foreground="Gray" VerticalAlignment="Center" Margin="5,0,0,0"/>
             </Grid>
-            <Button Content="{x:Static r:Strings.CreateNewMaleButton}" Width="100" Click="CreateNewButtonClick"/>
+            <Button Content="{x:Static r:Strings.CreateNewMaleButton}" Width="200" Click="CreateNewButtonClick"/>
         </StackPanel>
         <DataGrid x:Name="DevicesDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" SelectionMode="Single" SelectionUnit="FullRow">
             <DataGrid.Columns>
@@ -33,10 +33,11 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
-                <Button Content="{x:Static r:Strings.EditButton}" Click="EditButtonClick" Width="150" Margin="0,0,5,0"/>
-                <Button Content="{x:Static r:Strings.DeleteButton}" Click="DeleteButtonClick" Width="150" Margin="0,0,5,0"/>
+                <Button Content="{x:Static r:Strings.AssignReturnDeviceButton}" Click="AssignReturnDeviceButtonClick" Width="200" Margin="0,0,5,0"/>
+                <Button Content="{x:Static r:Strings.EditButton}" Click="EditButtonClick" Width="200" Margin="0,0,5,0"/>
+                <Button Content="{x:Static r:Strings.DeleteButton}" Click="DeleteButtonClick" Width="200" Margin="0,0,5,0"/>
             </StackPanel>
-            <Button Content="{x:Static r:Strings.ViewDetailsButton}" Click="ViewDetailsButtonClick" Width="150" HorizontalAlignment="Right" Grid.Column="1"/>
+            <Button Content="{x:Static r:Strings.ViewDetailsButton}" Click="ViewDetailsButtonClick" Width="200" HorizontalAlignment="Right" Grid.Column="1"/>
         </Grid>
     </Grid>
 </UserControl>

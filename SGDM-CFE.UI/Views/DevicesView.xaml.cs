@@ -34,14 +34,12 @@ namespace SGDM_CFE.UI.Views
             {
                 TitleLabel.Content = GetTitleLabel();
                 var devices = LoadDevices();
-                if (!devices.IsNullOrEmpty())
-                {
-                    DevicesDataGrid.ItemsSource = devices;
-                }
-                else
+                if (devices.IsNullOrEmpty())
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                DevicesDataGrid.ItemsSource = devices;
             }
             catch (Exception)
             {
@@ -70,11 +68,8 @@ namespace SGDM_CFE.UI.Views
                     devices.AddRange(_opticalReaders);
                     break;
                 case DeviceType.PortableTerminal:
-                    _mobileDevices = _deviceService.GetMobileDevicesByType((int)DeviceType.PortableTerminal);
-                    devices.AddRange(_mobileDevices);
-                    break;
                 case DeviceType.Tablet:
-                    _mobileDevices = _deviceService.GetMobileDevicesByType((int)DeviceType.Tablet);
+                    _mobileDevices = _deviceService.GetMobileDevicesByType((int)_deviceType);
                     devices.AddRange(_mobileDevices);
                     break;
                 default:
@@ -83,14 +78,33 @@ namespace SGDM_CFE.UI.Views
             return devices;
         }
 
+        private static void ShowWarning(string noSelectionMessage, string noSelectionWindowTitle)
+        {
+            MessageBox.Show(noSelectionMessage, noSelectionWindowTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
         private static void ShowError(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private static void ShowWarning(string noSelectionMessage, string noSelectionWindowTitle)
+        private void AssignReturnDeviceButtonClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(noSelectionMessage, noSelectionWindowTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (DevicesDataGrid.SelectedItem is object device)
+            {
+                ShowAssignReturnDeviceWindow(device);
+            }
+            else
+            {
+                ShowWarning(Strings.NoSelectionMessage, Strings.NoSelectionWindowTitle);
+            }
+        }
+
+        private void ShowAssignReturnDeviceWindow(object device)
+        {
+            var assignReturnDeviceWindow = new AssignmentWindow(_context, device);
+            assignReturnDeviceWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
@@ -109,6 +123,7 @@ namespace SGDM_CFE.UI.Views
         {
             var editDeviceWindow = new DeviceWindow(_context, _deviceType, device, isEditWindow: true);
             editDeviceWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
@@ -125,13 +140,39 @@ namespace SGDM_CFE.UI.Views
 
         private void DeleteDevice(object device)
         {
-            throw new NotImplementedException();
+            if (ShowDeleteConfirmation() != MessageBoxResult.Yes) return;
+            bool isDeleted = device switch
+            {
+                OpticalReader opticalReader => _deviceService.DeleteOpticalReader(opticalReader),
+                MobileDevice mobileDevice => _deviceService.DeleteMobileDevice(mobileDevice),
+                _ => false
+            };
+            if (isDeleted)
+            {
+                ShowInformation(Strings.InformationDeletedMessage, Strings.InformationDeletedWindowTitle);
+                ConfigureView();
+            }
+            else
+            {
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+            }
+        }
+
+        private static MessageBoxResult ShowDeleteConfirmation()
+        {
+            return MessageBox.Show(Strings.DeleteConfirmationMessage, Strings.DeleteConfirmationWindowTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        }
+
+        private static void ShowInformation(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
             var createDeviceWindow = new DeviceWindow(_context, _deviceType, device: new object(), isEditWindow: false);
-            createDeviceWindow?.ShowDialog();
+            createDeviceWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void ViewDetailsButtonClick(object sender, RoutedEventArgs e)

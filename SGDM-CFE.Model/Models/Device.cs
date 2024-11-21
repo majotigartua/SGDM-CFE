@@ -7,7 +7,6 @@
         public string? SerialNumber { get; set; }
         public bool IsCriticalMission { get; set; }
         public string? Notes { get; set; }
-        public bool IsDeleted { get; set; }
         public int WorkCenterId { get; set; }
 
         public virtual WorkCenter WorkCenter { get; set; } = null!;

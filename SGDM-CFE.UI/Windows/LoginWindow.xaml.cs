@@ -27,16 +27,14 @@ namespace SGDM_CFE.UI
         {
             try
             {
-                if (AreFieldsFilled())
-                {
-                    var rpe = RPETextBox.Text;
-                    var password = PasswordBox.Password;
-                    Login(rpe, password);
-                }
-                else
+                if (AreFieldsEmpty())
                 {
                     ShowWarning(Strings.EmptyFieldsMessage, Strings.EmptyFieldsWindowTitle);
+                    return;
                 }
+                var rpe = RPETextBox.Text;
+                var password = PasswordBox.Password;
+                Login(rpe, password);
             }
             catch (Exception)
             {
@@ -44,29 +42,27 @@ namespace SGDM_CFE.UI
             }
         }
 
+        private bool AreFieldsEmpty()
+        {
+            return string.IsNullOrWhiteSpace(RPETextBox.Text) && string.IsNullOrWhiteSpace(PasswordBox.Password);
+        }
+
         private static void ShowWarning(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
-        private bool AreFieldsFilled()
-        {
-            return !string.IsNullOrWhiteSpace(RPETextBox.Text) && !string.IsNullOrWhiteSpace(PasswordBox.Password);
         }
 
         private void Login(string rpe, string password)
         {
             password = Utilities.ComputeSHA256Hash(password);
             var employee = _employeeService.Login(rpe, password);
-            if (employee != null)
-            {
-                NavigateToMainWindow(employee);
-            }
-            else
+            if (employee == null)
             {
                 ShowWarning(Strings.InvalidInformationMessage, Strings.InvalidInformationWindowTitle);
                 PasswordBox.Clear();
+                return;
             }
+            NavigateToMainWindow(employee);
         }
 
         private static void ShowError(string message, string title)

@@ -32,16 +32,14 @@ namespace SGDM_CFE.UI.Views
             {
                 TitleLabel.Content = GetTitleLabel();
                 var state = LoadState();
-                if (state != null)
-                {
-                    PopulateStateDataGrid(state);
-                    var assignment = _deviceService.GetAssignmentByState(state.Id);
-                    if (assignment != null) PopulateEmployeeDataGrid(assignment.Employee);
-                }
-                else
+                if (state == null)
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                PopulateStateDataGrid(state);
+                var assignment = _deviceService.GetAssignmentByState(state.Id);
+                if (assignment != null && assignment.ReturnState == null) PopulateEmployeeDataGrid(assignment.Employee);
             }
             catch (Exception)
             {
@@ -69,11 +67,16 @@ namespace SGDM_CFE.UI.Views
             }
             else if (_device is MobileDevice mobileDevice)
             {
-                ConfigureSIMCard(mobileDevice.SIMCard);  
+                ConfigureSIMCard(mobileDevice.SIMCard);
                 var state = _deviceService.GetStateByDevice(mobileDevice.Device.Id);
                 return state;
             }
             return null;
+        }
+
+        private static void ShowWarning(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void ConfigureSIMCard(SIMCard? simCard)
@@ -81,7 +84,7 @@ namespace SGDM_CFE.UI.Views
             DeviceAssignedSIMCardLabel.Visibility = Visibility.Visible;
             SIMCardDataGrid.Visibility = Visibility.Visible;
             if (simCard != null) PopulateSIMCardDataGrid(simCard);
-        } 
+        }
 
         private void PopulateSIMCardDataGrid(SIMCard simCard)
         {
@@ -105,6 +108,7 @@ namespace SGDM_CFE.UI.Views
                 new(Strings.RequiresMaintenanceRow, state.RequiresMaintenance ? Strings.YesLabel : Strings.NoLabel),
                 new(Strings.IsFunctionalRow, state.IsFunctional ? Strings.YesLabel : Strings.NoLabel),
                 new(Strings.ReviewNotesRow, state.ReviewNotes),
+                new(Strings.AreaRow, state.Device.WorkCenter.Area),
                 new(Strings.WorkCenterRow, state.Device.WorkCenter),
                 new(Strings.BusinessProcessRow, state.WorkCenterBusinessProcess.BusinessProcess),
                 new(Strings.CostCenterRow, state.WorkCenterCostCenter.CostCenter)
@@ -122,11 +126,6 @@ namespace SGDM_CFE.UI.Views
                 new(Strings.MaternalSurnameRow, employee.MaternalSurname)
             };
             EmployeeDataGrid.ItemsSource = values;
-        }
-
-        private static void ShowWarning(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private static void ShowError(string message, string title)

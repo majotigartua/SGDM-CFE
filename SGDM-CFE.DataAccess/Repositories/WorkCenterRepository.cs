@@ -23,18 +23,15 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(int workCenterId)
+        public bool Delete(WorkCenter workCenter)
         {
             try
             {
-                var existingWorkCenter = _context.WorkCenters.Find(workCenterId);
-                if (existingWorkCenter != null)
-                {
-                    existingWorkCenter.IsDeleted = true;
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
+                _context.Attach(workCenter);
+                workCenter.IsDeleted = true;
+                _context.Entry(workCenter).Property(w => w.IsDeleted).IsModified = true;
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {
@@ -46,10 +43,7 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var workCenters = _context.WorkCenters
-                    .Include(w => w.Area)
-                    .ToList();
-                return workCenters;
+                return [.. _context.WorkCenters.Include(w => w.Area).Include(w => w.WorkCenterBusinessProcesses).ThenInclude(wcbp => wcbp.BusinessProcess).Include(w => w.WorkCenterCostCenters).ThenInclude(wccc => wccc.CostCenter).Where(wc => !wc.IsDeleted)];
             }
             catch (Exception)
             {
@@ -61,60 +55,11 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var workCenters = _context.WorkCenters
-                    .Include(w => w.Area)
-                    .Where(w => w.Area.Id == areaId)
-                    .ToList();
-                return workCenters;
+                return [.. _context.WorkCenters.Include(w => w.Area).Include(w => w.WorkCenterBusinessProcesses).ThenInclude(wcbp => wcbp.BusinessProcess).Include(w => w.WorkCenterCostCenters).ThenInclude(wcbc => wcbc.CostCenter).Where(w => !w.IsDeleted && w.Area.Id == areaId)];
             }
             catch (Exception)
             {
                 return [];
-            }
-        }
-
-        public List<WorkCenter> GetByBusinessProcess(int businessProcessId)
-        {
-            try
-            {
-                var workCenters = _context.WorkCenterBusinessProcesses
-                    .Where(wcbp => wcbp.BusinessProcessId == businessProcessId)
-                    .Select(wcbp => wcbp.WorkCenter)
-                    .ToList();
-                return workCenters;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public List<WorkCenter> GetByCostCenter(int costCenterId)
-        {
-            try
-            {
-                var workCenters = _context.WorkCenterCostCenters
-                    .Where(wcbc => wcbc.CostCenterId == costCenterId)
-                    .Select(wcbc => wcbc.WorkCenter)
-                    .ToList();
-                return workCenters;
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public WorkCenter? GetById(int id)
-        {
-            try
-            {
-                var workCenter = _context.WorkCenters.Find(id);
-                return workCenter;
-            }
-            catch (Exception)
-            {
-                return null;
             }
         }
 
@@ -122,17 +67,9 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                int workCenterId = workCenter.Id;
-                var existingWorkCenter = _context.WorkCenters.Find(workCenterId);
-                if (existingWorkCenter != null)
-                {
-                    existingWorkCenter.Code = workCenter.Code;
-                    existingWorkCenter.Name = workCenter.Name;
-                    existingWorkCenter.AreaId = workCenter.AreaId;
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
+                _context.WorkCenters.Update(workCenter);
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {

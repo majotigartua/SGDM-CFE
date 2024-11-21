@@ -35,8 +35,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.CancelButton}" Width="150" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
-            <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
+            <Button Content="{x:Static r:Strings.CancelButton}" Width="200" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
+            <Button Content="{x:Static r:Strings.AcceptButton}" Width="200" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </Window>

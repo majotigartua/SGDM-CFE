@@ -27,14 +27,12 @@ namespace SGDM_CFE.UI.Views
             try
             {
                 var employees = _employeeService.GetEmployees();
-                if (!employees.IsNullOrEmpty())
-                {
-                    EmployeesDataGrid.ItemsSource = employees;
-                }
-                else
+                if (employees.IsNullOrEmpty())
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                EmployeesDataGrid.ItemsSource = employees;
             }
             catch (Exception)
             {
@@ -85,7 +83,26 @@ namespace SGDM_CFE.UI.Views
 
         private void DeleteEmployee(Employee employee)
         {
-            ConfigureView();
+            if (ShowDeleteConfirmation() != MessageBoxResult.Yes) return;
+            if (_employeeService.DeleteEmployee(employee))
+            {
+                ShowInformation(Strings.InformationDeletedMessage, Strings.InformationDeletedWindowTitle);
+                ConfigureView();
+            }
+            else
+            {
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+            }
+        }
+
+        private static MessageBoxResult ShowDeleteConfirmation()
+        {
+            return MessageBox.Show(Strings.DeleteConfirmationMessage, Strings.DeleteConfirmationWindowTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        }
+
+        private static void ShowInformation(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void EmployeesDataGridSelectionChanged(object sender, SelectionChangedEventArgs e)

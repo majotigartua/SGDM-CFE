@@ -27,19 +27,22 @@ namespace SGDM_CFE.UI.Views
             try
             {
                 var simCards = _deviceService.GetSIMCards();
-                if (!simCards.IsNullOrEmpty())
-                {
-                    SIMCardsDataGrid.ItemsSource = simCards;
-                }
-                else
+                if (simCards.IsNullOrEmpty())
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                SIMCardsDataGrid.ItemsSource = simCards;
             }
             catch (Exception)
             {
                 ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
+        }
+
+        private static void ShowWarning(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private static void ShowError(string message, string title)
@@ -66,11 +69,6 @@ namespace SGDM_CFE.UI.Views
             ConfigureView();
         }
 
-        private static void ShowWarning(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
         {
             if (SIMCardsDataGrid.SelectedItem is SIMCard simCard)
@@ -85,7 +83,26 @@ namespace SGDM_CFE.UI.Views
 
         private void DeleteSIMCard(SIMCard simCard)
         {
-            ConfigureView();
+            if (ShowDeleteConfirmation() != MessageBoxResult.Yes) return;
+            if (_deviceService.DeleteSIMCard(simCard))
+            {
+                ShowInformation(Strings.InformationDeletedMessage, Strings.InformationDeletedWindowTitle);
+                ConfigureView();
+            }
+            else
+            {
+                ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
+            }
+        }
+
+        private static MessageBoxResult ShowDeleteConfirmation()
+        {
+            return MessageBox.Show(Strings.DeleteConfirmationMessage, Strings.DeleteConfirmationWindowTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        }
+
+        private static void ShowInformation(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)

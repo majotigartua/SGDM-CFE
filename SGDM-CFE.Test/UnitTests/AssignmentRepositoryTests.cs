@@ -29,13 +29,6 @@ namespace SGDM_CFE.Test.UnitTests
         }
 
         [Fact]
-        public void GetAll()
-        {
-            var assignments = _assignmentRepository.GetAll();
-            Assert.NotEmpty(assignments);
-        }
-
-        [Fact]
         public void GetByEmployee()
         {
             var employee = _context.Employees.First();
@@ -43,15 +36,6 @@ namespace SGDM_CFE.Test.UnitTests
             var assignments = _assignmentRepository.GetByEmployee(employeeId);
             Assert.NotEmpty(assignments);
             Assert.All(assignments, a => Assert.Equal(a.EmployeeId, employeeId));
-        }
-
-        [Fact]
-        public void GetById()
-        {
-            int assignmentId = 1;
-            var assignment = _assignmentRepository.GetById(assignmentId);
-            Assert.NotNull(assignment);
-            Assert.Equal(assignment.Id, assignmentId);
         }
 
         [Fact]

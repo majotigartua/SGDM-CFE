@@ -37,7 +37,7 @@
             <Label Grid.Row="1" Grid.Column="0" Content="{x:Static r:Strings.SerialNumberLabel}" VerticalAlignment="Center" Margin="5"/>
             <TextBox x:Name="SerialNumberTextBox" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
             <Label Grid.Row="2" Grid.Column="0" Content="{x:Static r:Strings.AreaLabel}" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox x:Name="AreaComboBox" Grid.Row="2" Grid.Column="1" Margin="5" SelectedIndex="0" SelectionChanged="AreaComboBoxSelectionChanged"/>
+            <ComboBox x:Name="AreaComboBox" Grid.Row="2" Grid.Column="1" Margin="5" SelectionChanged="AreaComboBoxSelectionChanged"/>
             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static r:Strings.WorkCenterLabel}" VerticalAlignment="Center" Margin="5"/>
             <ComboBox x:Name="WorkCenterComboBox" Grid.Row="3" Grid.Column="1" Margin="5" SelectionChanged="WorkCenterComboBoxSelectionChanged"/>
             <Label Grid.Row="4" Grid.Column="0" Content="{x:Static r:Strings.CostCenterLabel}" VerticalAlignment="Center" Margin="5"/>
@@ -45,41 +45,29 @@
             <Label Grid.Row="5" Grid.Column="0" Content="{x:Static r:Strings.BusinessProcessLabel}" VerticalAlignment="Center" Margin="5"/>
             <ComboBox x:Name="BusinessProcessComboBox" Grid.Row="5" Grid.Column="1" Margin="5"/>
             <Label Grid.Row="6" Grid.Column="0" Content="{x:Static r:Strings.HasFailuresLabel}" VerticalAlignment="Center" Margin="5"/>
-            <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton x:Name="HasFailuresYesRadioButton" Content="{x:Static r:Strings.YesLabel}" GroupName="HasFailuresGroup" Margin="5"/>
-                <RadioButton Content="{x:Static r:Strings.NoLabel}" Margin="5"/>
-            </StackPanel>
+            <CheckBox x:Name="HasFailuresCheckBox" Grid.Row="6" Grid.Column="1" Content="{x:Static r:Strings.YesLabel}" VerticalAlignment="Center" Margin="5"/>
             <Label Grid.Row="7" Grid.Column="0" Content="{x:Static r:Strings.FailuresDescriptionLabel}" VerticalAlignment="Top" Margin="5"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
+            <TextBox x:Name="FailuresDescriptionTextBox" Grid.Row="7" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
             <Label Grid.Row="8" Grid.Column="0" Content="{x:Static r:Strings.RequiresMaintenanceLabel}" VerticalAlignment="Center" Margin="5"/>
-            <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton x:Name="RequiresMaintenanceRadioButton" Content="{x:Static r:Strings.YesLabel}" GroupName="RequiresMaintenanceGroup" Margin="5"/>
-                <RadioButton Content="{x:Static r:Strings.NoLabel}" GroupName="RequiresMaintenance" Margin="5"/>
-            </StackPanel>
+            <CheckBox x:Name="RequiresMaintenanceCheckBox" Grid.Row="8" Grid.Column="1" Content="{x:Static r:Strings.YesLabel}" VerticalAlignment="Center" Margin="5"/>
             <Label Grid.Row="9" Grid.Column="0" Content="{x:Static r:Strings.IsCriticalMissionLabel}" VerticalAlignment="Center" Margin="5"/>
-            <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton x:Name="IsCriticalMissionRadioButton" Content="{x:Static r:Strings.YesLabel}" GroupName="IsCriticalMissionGroup" Margin="5"/>
-                <RadioButton Content="{x:Static r:Strings.NoLabel}" GroupName="IsCriticalMissionGroup" Margin="5"/>
-            </StackPanel>
+            <CheckBox x:Name="IsCriticalMissionCheckBox" Grid.Row="9" Grid.Column="1" Content="{x:Static r:Strings.YesLabel}" VerticalAlignment="Center" Margin="5"/>
             <Label Grid.Row="10" Grid.Column="0" Content="{x:Static r:Strings.IsFunctionalLabel}" VerticalAlignment="Center" Margin="5"/>
-            <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <RadioButton x:Name="IsFunctionalRadioButton" Content="{x:Static r:Strings.YesLabel}" GroupName="IsFunctionalGroup" Margin="5"/>
-                <RadioButton Content="{x:Static r:Strings.NoLabel}" GroupName="IsFunctionalGroup" Margin="5"/>
-            </StackPanel>
+            <CheckBox x:Name="IsFunctionalCheckBox" Grid.Row="10" Grid.Column="1" Content="{x:Static r:Strings.YesLabel}" VerticalAlignment="Center" Margin="5"/>
             <Label Grid.Row="11" Grid.Column="0" Content="{x:Static r:Strings.ReviewNotesLabel}" VerticalAlignment="Top" Margin="5"/>
             <TextBox x:Name="ReviewNotesTextBox" Grid.Row="11" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
             <Label Grid.Row="12" Grid.Column="0" Content="{x:Static r:Strings.NotesLabel}" VerticalAlignment="Top" Margin="5"/>
             <TextBox x:Name="NotesTextBox" Grid.Row="12" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
-            <Label x:Name="SIMCardLabel" Grid.Row="13" Grid.Column="0" Content="{x:Static r:Strings.SIMCardLabel}" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox x:Name="SIMCardComboBox" Grid.Row="13" Grid.Column="1" Margin="5"/>
+            <Label x:Name="SIMCardLabel" Grid.Row="13" Grid.Column="0" Content="{x:Static r:Strings.SIMCardLabel}" VerticalAlignment="Center" Margin="5" Visibility="Collapsed"/>
+            <ComboBox x:Name="SIMCardComboBox" Grid.Row="13" Grid.Column="1" Margin="5" Visibility="Collapsed"/>
             <Grid Grid.Row="14" Grid.ColumnSpan="2" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="{x:Static r:Strings.CancelButton}" Width="150" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
-                <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
+                <Button Content="{x:Static r:Strings.CancelButton}" Width="200" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
+                <Button Content="{x:Static r:Strings.AcceptButton}" Width="200" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
     </ScrollViewer>

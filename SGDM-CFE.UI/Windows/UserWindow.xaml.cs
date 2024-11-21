@@ -9,7 +9,6 @@ namespace SGDM_CFE.UI.Windows
 {
     public partial class UserWindow : Window
     {
-        private readonly Context _context;
         private readonly EmployeeService _employeeService;
         private readonly Employee _employee;
         private readonly User? _user;
@@ -17,8 +16,7 @@ namespace SGDM_CFE.UI.Windows
 
         public UserWindow(Context context, Employee employee, bool isEditWindow)
         {
-            _context = context;
-            _employeeService = new EmployeeService(_context);
+            _employeeService = new EmployeeService(context);
             _employee = employee;
             _user = employee?.User ?? new User();
             _isEditWindow = isEditWindow;
@@ -31,15 +29,13 @@ namespace SGDM_CFE.UI.Windows
             try
             {
                 var roles = _employeeService.GetRoles();
-                if (!roles.IsNullOrEmpty())
-                {
-                    RoleComboBox.ItemsSource = roles;
-                    if (_isEditWindow) PopulateFields();
-                }
-                else
+                if (roles.IsNullOrEmpty())
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                RoleComboBox.ItemsSource = roles;
+                if (_isEditWindow) PopulateFields();
             }
             catch (Exception)
             {
@@ -74,7 +70,14 @@ namespace SGDM_CFE.UI.Windows
                     return;
                 }
                 UpdateUser();
-                if (_isEditWindow) EditUser(); else CreateUser();
+                if (_isEditWindow)
+                {
+                    EditUser();
+                }
+                else
+                {
+                    CreateUser();
+                }
                 Close();
             }
             catch (Exception)
@@ -108,12 +111,12 @@ namespace SGDM_CFE.UI.Windows
             _user!.Email = EmailTextBox.Text;
             _user.Password = password;
             _user.Role = (Role)RoleComboBox.SelectedItem!;
+            if (!_user.Employees.Contains(_employee)) _user?.Employees.Add(_employee);
         }
 
         private void EditUser()
         {
-            bool isEdited = _employeeService.EditUser(_user!);
-            if (isEdited)
+            if (_employeeService.EditUser(_user!))
             {
                 ShowInformation(Strings.InformationEditedMessage, Strings.InformationEditedWindowTitle);
             }
@@ -125,9 +128,7 @@ namespace SGDM_CFE.UI.Windows
 
         private void CreateUser()
         {
-            _user?.Employees.Add(_employee); 
-            bool isCreated = _employeeService.CreateUser(_user!);
-            if (isCreated)
+            if (_employeeService.CreateUser(_user!))
             {
                 ShowInformation(Strings.InformationCreatedMessage, Strings.InformationCreatedWindowTitle);
             }

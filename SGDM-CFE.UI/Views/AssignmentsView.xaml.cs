@@ -32,14 +32,12 @@ namespace SGDM_CFE.UI.Views
             try
             {
                 var assignments = LoadAssignments();
-                if (!assignments.IsNullOrEmpty())
-                {
-                    AssignmentsDataGrid.ItemsSource = assignments;
-                }
-                else
+                if (assignments.IsNullOrEmpty())
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                AssignmentsDataGrid.ItemsSource = assignments;
             }
             catch (Exception)
             {

@@ -9,37 +9,39 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         Width="500" Height="400">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static r:Strings.CodeLabel}" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="CodeTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static r:Strings.NameLabel}" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static r:Strings.AreaLabel}" VerticalAlignment="Center" Margin="5"/>
-        <ComboBox x:Name="AreaComboBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static r:Strings.CostCentersLabel}" VerticalAlignment="Top" Margin="5"/>
-        <ListBox x:Name="CostCentersListBox" Grid.Row="3" Grid.Column="1" Margin="5" SelectionMode="Multiple"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="{x:Static r:Strings.BusinessProcessesLabel}" VerticalAlignment="Top" Margin="5"/>
-        <ListBox x:Name="BusinessProcessesListBox" Grid.Row="4" Grid.Column="1" Margin="5" SelectionMode="Multiple"/>
-        <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
+    <ScrollViewer>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.CancelButton}" Width="150" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
-            <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static r:Strings.CodeLabel}" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="CodeTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static r:Strings.NameLabel}" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static r:Strings.AreaLabel}" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="AreaComboBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static r:Strings.CostCentersLabel}" VerticalAlignment="Top" Margin="5"/>
+            <ListBox x:Name="CostCentersListBox" Grid.Row="3" Grid.Column="1" Margin="5" SelectionMode="Multiple"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="{x:Static r:Strings.BusinessProcessesLabel}" VerticalAlignment="Top" Margin="5"/>
+            <ListBox x:Name="BusinessProcessesListBox" Grid.Row="4" Grid.Column="1" Margin="5" SelectionMode="Multiple"/>
+            <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="{x:Static r:Strings.CancelButton}" Width="200" Margin="5" Click="CancelButtonClick" Grid.Column="0" HorizontalAlignment="Left"/>
+                <Button Content="{x:Static r:Strings.AcceptButton}" Width="200" Margin="5" Click="AcceptButtonClick" Grid.Column="2" HorizontalAlignment="Right"/>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Window>

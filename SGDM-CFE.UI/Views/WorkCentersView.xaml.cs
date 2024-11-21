@@ -27,14 +27,12 @@ namespace SGDM_CFE.UI.Views
             try
             {
                 var workCenters = _workCenterService.GetWorkCenters();
-                if (!workCenters.IsNullOrEmpty())
-                {
-                    WorkCentersDataGrid.ItemsSource = workCenters;
-                }
-                else
+                if (workCenters.IsNullOrEmpty())
                 {
                     ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                WorkCentersDataGrid.ItemsSource = workCenters;
             }
             catch (Exception)
             {
@@ -68,6 +66,7 @@ namespace SGDM_CFE.UI.Views
         {
             var editWorkCenterWindow = new WorkCenterWindow(_context, workCenter, isEditWindow: true);
             editWorkCenterWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
@@ -84,13 +83,33 @@ namespace SGDM_CFE.UI.Views
 
         private void DeleteWorkCenter(WorkCenter workCenter)
         {
-            throw new NotImplementedException();
+            if (ShowDeleteConfirmation() != MessageBoxResult.Yes) return;
+            if (_workCenterService.DeleteWorkCenter(workCenter))
+            {
+                ShowInformation(Strings.InformationDeletedMessage, Strings.InformationDeletedWindowTitle);
+                ConfigureView();
+            }
+            else
+            {
+                ShowError(Strings.ConnectionErrorWindowTitle, Strings.ConnectionErrorWindowTitle);
+            }
+        }
+
+        private static MessageBoxResult ShowDeleteConfirmation()
+        {
+            return MessageBox.Show(Strings.DeleteConfirmationMessage, Strings.DeleteConfirmationWindowTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        }
+
+        private static void ShowInformation(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CreateNewButtonClick(object sender, RoutedEventArgs e)
         {
-            var createWorkCenterWindow = new WorkCenterWindow(_context, new WorkCenter(), isEditWindow : true);
+            var createWorkCenterWindow = new WorkCenterWindow(_context, new WorkCenter(), isEditWindow: true);
             createWorkCenterWindow.ShowDialog();
+            ConfigureView();
         }
 
         private void ViewDetailsButtonClick(object sender, RoutedEventArgs e)

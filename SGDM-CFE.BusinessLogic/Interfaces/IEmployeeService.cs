@@ -8,6 +8,7 @@ namespace SGDM_CFE.BusinessLogic.Interfaces
         bool CreateUser(User user);
         bool EditEmployee(Employee employee);
         bool EditUser(User user);
+        bool DeleteEmployee(Employee employee);
         List<Employee> GetEmployees();
         List<Role> GetRoles();
         Employee? Login(string rpe, string password);

@@ -8,14 +8,12 @@ namespace SGDM_CFE.UI.Windows
 {
     public partial class EmployeeWindow : Window
     {
-        private readonly Context _context;
         private readonly EmployeeService _employeeService;
         private readonly Employee _employee;
         private readonly bool _isEditWindow;
 
         public EmployeeWindow(Context context, Employee employee, bool isEditWindow)
         {
-            _context = context;
             _employeeService = new EmployeeService(context);
             _employee = employee;
             _isEditWindow = isEditWindow;
@@ -41,25 +39,19 @@ namespace SGDM_CFE.UI.Windows
         {
             try
             {
-                if (AreFieldsFilled())
+                if (AreFieldsEmpty())
                 {
-                    _employee.RPE = RPETextBox.Text;
-                    _employee.Name = NameTextBox.Text;
-                    _employee.PaternalSurname = PaternalSurnameTextBox.Text;
-                    _employee.MaternalSurname = MaternalSurnameTextBox.Text;
-                    if (_isEditWindow)
-                    {
-                        EditEmployee();
-                    }
-                    else
-                    {
-                        CreateEmployee();
-                    }
-                    Close();
+                    ShowWarning(Strings.EmptyFieldsMessage, Strings.EmptyFieldsWindowTitle);
+                    return;
+                }
+                UpdateEmployee();
+                if (_isEditWindow)
+                {
+                    EditEmployee();
                 }
                 else
                 {
-                    ShowWarning(Strings.EmptyFieldsMessage, Strings.EmptyFieldsWindowTitle);
+                    CreateEmployee();
                 }
             }
             catch (Exception)
@@ -68,15 +60,22 @@ namespace SGDM_CFE.UI.Windows
             }
         }
 
-        private bool AreFieldsFilled()
+        private bool AreFieldsEmpty()
         {
-            return !string.IsNullOrWhiteSpace(RPETextBox.Text) && !string.IsNullOrWhiteSpace(NameTextBox.Text) && !string.IsNullOrWhiteSpace(PaternalSurnameTextBox.Text) && !string.IsNullOrWhiteSpace(MaternalSurnameTextBox.Text);
+            return string.IsNullOrWhiteSpace(RPETextBox.Text) && string.IsNullOrWhiteSpace(NameTextBox.Text) && string.IsNullOrWhiteSpace(PaternalSurnameTextBox.Text) && string.IsNullOrWhiteSpace(MaternalSurnameTextBox.Text);
+        }
+
+        private void UpdateEmployee()
+        {
+            _employee.RPE = RPETextBox.Text;
+            _employee.Name = NameTextBox.Text;
+            _employee.PaternalSurname = PaternalSurnameTextBox.Text;
+            _employee.MaternalSurname = MaternalSurnameTextBox.Text;
         }
 
         private void EditEmployee()
         {
-            bool isEdited = _employeeService.EditEmployee(_employee);
-            if (isEdited)
+            if (_employeeService.EditEmployee(_employee))
             {
                 ShowInformation(Strings.InformationEditedMessage, Strings.InformationEditedWindowTitle);
             }
@@ -93,8 +92,7 @@ namespace SGDM_CFE.UI.Windows
 
         private void CreateEmployee()
         {
-            bool isCreated = _employeeService.CreateEmployee(_employee);
-            if (isCreated)
+            if (_employeeService.CreateEmployee(_employee))
             {
                 ShowInformation(Strings.InformationCreatedMessage, Strings.InformationCreatedWindowTitle);
             }

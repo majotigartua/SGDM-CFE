@@ -8,15 +8,13 @@ namespace SGDM_CFE.UI.Windows
 {
     public partial class SIMCardWindow : Window
     {
-        private readonly Context _context;
         private readonly DeviceService _deviceService;
         private readonly SIMCard _simCard;
         private readonly bool _isEditWindow;
 
         public SIMCardWindow(Context context, SIMCard simCard, bool isEditWindow)
         {
-            _context = context;
-            _deviceService = new DeviceService(_context);
+            _deviceService = new DeviceService(context);
             _simCard = simCard;
             _isEditWindow = isEditWindow;
             InitializeComponent();
@@ -60,8 +58,7 @@ namespace SGDM_CFE.UI.Windows
 
         private void EditSIMCard()
         {
-            bool isEdited = _deviceService.EditSIMCard(_simCard);
-            if (isEdited)
+            if (_deviceService.EditSIMCard(_simCard))
             {
                 ShowInformation(Strings.InformationEditedMessage, Strings.InformationEditedWindowTitle);
             }
@@ -78,8 +75,7 @@ namespace SGDM_CFE.UI.Windows
 
         private void CreateSIMCard()
         {
-            bool isCreated = _deviceService.CreateSIMCard(_simCard);
-            if (isCreated)
+            if (_deviceService.CreateSIMCard(_simCard))
             {
                 ShowInformation(Strings.InformationCreatedMessage, Strings.InformationCreatedWindowTitle);
             }

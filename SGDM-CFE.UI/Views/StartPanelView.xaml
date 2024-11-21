@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.EditUserButton}" Width="100" HorizontalAlignment="Right" Grid.Column="1" Click="EditUserButtonClick"/>
+            <Button Content="{x:Static r:Strings.EditUserButton}" Width="200" HorizontalAlignment="Right" Grid.Column="1" Click="EditUserButtonClick"/>
         </Grid>
     </Grid>
 </UserControl>

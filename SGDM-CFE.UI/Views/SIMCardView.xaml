@@ -20,7 +20,7 @@
                 <DataGridTextColumn Header="{x:Static r:Strings.ValueTextColumn}" Binding="{Binding Value}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="{x:Static r:Strings.SIMCardAssignedDeviceLabel}" FontWeight="Bold" Margin="0,10,0,10"  Grid.Row="2"/>
+        <Label Content="{x:Static r:Strings.SIMCardAssignedDeviceLabel}" FontWeight="Bold" Margin="0,10,0,10" Grid.Row="2"/>
         <DataGrid x:Name="DeviceDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static r:Strings.FieldTextColumn}" Binding="{Binding Field}" Width="*"/>
@@ -33,8 +33,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.GenerateReportButton}" Width="150" HorizontalAlignment="Left" Click="GenerateReportButtonClick" Grid.Column="0" Margin="5"/>
-            <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" HorizontalAlignment="Right" Grid.Column="2" Margin="5" Click="AcceptButtonClick"/>
+            <Button Content="{x:Static r:Strings.GenerateReportButton}" Width="200" HorizontalAlignment="Left" Click="GenerateReportButtonClick" Grid.Column="0" Margin="5"/>
+            <Button Content="{x:Static r:Strings.AcceptButton}" Width="200" HorizontalAlignment="Right" Grid.Column="2" Margin="5" Click="AcceptButtonClick"/>
         </Grid>
     </Grid>
 </UserControl>

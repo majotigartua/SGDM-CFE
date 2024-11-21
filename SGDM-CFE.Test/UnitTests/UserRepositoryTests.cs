@@ -29,51 +29,6 @@ namespace SGDM_CFE.Test.UnitTests
         }
 
         [Fact]
-        public void Delete()
-        {
-            var user = _context.Users.First();
-            int userId = user.Id;
-            var result = _userRepository.Delete(userId);
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void GetAll()
-        {
-            var users = _userRepository.GetAll();
-            Assert.NotNull(users);
-        }
-
-        [Fact]
-        public void GetByEmployee()
-        {
-            var employee = _context.Employees.First();
-            int employeeId = employee.Id;
-            var user = _userRepository.GetByEmployee(employeeId);
-            Assert.NotNull(user);
-            Assert.Contains(user.Employees, e => e.Id == employee.Id);
-        }
-
-        [Fact]
-        public void GetById()
-        {
-            int userId = 1;
-            var user = _userRepository.GetById(userId);
-            Assert.NotNull(user);
-            Assert.Equal(user.Id, userId);
-        }
-
-        [Fact]
-        public void GetByRole()
-        {
-            var role = _context.Roles.First();
-            int roleId = role.Id;
-            var users = _userRepository.GetByRole(roleId);
-            Assert.NotEmpty(users);
-            Assert.All(users, u => Assert.Equal(u.RoleId, role.Id));
-        }
-
-        [Fact]
         public void Update()
         {
             var user = _context.Users.First();

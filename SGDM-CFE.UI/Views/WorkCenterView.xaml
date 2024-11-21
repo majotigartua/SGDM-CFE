@@ -34,8 +34,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static r:Strings.GenerateReportButton}" Width="150" HorizontalAlignment="Left" Click="GenerateReportButtonClick" Grid.Column="0" Margin="5"/>
-            <Button Content="{x:Static r:Strings.AcceptButton}" Width="150" HorizontalAlignment="Right" Grid.Column="2" Margin="5" Click="AcceptButtonClick"/>
+            <Button Content="{x:Static r:Strings.GenerateReportButton}" Width="200" HorizontalAlignment="Left" Click="GenerateReportButtonClick" Grid.Column="0" Margin="5"/>
+            <Button Content="{x:Static r:Strings.AcceptButton}" Width="200" HorizontalAlignment="Right" Grid.Column="2" Margin="5" Click="AcceptButtonClick"/>
         </Grid>
     </Grid>
 </UserControl>

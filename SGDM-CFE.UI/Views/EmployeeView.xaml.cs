@@ -28,17 +28,24 @@ namespace SGDM_CFE.UI.Views
         {
             try
             {
-                if (_employee != null)
+                if (_employee == null)
                 {
-                    PopulateEmployeeDataGrid();
-                    var assignments = _deviceService.GetAssignmentsByEmployee(_employee.Id);
-                    if (!assignments.IsNullOrEmpty()) DevicesDataGrid.ItemsSource = assignments;
+                    ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
+                    return;
                 }
+                PopulateEmployeeDataGrid();
+                var assignments = _deviceService.GetAssignmentsByEmployee(_employee.Id);
+                if (!assignments.IsNullOrEmpty()) DevicesDataGrid.ItemsSource = assignments;
             }
             catch (Exception)
             {
                 ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
+        }
+
+        private static void ShowWarning(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void PopulateEmployeeDataGrid()

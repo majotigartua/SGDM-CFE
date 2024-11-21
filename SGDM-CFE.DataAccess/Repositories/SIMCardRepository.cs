@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SGDM_CFE.DataAccess.Interfaces;
+﻿using SGDM_CFE.DataAccess.Interfaces;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 
@@ -23,18 +22,15 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public bool Delete(int simCardId)
+        public bool Delete(SIMCard simCard)
         {
             try
             {
-                var existingSIMCard = _context.SIMCards.Find(simCardId);
-                if (existingSIMCard != null)
-                {
-                    existingSIMCard.IsDeleted = true;
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
+                _context.SIMCards.Attach(simCard);
+                simCard.IsDeleted = true;
+                _context.Entry(simCard).Property(sc => sc.IsDeleted).IsModified = true;
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {
@@ -46,8 +42,7 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                var simCards = _context.SIMCards.ToList();
-                return simCards;
+                return [.. _context.SIMCards.Where(sc => !sc.IsDeleted)];
             }
             catch (Exception)
             {
@@ -55,47 +50,13 @@ namespace SGDM_CFE.DataAccess.Repositories
             }
         }
 
-        public SIMCard? GetById(int id)
-        {
-            try
-            {
-                var simCard = _context.SIMCards.Find(id);
-                return simCard;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public SIMCard? GetByMobileDevice(int mobileDeviceId)
-        {
-            try
-            {
-                var simCard = _context.SIMCards
-                    .Include(sc => sc.MobileDevices)
-                    .FirstOrDefault(sc => sc.MobileDevices.Any(md => md.Id == mobileDeviceId));
-                return simCard;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
         public bool Update(SIMCard simCard)
         {
             try
             {
-                int SIMCardId = simCard.Id;
-                var existingSIMCard = _context.SIMCards.Find(SIMCardId);
-                if (existingSIMCard != null)
-                {
-                    existingSIMCard.SerialNumber = simCard.SerialNumber;
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
+                _context.SIMCards.Update(simCard);
+                _context.SaveChanges();
+                return true;
             }
             catch (Exception)
             {

@@ -37,6 +37,15 @@ namespace SGDM_CFE.UI.Views
             }
         }
 
+        private void PopulateSIMCardDataGrid()
+        {
+            var values = new List<Row>
+            {
+                new(Strings.SerialNumberRow, _simCard.SerialNumber)
+            };
+            SIMCardDataGrid.ItemsSource = values;
+        }
+
         private void PopulateDeviceDataGrid(Device device)
         {
             var values = new List<Row>
@@ -47,15 +56,6 @@ namespace SGDM_CFE.UI.Views
                 new(Strings.NotesRow, device.Notes),
             };
             DeviceDataGrid.ItemsSource = values;
-        }
-
-        private void PopulateSIMCardDataGrid()
-        {
-            var values = new List<Row>
-            {
-                new(Strings.SerialNumberRow, _simCard.SerialNumber)
-            };
-            SIMCardDataGrid.ItemsSource = values;
         }
 
         private static void ShowError(string message, string title)

@@ -21,6 +21,11 @@ namespace SGDM_CFE.BusinessLogic.Services
             return _userRepository.Add(user);
         }
 
+        public bool DeleteEmployee(Employee employee)
+        {
+            return _employeeRepository.Delete(employee);
+        }
+
         public bool EditEmployee(Employee employee)
         {
             return _employeeRepository.Update(employee);

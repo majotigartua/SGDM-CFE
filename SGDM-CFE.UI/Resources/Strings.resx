@@ -534,4 +534,40 @@
   <data name="IncorrectInformationMessage" xml:space="preserve">
     <value>La información ingresada es incorrecta o incompleta. Por favor, verifica los datos e inténtalo nuevamente.</value>
   </data>
+  <data name="WelcomeWindowTitle" xml:space="preserve">
+    <value>Bienvenido/a</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>¡Bienvenido/a, {0}!</value>
+  </data>
+  <data name="AssignReturnDeviceButton" xml:space="preserve">
+    <value>Asignar/Devolver equipo</value>
+  </data>
+  <data name="AssignDeviceWindowTitle" xml:space="preserve">
+    <value>Asignar equipo</value>
+  </data>
+  <data name="ReturnDeviceWindowTitle" xml:space="preserve">
+    <value>Devolver equipo</value>
+  </data>
+  <data name="AssignmentDateLabel" xml:space="preserve">
+    <value>Fecha de asignación:*</value>
+  </data>
+  <data name="ReturnDateLabel" xml:space="preserve">
+    <value>Fecha de devolución:*</value>
+  </data>
+  <data name="EmployeeLabel" xml:space="preserve">
+    <value>Empleado:*</value>
+  </data>
+  <data name="DeleteConfirmationMessage" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar este elemento? Esta acción no se puede deshacer.</value>
+  </data>
+  <data name="DeleteConfirmationWindowTitle" xml:space="preserve">
+    <value>Confirmación de eliminación</value>
+  </data>
+  <data name="InformationDeletedWindowTitle" xml:space="preserve">
+    <value>Información eliminada</value>
+  </data>
+  <data name="InformationDeletedMessage" xml:space="preserve">
+    <value>La información se ha eliminado correctamente.</value>
+  </data>
 </root>

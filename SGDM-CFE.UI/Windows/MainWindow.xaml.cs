@@ -37,6 +37,7 @@ namespace SGDM_CFE.UI.Windows
                         ShowWarning(Strings.AccessDeniedMessage, Strings.AccessDeniedWindowTitle);
                         return;
                 }
+                ShowInformation(string.Format(Strings.WelcomeMessage, _employee), Strings.WelcomeWindowTitle);
                 NavigateTo(ViewType.StartPanel);
             }
             catch (Exception)
@@ -54,6 +55,11 @@ namespace SGDM_CFE.UI.Windows
         private static void ShowWarning(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private static void ShowInformation(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void NavigateTo(ViewType viewType)

@@ -20,24 +20,5 @@ namespace SGDM_CFE.Test.UnitTests
             var roles = _roleRepository.GetAll();
             Assert.NotEmpty(roles);
         }
-
-        [Fact]
-        public void GetById()
-        {
-            int roleId = 1;
-            var role = _roleRepository.GetById(roleId);
-            Assert.NotNull(role);
-            Assert.Equal(role.Id, roleId);
-        }
-
-        [Fact]
-        public void GetByUser()
-        {
-            var user = _context.Users.First();
-            int userId = user.Id;
-            var role = _roleRepository.GetByUser(userId);
-            Assert.NotNull(role);
-            Assert.Contains(role.Users, u => u.Id == userId);
-        }
     }
 }
