@@ -3,6 +3,7 @@ using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using static SGDM_CFE.UI.Resources.Constants;
@@ -36,7 +37,7 @@ namespace SGDM_CFE.UI.Windows
             {
                 Title = GetWindowTitle();
                 LoadAreas();
-                if (_deviceType == DeviceType.PortableTerminal || _deviceType == DeviceType.Tablet) LoadSIMCards();
+                if (_deviceType.Equals(DeviceType.PortableTerminal) || _deviceType.Equals(DeviceType.Tablet)) LoadSIMCards();
                 if (_isEditWindow) PopulateStateFields();
             }
             catch (Exception)
@@ -61,7 +62,7 @@ namespace SGDM_CFE.UI.Windows
         private void LoadAreas()
         {
             var areas = _workCenterService.GetAreas();
-            if (areas.IsNullOrEmpty())
+            if (areas.Count == 0)
             {
                 ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
                 return;
@@ -72,20 +73,6 @@ namespace SGDM_CFE.UI.Windows
         private static void ShowWarning(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
-        private void LoadSIMCards()
-        {
-            var simCards = _deviceService.GetSIMCards();
-            if (!_isEditWindow) simCards = simCards.Where(s => s.MobileDevices.IsNullOrEmpty()).ToList();
-            if (simCards.IsNullOrEmpty())
-            {
-                ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
-                return;
-            }
-            SIMCardLabel.Visibility = Visibility.Visible;
-            SIMCardComboBox.Visibility = Visibility.Visible;
-            SIMCardComboBox.ItemsSource = simCards;
         }
 
         private void PopulateStateFields()
@@ -127,6 +114,20 @@ namespace SGDM_CFE.UI.Windows
                 return state;
             }
             return null;
+        }
+
+        private void LoadSIMCards()
+        {
+            var simCards = _deviceService.GetSIMCards();
+            simCards = simCards.Where(sc => (sc.MobileDevices == null || sc.MobileDevices.Count == 0) || (_device is MobileDevice mobileDevice && sc.Id == mobileDevice.SIMCardId)).ToList();
+            if (simCards.IsNullOrEmpty())
+            {
+                return;
+            }
+            simCards.Add(new SIMCard { Id = InvalidId });
+            SIMCardLabel.Visibility = Visibility.Visible;
+            SIMCardComboBox.Visibility = Visibility.Visible;
+            SIMCardComboBox.ItemsSource = simCards;
         }
 
         private static void ShowError(string message, string title)
@@ -253,8 +254,17 @@ namespace SGDM_CFE.UI.Windows
             mobileDevice.Device.Notes = NotesTextBox.Text;
             mobileDevice.Device.WorkCenter = (WorkCenter)WorkCenterComboBox.SelectedItem;
             mobileDevice.Device.States.Add(state);
-            mobileDevice.SIMCard = (SIMCard)SIMCardComboBox.SelectedItem;
+            mobileDevice.SIMCard = GetSIMCard();
             return mobileDevice;
+        }
+
+        private SIMCard? GetSIMCard()
+        {
+            if (SIMCardComboBox.SelectedItem is SIMCard simCard)
+            {
+                return simCard.Id == InvalidId ? null : simCard;
+            }
+            return null;
         }
 
         private Device GetDevice(State state)
@@ -280,12 +290,26 @@ namespace SGDM_CFE.UI.Windows
             };
             if (isEdited)
             {
+                if (_assignment != null) EditAssignment(device);
                 ShowInformation(Strings.InformationEditedMessage, Strings.InformationEditedWindowTitle);
             }
             else
             {
                 ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
+        }
+
+        private void EditAssignment(object device)
+        {
+            if (device is OpticalReader opticalReader)
+            {
+                _assignment!.AssignmentState = opticalReader.Device.States.Last();
+            }
+            else if (device is MobileDevice mobileDevice)
+            {
+                _assignment!.AssignmentState = mobileDevice.Device.States.Last();
+            }
+            _deviceService.EditAssignment(_assignment!);
         }
 
         private static void ShowInformation(string message, string title)

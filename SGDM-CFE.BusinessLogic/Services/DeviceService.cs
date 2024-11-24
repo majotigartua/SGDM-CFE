@@ -104,6 +104,11 @@ namespace SGDM_CFE.BusinessLogic.Services
             return _opticalReaderRepository.GetAll();
         }
 
+        public SIMCard? GetSIMCardByMobileDevice(int mobileDeviceId)
+        {
+            return _simCardRepository.GetByMobileDevice(mobileDeviceId);
+        }
+
         public List<SIMCard> GetSIMCards()
         {
             return _simCardRepository.GetAll();

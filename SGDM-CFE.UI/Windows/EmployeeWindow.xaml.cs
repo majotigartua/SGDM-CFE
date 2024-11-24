@@ -53,6 +53,7 @@ namespace SGDM_CFE.UI.Windows
                 {
                     CreateEmployee();
                 }
+                Close();
             }
             catch (Exception)
             {

@@ -59,7 +59,7 @@
             <Label Grid.Row="12" Grid.Column="0" Content="{x:Static r:Strings.NotesLabel}" VerticalAlignment="Top" Margin="5"/>
             <TextBox x:Name="NotesTextBox" Grid.Row="12" Grid.Column="1" Margin="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="60"/>
             <Label x:Name="SIMCardLabel" Grid.Row="13" Grid.Column="0" Content="{x:Static r:Strings.SIMCardLabel}" VerticalAlignment="Center" Margin="5" Visibility="Collapsed"/>
-            <ComboBox x:Name="SIMCardComboBox" Grid.Row="13" Grid.Column="1" Margin="5" Visibility="Collapsed"/>
+            <ComboBox x:Name="SIMCardComboBox" Grid.Row="13" Grid.Column="1" Margin="5" Visibility="Collapsed" SelectedIndex="-1"/>
             <Grid Grid.Row="14" Grid.ColumnSpan="2" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

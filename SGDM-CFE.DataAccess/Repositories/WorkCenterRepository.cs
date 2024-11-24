@@ -43,7 +43,13 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return [.. _context.WorkCenters.Include(w => w.Area).Include(w => w.WorkCenterBusinessProcesses).ThenInclude(wcbp => wcbp.BusinessProcess).Include(w => w.WorkCenterCostCenters).ThenInclude(wccc => wccc.CostCenter).Where(wc => !wc.IsDeleted)];
+                return [.. _context.WorkCenters
+                    .Include(w => w.Area)
+                    .Include(w => w.WorkCenterBusinessProcesses)
+                    .ThenInclude(wcbp => wcbp.BusinessProcess)
+                    .Include(w => w.WorkCenterCostCenters)
+                    .ThenInclude(wccc => wccc.CostCenter)
+                    .Where(wc => !wc.IsDeleted)];
             }
             catch (Exception)
             {
@@ -55,7 +61,13 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return [.. _context.WorkCenters.Include(w => w.Area).Include(w => w.WorkCenterBusinessProcesses).ThenInclude(wcbp => wcbp.BusinessProcess).Include(w => w.WorkCenterCostCenters).ThenInclude(wcbc => wcbc.CostCenter).Where(w => !w.IsDeleted && w.Area.Id == areaId)];
+                return [.. _context.WorkCenters
+                    .Include(w => w.Area)
+                    .Include(w => w.WorkCenterBusinessProcesses)
+                    .ThenInclude(wcbp => wcbp.BusinessProcess)
+                    .Include(w => w.WorkCenterCostCenters)
+                    .ThenInclude(wcbc => wcbc.CostCenter)
+                    .Where(w => !w.IsDeleted && w.Area.Id == areaId)];
             }
             catch (Exception)
             {

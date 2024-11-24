@@ -43,7 +43,10 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return _context.MobileDevices.Include(md => md.Device).Include(md => md.SIMCard).FirstOrDefault(md => md.SIMCard!.Id == simCardId);
+                return _context.MobileDevices
+                    .Include(md => md.Device)
+                    .Include(md => md.SIMCard)
+                    .FirstOrDefault(md => md.SIMCard!.Id == simCardId);
             }
             catch (Exception)
             {
@@ -55,7 +58,12 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return [.. _context.MobileDevices.Include(md => md.Device).ThenInclude(d => d.WorkCenter).ThenInclude(wc => wc.Area).Include(md => md.SIMCard).Include(md => md.Type).Where(md => !md.IsDeleted && md.Type.Id == typeId)];
+                return [.. _context.MobileDevices
+                    .Include(md => md.Device)
+                    .ThenInclude(d => d.WorkCenter)
+                    .ThenInclude(wc => wc.Area)
+                    .Include(md => md.Type)
+                    .Where(md => !md.IsDeleted && md.Type.Id == typeId)];
             }
             catch (Exception)
             {

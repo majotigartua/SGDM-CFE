@@ -67,7 +67,7 @@ namespace SGDM_CFE.UI.Views
             }
             else if (_device is MobileDevice mobileDevice)
             {
-                ConfigureSIMCard(mobileDevice.SIMCard);
+                LoadSIMCard(mobileDevice.Id);
                 var state = _deviceService.GetStateByDevice(mobileDevice.Device.Id);
                 return state;
             }
@@ -79,10 +79,11 @@ namespace SGDM_CFE.UI.Views
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void ConfigureSIMCard(SIMCard? simCard)
+        private void LoadSIMCard(int mobileDeviceId)
         {
             DeviceAssignedSIMCardLabel.Visibility = Visibility.Visible;
             SIMCardDataGrid.Visibility = Visibility.Visible;
+            var simCard = _deviceService.GetSIMCardByMobileDevice(mobileDeviceId);
             if (simCard != null) PopulateSIMCardDataGrid(simCard);
         }
 

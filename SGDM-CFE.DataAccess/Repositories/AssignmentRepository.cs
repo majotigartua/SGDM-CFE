@@ -27,7 +27,11 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return [.. _context.Assignments.Include(a => a.AssignmentState).ThenInclude(s => s.Device).Include(a => a.ReturnState).Where(a => a.AssignmentState.Device.Id == deviceId)];
+                return [.. _context.Assignments
+                    .Include(a => a.AssignmentState)
+                    .ThenInclude(s => s.Device)
+                    .Include(a => a.Employee)
+                    .Where(a => a.AssignmentState.Device.Id == deviceId)];
             }
             catch (Exception)
             {
@@ -39,7 +43,13 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return [.. _context.Assignments.Include(a => a.Employee).Include(a => a.AssignmentState).ThenInclude(a => a.Device).ThenInclude(a => a.WorkCenter).ThenInclude(a => a.Area).Where(a => a.EmployeeId == employeeId && a.ReturnState == null)];
+                return [.. _context.Assignments
+                    .Include(a => a.Employee)
+                    .Include(a => a.AssignmentState)
+                    .ThenInclude(a => a.Device)
+                    .ThenInclude(a => a.WorkCenter)
+                    .ThenInclude(a => a.Area)
+                    .Where(a => a.EmployeeId == employeeId && a.ReturnState == null)];
             }
             catch (Exception)
             {
@@ -51,7 +61,13 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return _context.Assignments.Include(a => a.AssignmentState).Include(a => a.Employee).Include(a => a.ReturnState).Where(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId).ToList().LastOrDefault();
+                return _context.Assignments
+                    .Include(a => a.AssignmentState)
+                    .Include(a => a.Employee)
+                    .Include(a => a.ReturnState)
+                    .Where(a => a.AssignmentStateId == stateId || a.ReturnStateId == stateId)
+                    .ToList()
+                    .LastOrDefault();
             }
             catch (Exception)
             {

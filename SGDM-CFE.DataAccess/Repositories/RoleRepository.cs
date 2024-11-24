@@ -12,7 +12,7 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return _context.Roles.ToList();
+                return [.. _context.Roles];
             }
             catch (Exception)
             {

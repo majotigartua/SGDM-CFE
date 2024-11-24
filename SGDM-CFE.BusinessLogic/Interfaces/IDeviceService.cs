@@ -22,6 +22,7 @@ namespace SGDM_CFE.BusinessLogic.Interfaces
         List<OpticalReader> GetOpticalReaders();
         MobileDevice? GetMobileDeviceBySIMCard(int simCardId);
         List<MobileDevice> GetMobileDevicesByType(int typeId);
+        SIMCard? GetSIMCardByMobileDevice(int mobileDeviceId);
         List<SIMCard> GetSIMCards();
         State? GetStateByDevice(int deviceId);
     }

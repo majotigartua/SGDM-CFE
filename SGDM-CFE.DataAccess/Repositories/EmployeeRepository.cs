@@ -55,7 +55,10 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return _context.Employees.Include(e => e.User).ThenInclude(u => u!.Role).FirstOrDefault(e => !e.IsDeleted && e.RPE == rpe);
+                return _context.Employees
+                    .Include(e => e.User)
+                    .ThenInclude(u => u!.Role)
+                    .FirstOrDefault(e => !e.IsDeleted && e.RPE == rpe);
             }
             catch (Exception)
             {

@@ -43,6 +43,16 @@ namespace SGDM_CFE.Test.UnitTests
         }
 
         [Fact]
+        public void GetByMovileDevice()
+        {
+            var simCard = _context.SIMCards.First();
+            var simCardId = simCard.Id;
+            var result = _simCardRepository.GetByMobileDevice(simCardId);
+            Assert.NotNull(result);
+            Assert.Equal(result.Id, simCardId);
+        }
+
+        [Fact]
         public void Update()
         {
             var simCard = _context.SIMCards.First();

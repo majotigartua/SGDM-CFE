@@ -2,6 +2,7 @@
 {
     public class Constants
     {
+        public const int InvalidId = 0;
 
         public enum DeviceType
         {

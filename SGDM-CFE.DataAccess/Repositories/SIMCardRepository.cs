@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SGDM_CFE.DataAccess.Interfaces;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 
@@ -47,6 +48,20 @@ namespace SGDM_CFE.DataAccess.Repositories
             catch (Exception)
             {
                 return [];
+            }
+        }
+
+        public SIMCard? GetByMobileDevice(int mobileDeviceId)
+        {
+            try
+            {
+                return _context.SIMCards
+                    .Include(sc => sc.MobileDevices)
+                    .FirstOrDefault(sc => sc.MobileDevices.Any(md => md.Id == mobileDeviceId));
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 

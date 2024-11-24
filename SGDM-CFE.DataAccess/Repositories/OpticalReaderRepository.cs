@@ -43,7 +43,11 @@ namespace SGDM_CFE.DataAccess.Repositories
         {
             try
             {
-                return [.. _context.OpticalReaders.Include(or => or.Device).ThenInclude(d => d.WorkCenter).ThenInclude(wc => wc.Area).Where(or => !or.IsDeleted)];
+                return [.. _context.OpticalReaders
+                    .Include(or => or.Device)
+                    .ThenInclude(d => d.WorkCenter)
+                    .ThenInclude(wc => wc.Area)
+                    .Where(or => !or.IsDeleted)];
             }
             catch (Exception)
             {
