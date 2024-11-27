@@ -18,8 +18,6 @@ namespace SGDM_CFE.UI.Windows
         private readonly object _device;
         private readonly bool _isEditWindow;
 
-        private Assignment? _assignment;
-
         public DeviceWindow(Context context, DeviceType deviceType, object device, bool isEditWindow)
         {
             _deviceService = new DeviceService(context);
@@ -62,7 +60,7 @@ namespace SGDM_CFE.UI.Windows
         private void LoadAreas()
         {
             var areas = _workCenterService.GetAreas();
-            if (areas.Count == 0)
+            if (areas.IsNullOrEmpty())
             {
                 ShowWarning(Strings.NoRecordsMessage, Strings.NoRecordsWindowTitle);
                 return;
@@ -103,15 +101,11 @@ namespace SGDM_CFE.UI.Windows
         {
             if (_device is OpticalReader opticalReader)
             {
-                var state = _deviceService.GetStateByDevice(opticalReader.Device.Id);
-                _assignment = _deviceService.GetAssignmentByState(state!.Id);
-                return state;
+                return _deviceService.GetStateByDevice(opticalReader.Device.Id);
             }
             else if (_device is MobileDevice mobileDevice)
             {
-                var state = _deviceService.GetStateByDevice(mobileDevice.Device.Id);
-                _assignment = _deviceService.GetAssignmentByState(state!.Id);
-                return state;
+                return _deviceService.GetStateByDevice(mobileDevice.Device.Id);
             }
             return null;
         }
@@ -290,26 +284,12 @@ namespace SGDM_CFE.UI.Windows
             };
             if (isEdited)
             {
-                if (_assignment != null) EditAssignment(device);
                 ShowInformation(Strings.InformationEditedMessage, Strings.InformationEditedWindowTitle);
             }
             else
             {
                 ShowError(Strings.ConnectionErrorMessage, Strings.ConnectionErrorWindowTitle);
             }
-        }
-
-        private void EditAssignment(object device)
-        {
-            if (device is OpticalReader opticalReader)
-            {
-                _assignment!.AssignmentState = opticalReader.Device.States.Last();
-            }
-            else if (device is MobileDevice mobileDevice)
-            {
-                _assignment!.AssignmentState = mobileDevice.Device.States.Last();
-            }
-            _deviceService.EditAssignment(_assignment!);
         }
 
         private static void ShowInformation(string message, string title)
@@ -319,7 +299,7 @@ namespace SGDM_CFE.UI.Windows
 
         private void CreateDevice(object device)
         {
-            bool isCreated= device switch
+            bool isCreated = device switch
             {
                 OpticalReader opticalReader => _deviceService.CreateOpticalReader(opticalReader),
                 MobileDevice mobileDevice => _deviceService.CreateMobileDevice(mobileDevice),

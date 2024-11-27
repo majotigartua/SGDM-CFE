@@ -49,13 +49,11 @@ namespace SGDM_CFE.UI.Views
         {
             if (_device is OpticalReader opticalReader)
             {
-                var assignments = _deviceService.GetAssignmentsByDevice(opticalReader.Device.Id);
-                return assignments;
+                return _deviceService.GetAssignmentsByDevice(opticalReader.Device.Id);
             }
             else if (_device is MobileDevice mobileDevice)
             {
-                var assignments = _deviceService.GetAssignmentsByDevice(mobileDevice.Device.Id);
-                return assignments;
+                return _deviceService.GetAssignmentsByDevice(mobileDevice.Device.Id);
             }
             return [];
         }

@@ -1,4 +1,5 @@
-﻿using SGDM_CFE.BusinessLogic.Services;
+﻿using SGDM_CFE.BusinessLogic.Interfaces;
+using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
@@ -38,8 +39,6 @@ namespace SGDM_CFE.UI.Views
                     return;
                 }
                 PopulateStateDataGrid(state);
-                var assignment = _deviceService.GetAssignmentByState(state.Id);
-                if (assignment != null && assignment.ReturnState == null) PopulateEmployeeDataGrid(assignment.Employee);
             }
             catch (Exception)
             {
@@ -60,23 +59,22 @@ namespace SGDM_CFE.UI.Views
 
         private State? LoadState()
         {
-            if (_device is OpticalReader opticalReader)
+            int deviceId;
+            switch (_device)
             {
-                var state = _deviceService.GetStateByDevice(opticalReader.Device.Id);
-                return state;
+                case OpticalReader opticalReader:
+                    deviceId = opticalReader.Device.Id;
+                    break;
+                case MobileDevice mobileDevice:
+                    deviceId = mobileDevice.Device.Id;
+                    LoadSIMCard(mobileDevice.Id);
+                    break;
+                default:
+                    return null;
             }
-            else if (_device is MobileDevice mobileDevice)
-            {
-                LoadSIMCard(mobileDevice.Id);
-                var state = _deviceService.GetStateByDevice(mobileDevice.Device.Id);
-                return state;
-            }
-            return null;
-        }
-
-        private static void ShowWarning(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            var assignment = _deviceService.GetAssignmentsByDevice(deviceId).LastOrDefault();
+            if (assignment?.ReturnState == null) PopulateEmployeeDataGrid(assignment!.Employee);
+            return _deviceService.GetStateByDevice(deviceId);
         }
 
         private void LoadSIMCard(int mobileDeviceId)
@@ -94,6 +92,23 @@ namespace SGDM_CFE.UI.Views
                 new(Strings.SerialNumberRow, simCard.SerialNumber)
             };
             SIMCardDataGrid.ItemsSource = values;
+        }
+
+        private void PopulateEmployeeDataGrid(Employee employee)
+        {
+            var values = new List<Row>
+            {
+                new(Strings.RPERow, employee.RPE),
+                new(Strings.NameRow, employee.Name),
+                new(Strings.PaternalSurnameRow, employee.PaternalSurname),
+                new(Strings.MaternalSurnameRow, employee.MaternalSurname)
+            };
+            EmployeeDataGrid.ItemsSource = values;
+        }
+
+        private static void ShowWarning(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void PopulateStateDataGrid(State state)
@@ -115,18 +130,6 @@ namespace SGDM_CFE.UI.Views
                 new(Strings.CostCenterRow, state.WorkCenterCostCenter.CostCenter)
             };
             StateDataGrid.ItemsSource = values;
-        }
-
-        private void PopulateEmployeeDataGrid(Employee employee)
-        {
-            var values = new List<Row>
-            {
-                new(Strings.RPERow, employee.RPE),
-                new(Strings.NameRow, employee.Name),
-                new(Strings.PaternalSurnameRow, employee.PaternalSurname),
-                new(Strings.MaternalSurnameRow, employee.MaternalSurname)
-            };
-            EmployeeDataGrid.ItemsSource = values;
         }
 
         private static void ShowError(string message, string title)
