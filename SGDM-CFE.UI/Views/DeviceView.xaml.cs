@@ -1,5 +1,4 @@
-﻿using SGDM_CFE.BusinessLogic.Interfaces;
-using SGDM_CFE.BusinessLogic.Services;
+﻿using SGDM_CFE.BusinessLogic.Services;
 using SGDM_CFE.Model;
 using SGDM_CFE.Model.Models;
 using SGDM_CFE.UI.Resources;
